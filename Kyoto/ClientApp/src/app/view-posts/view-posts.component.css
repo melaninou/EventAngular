@@ -22,3 +22,13 @@
 .example-user-input {
   margin-right: 8px;
 }
+.more-space {
+  margin: 10px 10px 0px 0px;
+}
+.post-header {
+  font-size: 18px;
+  color: black;
+  text-align: center;
+  margin-right: 10px;
+}
+
