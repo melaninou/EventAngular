@@ -63,8 +63,8 @@ export class ViewGroupsComponent implements OnInit {
 
 
 
-  onClickMe(event: Event, item) {
-    this.router.navigate(['/group-details']);
+  onClickMe(event: Event, id) {
+    this.router.navigate(['/group-details', id]);
   }
 
 }

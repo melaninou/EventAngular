@@ -47,7 +47,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
       { path: 'create-post', component: CreatePostComponent },
       { path: 'view-posts', component: ViewPostsComponent },
       { path: 'view-groups', component: ViewGroupsComponent },
-      { path: 'group-details', component: GroupDetailsComponent }
+      { path: 'group-details/:id', component: GroupDetailsComponent }
     ]),
     BrowserAnimationsModule
   ],
