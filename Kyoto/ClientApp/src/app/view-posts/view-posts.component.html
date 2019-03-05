@@ -1,31 +1,40 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-  <!-- This is the tree node template for leaf nodes -->
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-    <li class="mat-tree-node">
-      <!-- use a disabled button to provide padding for tree leaf -->
-      <button mat-icon-button disabled></button>
-      {{node.name}}
-    </li>
-  </mat-tree-node>
-  <!-- This is the tree node template for expandable nodes -->
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-    <li>
-      <div class="mat-tree-node">
-        <button mat-icon-button matTreeNodeToggle
-                [attr.aria-label]="'toggle ' + node.name">
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-          </mat-icon>
-        </button>
-        {{node.name}}
-      </div>
-      <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-        <ng-container matTreeNodeOutlet></ng-container>
-      </ul>
-    </li>
-  </mat-nested-tree-node>
-</mat-tree>
+<h1><b>View posts</b></h1>
 
-<!-- Copyright 2018 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license -->
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Filter by group" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-button>Filter</button>
+</form>
+
+<br/>
+<br/>
+
+<h5><b>Today, 04.03.2019</b></h5>
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="post-header">
+        10:00
+      </mat-panel-title>
+      <mat-panel-description class="post-header">
+        Võti tulevikku 4.-6.märts!
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <table>
+      <tr><mat-icon class="more-space">group</mat-icon>TalTech</tr>
+      <tr><mat-icon class="more-space">alarm</mat-icon>10:00</tr>
+      <tr><mat-icon class="more-space">date_range</mat-icon>04.03.2019</tr>
+      <tr><mat-icon class="more-space"> message</mat-icon>Taaskord on TalTechi hoonetes toimumas mess, kus on
+        kohal palju ettev6tteid, kellega tutvust teha.</tr>
+    </table>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
