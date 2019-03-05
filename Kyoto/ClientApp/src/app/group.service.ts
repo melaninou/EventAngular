@@ -8,9 +8,11 @@ export class GroupService {
 
   constructor(private http: HttpClient) { }
 
-  groupUrl = 'assets/group_details.json';
+  //groupUrl = 'assets/group_details.json';
+  groupUrl : string;
 
-  getGroupDetails() {
+  getGroupDetails(id) {
+    this.groupUrl = 'assets/' +id +'.json';
     return this.http.get(this.groupUrl);
   }
 }

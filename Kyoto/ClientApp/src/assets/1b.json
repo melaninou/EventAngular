@@ -1,0 +1,7 @@
+{
+    "id": 2,
+    "name": "IT Teaduskond",
+    "description": "Infotehnoloogia teaduskond", 
+	"admin name": "Mari Vaarikas",
+    "parent_id": 1 
+}
