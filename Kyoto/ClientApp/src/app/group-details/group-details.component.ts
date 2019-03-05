@@ -28,11 +28,11 @@ export class GroupDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.groupid = this.route.snapshot.params['id'];
-    this.showGroup();
+    this.showGroup(this.groupid);
   }
 
-  showGroup() {
-    this.groupService.getGroupDetails()
+  showGroup(groupId) {
+    this.groupService.getGroupDetails(groupId)
       .subscribe((data: Group) => this.group = {
         id: data['id'],
         name: data['name'],
