@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-view-posts',
@@ -8,6 +9,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ViewPostsComponent {
   panelOpenState = false;
+  today = (moment().format('DD.MM.YYYY'));
 
   myControl = new FormControl();
   options: string[] = ['TalTech', 'Infotehnoloogia teaduskond', 'Äriinfotehnoloogia', 'IABB42'];
