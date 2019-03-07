@@ -1,15 +1,28 @@
 <h1><b>View posts</b></h1>
 
 <form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Filter by group" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <button mat-button>Filter</button>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="post-header">
+          Choose groups
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table>
+        <tr>
+          <td><mat-checkbox class="more-space">TalTech</mat-checkbox></td>
+          <td><mat-checkbox class="more-space">Infotehnoloogia teaduskond</mat-checkbox></td>
+          <td><mat-checkbox class="more-space">Äriinfotehnoloogia</mat-checkbox></td>
+        </tr>
+        <tr>
+          <td><mat-checkbox class="more-space">IABB42</mat-checkbox></td>
+          <td><mat-checkbox class="more-space">BEST</mat-checkbox></td>
+        </tr>
+      </table>
+      <button mat-button>Filter</button>
+    </mat-expansion-panel>
+  </mat-accordion>
 </form>
 
 <br/>
