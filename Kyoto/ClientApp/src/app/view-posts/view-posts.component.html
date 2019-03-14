@@ -1,5 +1,11 @@
 <h1><b>View posts</b></h1>
 
+<ul *ngIf="apps">
+  <li *ngFor="let app of apps">
+    {{app.id}} tt
+  </li>
+</ul>
+
 <form class="example-form">
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -25,30 +31,34 @@
   </mat-accordion>
 </form>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <h5><b>Today, {{today}}</b></h5>
 <mat-accordion>
   <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
-      <mat-panel-title class="post-header">
-        10:00
-      </mat-panel-title>
-      <mat-panel-description class="post-header">
-        Võti tulevikku 4.-6.märts!
-      </mat-panel-description>
+      <mat-panel-title class="post-header">{{apps.time}}</mat-panel-title>
+      <mat-panel-description class="post-header">{{apps.heading}}</mat-panel-description>
     </mat-expansion-panel-header>
-    <table>
-      <tr><mat-icon class="more-space">group</mat-icon>TalTech</tr>
-      <tr><mat-icon class="more-space">alarm</mat-icon>10:00</tr>
-      <tr><mat-icon class="more-space">date_range</mat-icon>04.03.2019 - 06.03.2019</tr>
-      <tr><mat-icon class="more-space"> location_on</mat-icon>TalTech</tr>
-      <tr><mat-icon class="more-space"> message</mat-icon>Taaskord on TalTechi hoonetes toimumas mess, kus on
-        kohal palju ettev6tteid, kellega tutvust teha.</tr>
-    </table>
+    <!--<table>
+      <tr><mat-icon class="more-space">group</mat-icon>{{group}}</tr>
+      <tr><mat-icon class="more-space">alarm</mat-icon>{{singlePost.time}}</tr>
+      <tr><mat-icon class="more-space">date_range</mat-icon>{{date}}</tr>
+      <tr><mat-icon class="more-space"> location_on</mat-icon>{{location}}</tr>
+      <tr><mat-icon class="more-space"> message</mat-icon>{{message}}</tr>
+    </table>-->
   </mat-expansion-panel>
 </mat-accordion>
+
+<h5><b>Tomorrow, {{tomorrow}}</b></h5>
+<h5><b>{{day3}}, {{in2Days}}</b></h5>
+<h5><b>{{day4}}, {{in3Days}}</b></h5>
+<h5><b>{{day5}}, {{in4Days}}</b></h5>
+<h5><b>Future activities</b></h5>
+
+
+
 
 <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
