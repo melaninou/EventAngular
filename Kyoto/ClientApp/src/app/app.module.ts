@@ -18,6 +18,8 @@ import { GroupDetailsComponent } from './group-details/group-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { DashBoardComponent } from './dash-board/dash-board.component';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +32,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     CreatePostComponent,
     ViewPostsComponent,
     ViewGroupsComponent,
-    GroupDetailsComponent
-
+    GroupDetailsComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,7 +49,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
       { path: 'create-post', component: CreatePostComponent },
       { path: 'view-posts', component: ViewPostsComponent },
       { path: 'view-groups', component: ViewGroupsComponent },
-      { path: 'group-details/:id', component: GroupDetailsComponent }
+      { path: 'group-details/:id', component: GroupDetailsComponent },
+      { path: 'dash-board', component: DashBoardComponent}
     ]),
     BrowserAnimationsModule
   ],

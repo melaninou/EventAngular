@@ -1,0 +1,25 @@
+.homepage-card {
+  max-width: 400px;
+  float: left;
+  width: 33.33%;
+  margin: 5px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.add-button {
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+.add-button:hover {
+  color: gray;
+}
