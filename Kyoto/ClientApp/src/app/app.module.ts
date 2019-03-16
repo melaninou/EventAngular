@@ -20,6 +20,8 @@ import { GroupPostsComponent } from './page-group-details/group-posts/group-post
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { DashBoardComponent } from './dash-board/dash-board.component';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     MembersComponent,
     GroupPostsComponent 
 
+    GroupDetailsComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,6 +57,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
       { path: 'view-groups', component: ViewGroupsComponent },
       { path: 'members', component: MembersComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent }
+      { path: 'group-details/:id', component: GroupDetailsComponent },
+      { path: 'dash-board', component: DashBoardComponent}
     ]),
     BrowserAnimationsModule
   ],
