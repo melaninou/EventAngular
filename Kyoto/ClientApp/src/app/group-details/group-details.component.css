@@ -1,22 +1,8 @@
 .group-card {
-  max-width: 500px;
+  width: 100%;
   margin: 10px;
-  float: left;
 }
 
-.member-card {
-  width: 300px;
-  margin: 10px;
-  float: left;
-}
 
-.example-header-image {
 
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
 
-.member {
-  margin: 10px;
-  padding: 5px;
-}

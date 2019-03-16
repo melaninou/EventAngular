@@ -15,6 +15,8 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { ViewPostsComponent } from './view-posts/view-posts.component';
 import { ViewGroupsComponent } from './view-groups/view-groups.component';
 import { GroupDetailsComponent } from './group-details/group-details.component';
+import { MembersComponent } from './page-group-details/members/members.component';
+import { GroupPostsComponent } from './page-group-details/group-posts/group-posts.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -30,7 +32,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     CreatePostComponent,
     ViewPostsComponent,
     ViewGroupsComponent,
-    GroupDetailsComponent
+    GroupDetailsComponent,
+    MembersComponent,
+    GroupPostsComponent 
 
   ],
   imports: [
@@ -47,6 +51,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
       { path: 'create-post', component: CreatePostComponent },
       { path: 'view-posts', component: ViewPostsComponent },
       { path: 'view-groups', component: ViewGroupsComponent },
+      { path: 'members', component: MembersComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent }
     ]),
     BrowserAnimationsModule
