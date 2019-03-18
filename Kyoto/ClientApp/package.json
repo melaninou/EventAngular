@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^7.2.7",
     "@angular/platform-server": "^7.2.7",
     "@angular/router": "^7.2.7",
+    "@material/fab": "^1.0.1",
     "@ngtools/webpack": "^7.3.3",
     "@nguniversal/module-map-ngfactory-loader": "^7.1.0",
     "angular-moment": "^1.3.0",
@@ -40,7 +41,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
-    "@angular/cli": "^7.3.4",
+    "@angular/cli": "^7.3.6",
     "@angular/compiler-cli": "^7.2.7",
     "@angular/language-service": "^7.2.7",
     "@types/jasmine": "~2.8.3",
