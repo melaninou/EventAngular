@@ -15,6 +15,8 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { ViewPostsComponent } from './view-posts/view-posts.component';
 import { ViewGroupsComponent } from './view-groups/view-groups.component';
 import { GroupDetailsComponent } from './group-details/group-details.component';
+import { MembersComponent } from './page-group-details/members/members.component';
+import { GroupPostsComponent } from './page-group-details/group-posts/group-posts.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -32,6 +34,10 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
     ViewPostsComponent,
     ViewGroupsComponent,
     GroupDetailsComponent,
+    MembersComponent,
+    GroupPostsComponent,
+
+    GroupDetailsComponent,
     DashBoardComponent
   ],
   imports: [
@@ -48,6 +54,8 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
       { path: 'create-post', component: CreatePostComponent },
       { path: 'view-posts', component: ViewPostsComponent },
       { path: 'view-groups', component: ViewGroupsComponent },
+      { path: 'members', component: MembersComponent },
+      { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'dash-board', component: DashBoardComponent}
     ]),
