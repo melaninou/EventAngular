@@ -36,7 +36,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
     ViewGroupsComponent,
     GroupDetailsComponent,
     MembersComponent,
-    GroupPostsComponent 
+    GroupPostsComponent,
 
     GroupDetailsComponent,
     DashBoardComponent
@@ -56,7 +56,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
       { path: 'view-posts', component: ViewPostsComponent },
       { path: 'view-groups', component: ViewGroupsComponent },
       { path: 'members', component: MembersComponent },
-      { path: 'group-details/:id', component: GroupDetailsComponent }
+      { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'dash-board', component: DashBoardComponent}
     ]),
