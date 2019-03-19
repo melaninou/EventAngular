@@ -22,7 +22,6 @@ import { MaterialModule } from './material.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

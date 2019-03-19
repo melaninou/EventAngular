@@ -1,8 +1,8 @@
 .homepage-card {
-  max-width: 400px;
+  max-width: 100vw;
   float: left;
-  width: 33.33%;
-  margin: 5px;
+  width: 30%;
+  margin: 15px;
 }
 
 .example-header-image {
@@ -11,9 +11,12 @@
 
 /* Clearfix (clear floats) */
 .row::after {
-  content: "";
-  clear: both;
-  display: table;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
 }
 
 .add-button {
@@ -22,4 +25,8 @@
 
 .add-button:hover {
   color: gray;
+}
+
+.see-more-link {
+  float: right;
 }
