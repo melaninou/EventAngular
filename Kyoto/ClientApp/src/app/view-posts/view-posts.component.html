@@ -1,10 +1,12 @@
 <h1><b>View posts</b></h1>
 
-<ul *ngIf="apps">
-  <li *ngFor="let app of apps">
-    {{app.id}} tt
-  </li>
-</ul>
+  <!--<table>
+    <tr *ngFor="let app of groups">
+      <td>{{app.id}}</td>
+      <td>{{app.name}}</td>
+    </tr>
+  </table>-->
+
 
 <form class="example-form">
   <mat-accordion>
@@ -16,14 +18,8 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <table>
-        <tr>
-          <td><mat-checkbox class="more-space">TalTech</mat-checkbox></td>
-          <td><mat-checkbox class="more-space">Infotehnoloogia teaduskond</mat-checkbox></td>
-          <td><mat-checkbox class="more-space">Äriinfotehnoloogia</mat-checkbox></td>
-        </tr>
-        <tr>
-          <td><mat-checkbox class="more-space">IABB42</mat-checkbox></td>
-          <td><mat-checkbox class="more-space">BEST</mat-checkbox></td>
+        <tr *ngFor="let x of groups">
+          <td><mat-checkbox class="more-space">{{x.name}}</mat-checkbox></td>
         </tr>
       </table>
       <button mat-button>Filter</button>
@@ -35,20 +31,20 @@
 <br />
 
 <h5><b>Today, {{today}}</b></h5>
-<mat-accordion>
+<mat-accordion *ngFor="let x of apps">
   <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
-      <mat-panel-title class="post-header">{{apps.time}}</mat-panel-title>
-      <mat-panel-description class="post-header">{{apps.heading}}</mat-panel-description>
+      <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+      <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
     </mat-expansion-panel-header>
-    <!--<table>
-      <tr><mat-icon class="more-space">group</mat-icon>{{group}}</tr>
-      <tr><mat-icon class="more-space">alarm</mat-icon>{{singlePost.time}}</tr>
-      <tr><mat-icon class="more-space">date_range</mat-icon>{{date}}</tr>
-      <tr><mat-icon class="more-space"> location_on</mat-icon>{{location}}</tr>
-      <tr><mat-icon class="more-space"> message</mat-icon>{{message}}</tr>
-    </table>-->
+    <table>
+      <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
+      <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+      <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+      <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+      <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+    </table>
   </mat-expansion-panel>
 </mat-accordion>
 

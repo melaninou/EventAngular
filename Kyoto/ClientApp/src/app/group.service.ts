@@ -15,6 +15,8 @@ interface Maasikas {
 
 }
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +28,7 @@ export class GroupService {
   groupUrl: string;
   testimine: SinglePost;
   public apps: SinglePost[];
+  public groups: SinglePost[];
 
 
   getGroupDetails(id) {

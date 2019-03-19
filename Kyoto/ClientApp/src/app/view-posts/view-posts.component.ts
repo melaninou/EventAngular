@@ -15,6 +15,12 @@ export interface SinglePost {
 
 }
 
+export interface SingleGroup {
+  id: string;
+  name: string;
+
+}
+
 @Component({
   selector: 'app-view-posts',
   templateUrl: './view-posts.component.html',
@@ -25,8 +31,8 @@ export class ViewPostsComponent implements OnInit{
 
   constructor(private groupService: GroupService) {}
 
- // listOfPosts: SinglePost[] = [];
-  public apps: SinglePost[];
+  apps: SinglePost[];
+  groups: SingleGroup[];
 
   panelOpenState = false;
 
@@ -41,10 +47,12 @@ export class ViewPostsComponent implements OnInit{
   in4Days = (moment().add(4, 'days').format('DD.MM.YYYY'));
 
   myControl = new FormControl();
-  options: string[] = ['TalTech', 'Infotehnoloogia teaduskond', 'Äriinfotehnoloogia', 'IABB42'];
+
 
   ngOnInit() {
+
     this.showPost("postitused");
+    this.showGroup("groupslist");
   }
 
   showPost(jsonFileName): void {
@@ -53,7 +61,14 @@ export class ViewPostsComponent implements OnInit{
       this.apps = result as SinglePost[];
       console.log(this.apps);
     }, error => console.error(error));
-
    
+  }
+
+  showGroup(jsonFileName): void {
+
+    this.groupService.getGroupHost(jsonFileName).subscribe(result => {
+      this.groups = result as SingleGroup[];
+      console.log(this.groups);
+    }, error => console.error(error));
   }
 }

@@ -24,10 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\post.service.spec.ts" />
     <None Remove="ClientApp\src\app\post.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\post.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\post.service.ts" />
   </ItemGroup>
 
