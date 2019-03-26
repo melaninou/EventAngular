@@ -32,27 +32,128 @@
 
 <h5><b>Today, {{today}}</b></h5>
 <mat-accordion *ngFor="let x of apps">
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
-      <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
-    </mat-expansion-panel-header>
-    <table>
-      <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
-      <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
-      <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
-      <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
-      <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-    </table>
-  </mat-expansion-panel>
+  <div *ngIf="x.date === today">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+        <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <table>
+        <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
+        <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+        <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+        <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+        <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
 </mat-accordion>
 
+
 <h5><b>Tomorrow, {{tomorrow}}</b></h5>
+<mat-accordion *ngFor="let x of apps">
+  <div *ngIf="x.date === tomorrow">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+        <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <table>
+        <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
+        <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+        <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+        <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+        <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>
+
+
 <h5><b>{{day3}}, {{in2Days}}</b></h5>
+<mat-accordion *ngFor="let x of apps">
+  <div *ngIf="x.date === in2Days">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+        <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <table>
+        <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
+        <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+        <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+        <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+        <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>
+
+
 <h5><b>{{day4}}, {{in3Days}}</b></h5>
+<mat-accordion *ngFor="let x of apps">
+  <div *ngIf="x.date === in3Days">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+        <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <table>
+        <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
+        <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+        <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+        <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+        <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>
+
+
 <h5><b>{{day5}}, {{in4Days}}</b></h5>
+<mat-accordion *ngFor="let x of apps">
+  <div *ngIf="x.date === in4Days">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+        <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <table>
+        <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
+        <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+        <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+        <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+        <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>
+
+
 <h5><b>Future activities</b></h5>
+<mat-accordion *ngFor="let x of apps">
+  <div *ngIf="x.date > in4Days">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+        <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <table>
+        <tr><mat-icon class="more-space">group</mat-icon>{{x.group}}</tr>
+        <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+        <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+        <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+        <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>
 
 
 

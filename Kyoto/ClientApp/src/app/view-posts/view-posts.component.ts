@@ -36,6 +36,7 @@ export class ViewPostsComponent implements OnInit{
 
   panelOpenState = false;
 
+
   day3 = (moment().add(2, 'days').format('dddd'));
   day4 = (moment().add(3, 'days').format('dddd'));
   day5 = (moment().add(4, 'days').format('dddd'));
@@ -47,6 +48,8 @@ export class ViewPostsComponent implements OnInit{
   in4Days = (moment().add(4, 'days').format('DD.MM.YYYY'));
 
   myControl = new FormControl();
+
+  i: number = 0;
 
 
   ngOnInit() {
@@ -71,4 +74,6 @@ export class ViewPostsComponent implements OnInit{
       console.log(this.groups);
     }, error => console.error(error));
   }
+
+ // isDateCorrect(dateTime): boolean {}
 }
