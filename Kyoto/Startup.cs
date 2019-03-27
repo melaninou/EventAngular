@@ -30,7 +30,7 @@ namespace Kyoto
             });
 
             services.AddDbContext<KyotoContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("KyotoContext")));
+                    options.UseInMemoryDatabase("KyotoContext"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
