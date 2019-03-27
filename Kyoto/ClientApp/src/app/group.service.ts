@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SinglePost } from './view-posts/view-posts.component';
+import { SinglePost } from '../app/models/Post';
 import { Http } from '@angular/http';
 
 
-interface Maasikas {
-  id: string;
-  time: string;
-  date: string;
-  location: string;
-  group: string;
-  heading: string;
-  message: string;
+//interface Maasikas {
+//  id: string;
+//  time: string;
+//  date: string;
+//  location: string;
+//  group: string;
+//  heading: string;
+//  message: string;
 
-}
+//}
 
 
 

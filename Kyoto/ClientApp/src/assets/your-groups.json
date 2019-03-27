@@ -1,0 +1,26 @@
+[
+	{"id":"0001",
+	"name":"TalTech",
+	"description": "Tallinna Tehnikaülikooli grupp",
+	"admin": "Admin",
+	"parent_id": "9999"
+	},
+	{"id":"0002",
+	"name":"Infotehnoloogia teaduskond",
+	"description": "TalTech grupp",
+	"admin": "Admin",
+	"parent_id": "0001"
+	},
+	{"id":"0003",
+	"name":"Äriinfotehnoloogia",
+	"description": "Infotehnoloogia teaduskonna grupp",
+	"admin": "Admin",
+	"parent_id": "0002"
+	},
+	{"id":"0004",
+	"name":"IABB42",
+	"description": "Äriinfotehnoloogia grupp",
+	"admin": "Admin",
+	"parent_id": "0003"
+	}
+]

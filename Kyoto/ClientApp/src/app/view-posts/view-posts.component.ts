@@ -2,18 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { GroupService } from '../group.service';
+import { SinglePost } from '../models/Post'
 
 
-export interface SinglePost {
-  id: string;
-  time: string;
-  date: string;
-  location: string;
-  group: string;
-  heading: string;
-  message: string;
 
-}
 
 export interface SingleGroup {
   id: string;

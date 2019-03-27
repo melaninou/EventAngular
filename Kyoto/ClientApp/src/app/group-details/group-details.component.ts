@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GroupService } from '../group.service';
+import { Group } from '../models/Group'
 
-interface Group {
-  id: string;
-  name: string;
-  description: string;
-  admin: string;
-  parent_id: string;
-}
 
 @Component({
   selector: 'app-group-details',

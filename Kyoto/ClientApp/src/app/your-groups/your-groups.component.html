@@ -1,19 +1,32 @@
-<<mat-card class="homepage-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"><mat-icon>group</mat-icon></div>
-    <mat-card-title>YOUR GROUPS</mat-card-title>
-    <button mat-mini-fab>
-      <mat-icon aria-label="">add</mat-icon>
-    </button>
-    <mat-card-subtitle>Group tree upside down with clickable rows</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+<mat-card class="your-groups-card">
+  <div class="your-groups-header">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"><mat-icon>group</mat-icon></div>
+      <mat-card-title>YOUR GROUPS</mat-card-title>
+      <button mat-mini-fab color="accent">
+        <mat-icon aria-label="">add</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-subtitle class="group-subtitle">Group tree upside down with clickable rows</mat-card-subtitle>
+  </div>
+  <div *ngFor="let x of groups" class="hover-card">
+    <mat-card class="extra-margin">
+      <mat-card-header class="group-header">
+        <div mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></div>
+        {{x.name}}
+      </mat-card-header>
+      <mat-card-subtitle class="group-subtitle">
+        {{x.description}}
+      </mat-card-subtitle>
+    </mat-card>
+  </div>
+
   <mat-card-content>
-    <p>
-      Your group label buttons coming soon.
-    </p>
     <h3 class="see-more-link">
       <a mat-button routerLink=".">See more Groups</a>
     </h3>
   </mat-card-content>
+
 </mat-card>
+
+
