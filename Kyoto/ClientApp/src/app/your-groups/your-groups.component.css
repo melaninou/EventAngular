@@ -1,0 +1,32 @@
+.homepage-card {
+  max-width: 100vw;
+  float: left;
+  width: 30%;
+  margin: 15px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.add-button {
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+  .add-button:hover {
+    color: gray;
+  }
+
+.see-more-link {
+  float: right;
+}

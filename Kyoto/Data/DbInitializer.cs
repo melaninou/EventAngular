@@ -19,30 +19,31 @@ namespace Kyoto.Data
 
             var postItems = new PostItem[]
             {
+                //asp net paneb ID väärtused ise alates 1'st
                 new PostItem
                 {
-                    ID = 1111, Time = "16:00", Date = "26.03.2019", Location = "Nohik", Group = "IABB43",
+                    Time = "16:00", Date = "26.03.2019", Location = "Nohik", Group = "IABB43",
                     Heading = "Kohvipaus", Message = "Tule tasuta kohvile!", Type = "Announcement"
                 },
                 new PostItem
                 {
-                    ID = 1112, Time = "20:00", Date = "26.03.2019", Location = "Vanalinn", Group = "Äriinfotehnoloogia",
+                   Time = "20:00", Date = "26.03.2019", Location = "Vanalinn", Group = "Äriinfotehnoloogia",
                     Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event"
                 },
                 new PostItem
                 {
-                    ID = 1113, Time = "12:00", Date = "28.03.2019", Location = "Aula", Group = "Äriinfotehnoloogia",
+                   Time = "12:00", Date = "28.03.2019", Location = "Aula", Group = "Äriinfotehnoloogia",
                     Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event"
                 },
                 new PostItem
                 {
-                    ID = 1114, Time = "12:00", Date = "31.03.2019", Location = "IT maja", Group = "TalTech",
+                   Time = "12:00", Date = "31.03.2019", Location = "IT maja", Group = "TalTech",
                     Heading = "Business ideas to life",
                     Message = "Annual business ideas competition with real investors as judges.", Type = "Event"
                 },
                 new PostItem
                 {
-                    ID = 1115, Time = "20:00", Date = "30.03.2019", Location = "Nõmme spordikesus", Group = "TalTech",
+                   Time = "20:00", Date = "30.03.2019", Location = "Nõmme spordikesus", Group = "TalTech",
                     Heading = "Bar brawl", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event"
                 }
 

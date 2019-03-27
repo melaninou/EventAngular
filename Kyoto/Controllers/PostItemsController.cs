@@ -24,7 +24,14 @@ namespace Kyoto.Controllers
         [HttpGet]
         public IEnumerable<PostItem> GetPostItem()
         {
-            return _context.PostItem;
+            if (ModelState.IsValid)
+            {
+                return _context.PostItem;
+            }
+            else
+            {
+                throw new Exception("Unable to GET PostItems because the Model State is invalid.");
+            }
         }
 
         // GET: api/PostItems/5
