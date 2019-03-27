@@ -7,15 +7,16 @@ namespace Kyoto.Models
         [Key]
         public int ID { get; set; }
 
-        public string _time { get; set; }
-        public string _date { get; set; }
+        public string Time { get; set; }
+        public string Date { get; set; }
 
-        public string _location { get; set; }
+        public string Location { get; set; }
 
-        public string _group { get; set; }
+        public string Group { get; set; }
 
-        public string _heading { get; set; }
+        public string Heading { get; set; }
 
-        public string _message { get; set; }
+        public string Message { get; set; }
+        public string Type { get; set; }
     }
 }

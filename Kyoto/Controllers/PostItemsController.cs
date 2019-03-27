@@ -9,7 +9,7 @@ using Kyoto.Models;
 
 namespace Kyoto.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/posts")]
     [ApiController]
     public class PostItemsController : ControllerBase
     {

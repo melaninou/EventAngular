@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Kyoto.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -6,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Kyoto.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Kyoto
 {
@@ -36,6 +39,7 @@ namespace Kyoto
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            Initialize(app.ApplicationServices);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -67,6 +71,24 @@ namespace Kyoto
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+
+        public static void Initialize(IServiceProvider service)
+        {
+            using (var serviceScope = service.CreateScope())
+            {
+                var scopeServiceProvider = serviceScope.ServiceProvider;
+                try
+                {
+                    var context = scopeServiceProvider.GetService<KyotoContext>();
+                    DbInitializer.Initialize(context);
+                }
+                catch (Exception e)
+                {
+                    var logger = scopeServiceProvider.GetService<ILogger<Program>>();
+                    logger.LogError(e, "An error occured while seeding the database");
+                }
+            }
         }
     }
 }
