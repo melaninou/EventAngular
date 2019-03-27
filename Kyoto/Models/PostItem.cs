@@ -5,18 +5,17 @@ namespace Kyoto.Models
     public class PostItem
     {
         [Key]
-        public int ID;
+        public int ID { get; set; }
 
-        public string _time;
+        public string _time { get; set; }
+        public string _date { get; set; }
 
-        public string _date;
+        public string _location { get; set; }
 
-        public string _location;
+        public string _group { get; set; }
 
-        public string _group;
+        public string _heading { get; set; }
 
-        public string _heading;
-
-        public string _message;
+        public string _message { get; set; }
     }
 }
