@@ -6,6 +6,6 @@ export interface SinglePost {
   group: string;
   heading: string;
   message: string;
-
+  type: string;
 }
 //siia tuleb teha muutuja "type" juurde!

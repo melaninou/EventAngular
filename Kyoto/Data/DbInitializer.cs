@@ -53,6 +53,35 @@ namespace Kyoto.Data
                 context.PostItem.Add(postItem);
             }
 
+            if (context.GroupItem.Any())
+            {
+                return;
+            }
+
+            var groupItems = new GroupItem[]
+            {
+                new GroupItem
+                {
+                    Name = "TALTECH", Description = "SEE TÕESTI TÖÖTAB??????", Admin = "Administrator", ParentId = "9999"
+                },
+                new GroupItem
+                {
+                    Name = "Infotehnoloogia teaduskond", Description = "TalTech grupp", Admin = "Administrator", ParentId = "0001"
+                },
+                new GroupItem
+                {
+                    Name = "Äriinfotehnoloogia", Description = "Infotehnoloogia teaduskonna grupp", Admin = "Administrator", ParentId = "0002"
+                },
+                new GroupItem
+                {
+                    Name = "IABB42", Description = "Äriinfotehnoloogia grupp", Admin = "Administrator", ParentId = "00003"
+                }
+            };
+            foreach (var groupItem in groupItems)
+            {
+                context.GroupItem.Add(groupItem);
+            }
+
             context.SaveChanges();
         }
     }
