@@ -22,6 +22,7 @@ import { MaterialModule } from './material.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { YourGroupsComponent } from './your-groups/your-groups.component';
+import { YourPostsComponent } from './your-posts/your-posts.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { YourGroupsComponent } from './your-groups/your-groups.component';
 
     GroupDetailsComponent,
     DashBoardComponent,
-    YourGroupsComponent
+    YourGroupsComponent,
+    YourPostsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

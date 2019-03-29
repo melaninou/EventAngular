@@ -1,51 +1,8 @@
 <head>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-
-<mat-card class="your-groups-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"><mat-icon>event_note</mat-icon></div>
-    <mat-card-title>EVENTS</mat-card-title>
-    <button mat-mini-fab>
-      <mat-icon aria-label="">add</mat-icon>
-    </button>
-    <mat-card-subtitle>
-      <mat-card-actions>
-        <button mat-button>GOING</button>
-        <button mat-button>PENDING</button>
-        <button mat-button>ALL</button>
-      </mat-card-actions>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      Event label buttons coming soon.
-    </p>
-    <h3 class="see-more-link">
-      <a mat-button routerLink=".">See more Events</a>
-    </h3>
-  </mat-card-content>
-</mat-card>
-
-<mat-card class="your-groups-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"><mat-icon>announcement</mat-icon></div>
-    <mat-card-title>ANNOUNCEMENTS</mat-card-title>
-    <button mat-mini-fab>
-      <mat-icon aria-label="">add</mat-icon>
-    </button>
-    <mat-card-subtitle>Newest 5 announcements</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      Announcement label buttons coming soon.
-    </p>
-    <h3 class="see-more-link">
-      <a mat-button routerLink=".">See more Announcements</a>
-    </h3>
-  </mat-card-content>
-</mat-card>
-<app-your-groups></app-your-groups>
+<div class="dashboard-background">
+  <app-your-posts></app-your-posts>
+  <app-your-groups></app-your-groups>
+</div>
 

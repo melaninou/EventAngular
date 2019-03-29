@@ -32,19 +32,37 @@ namespace Kyoto.Data
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "28.03.2019", Location = "Aula", Group = "Äriinfotehnoloogia",
-                    Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event"
+                   Time = "12:00", Date = "28.03.2019", Location = "Aula", Group = "TalTech",
+                    Heading = "Business ideas to life", Message = "Annual business ideas competition with real investors as judges.", Type = "Event"
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "31.03.2019", Location = "IT maja", Group = "TalTech",
-                    Heading = "Business ideas to life",
-                    Message = "Annual business ideas competition with real investors as judges.", Type = "Event"
+                   Time = "12:00", Date = "31.03.2019", Location = "IT maja", Group = "IABB",
+                    Heading = "Külalislektori Muhammed Thali loeng",
+                    Message = "Külalislektor Muhammed Thali avab meile blockchaini maailma.", Type = "Event"
                 },
                 new PostItem
                 {
                    Time = "20:00", Date = "30.03.2019", Location = "Nõmme spordikesus", Group = "TalTech",
-                    Heading = "Bar brawl", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event"
+                    Heading = "Tervisejooks", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event"
+                },
+                new PostItem
+                {
+                    Date = "29.03.2019", Group = "TalTech",
+                    Heading = "Liitu Fotoklubiga!!", Message = "Tule uuri ja vaata, mille huvitavaga me tegeleme @ FotoKlubi",
+                    Type = "Announcement"
+                },
+                new PostItem
+                {
+                    Date = "29.03.2019", Group = "Äriinfotehnoloogia",
+                    Heading = "Tule täna kell 15.00 loengule", Message = "Muti Onu tuleb räägib küberturvalisusest: Be Safe!",
+                    Type = "Announcement"
+                },
+                new PostItem
+                {
+                    Date = "29.03.2019", Group = "IABB",
+                    Heading = "Vajan head konspekti!", Message = "Kui kellelgi on head mata konspekti, siis võiks jagada.",
+                    Type = "Announcement"
                 }
 
             };
@@ -62,7 +80,7 @@ namespace Kyoto.Data
             {
                 new GroupItem
                 {
-                    Name = "TALTECH", Description = "SEE TÕESTI TÖÖTAB??????", Admin = "Administrator", ParentId = "9999"
+                    Name = "TalTech", Description = "Töötab??", Admin = "Administrator", ParentId = "9999"
                 },
                 new GroupItem
                 {

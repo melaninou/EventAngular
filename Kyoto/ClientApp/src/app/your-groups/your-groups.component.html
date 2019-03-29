@@ -1,14 +1,13 @@
-<mat-card class="your-groups-card">
+<mat-card class="your-groups-card card-style">
   <div class="your-groups-header">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"><mat-icon>group</mat-icon></div>
       <mat-card-title>YOUR GROUPS</mat-card-title>
-      <button mat-mini-fab color="accent">
-        <mat-icon aria-label="">add</mat-icon>
+      <button mat-mini-fab class="add-button" color="accent" routerLink="/add-group">
+        <mat-icon class="add-icon" aria-label="">add</mat-icon>
       </button>
     </mat-card-header>
-    <mat-card-subtitle class="group-subtitle">Group tree upside down with clickable rows</mat-card-subtitle>
-  </div>
+   </div>
   <!--<div *ngFor="let x of groups" class="hover-card">-->
   <div *ngFor="let x of apiGroups" class="hover-card">
     <mat-card class="extra-margin">
@@ -21,10 +20,9 @@
       </mat-card-subtitle>
     </mat-card>
   </div>
-
   <mat-card-content>
     <h3 class="see-more-link">
-      <a mat-button routerLink=".">See more Groups</a>
+      <a mat-button routerLink="/view-groups">See more Groups</a>
     </h3>
   </mat-card-content>
 

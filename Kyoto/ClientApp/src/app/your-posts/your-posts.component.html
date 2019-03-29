@@ -1,0 +1,82 @@
+<mat-card class="your-events-card card-style">
+  <div class="your-posts-header">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"><mat-icon matBadge="5" matBadgeColor="primary">event_note</mat-icon></div>
+      <mat-card-title>EVENTS</mat-card-title>
+      <button mat-mini-fab class="add-button" color="accent" routerLink="/create-post">
+        <mat-icon class="add-icon" aria-label="">add</mat-icon>
+      </button>
+    </mat-card-header>
+  </div>
+  <mat-card-subtitle>
+    <mat-tab-group color="accent">
+      <mat-tab class="post-tabs" label="GOING">
+        <div *ngFor="let x of apiPosts">
+          <div *ngIf="x.type === event" class="hover-card">
+            <mat-card class="extra-margin">
+              <mat-card-header class="post-header">
+                <div mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></div>
+                {{x.heading}}
+              </mat-card-header>
+              <mat-card-subtitle class="post-subtitle">
+                {{x.message}}
+                {{x.date}}
+                {{x.time}}
+                {{x.location}}
+                <!--<mat-list role="list">
+                  <mat-list-item class="posts-list" role="listitem">{{x.date}}</mat-list-item>
+                  <mat-list-item class="posts-list" role="listitem">{{x.time}}</mat-list-item>
+                  <mat-list-item class="posts-list" role="listitem">{{x.location}}</mat-list-item>
+                </mat-list>-->
+              </mat-card-subtitle>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab class="post-tabs" label="PENDING">PENDING</mat-tab>
+      <mat-tab class="post-tabs" label="ALL">ALL</mat-tab>
+    </mat-tab-group>
+    <!--<mat-card-actions>
+      <button mat-button>GOING</button>
+      <button mat-button>PENDING</button>
+      <button mat-button>ALL</button>
+    </mat-card-actions>-->
+  </mat-card-subtitle>
+  <mat-card-content>
+    <h3 class="see-more-link">
+      <a mat-button routerLink="/view-posts">See more Events</a>
+    </h3>
+  </mat-card-content>
+</mat-card>
+<mat-card class="your-announcements-card card-style">
+  <div class="your-posts-header">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"><mat-icon matBadge="5" matBadgeColor="primary">announcement</mat-icon></div>
+      <mat-card-title>ANNOUNCEMENTS</mat-card-title>
+      <button class="add-button" mat-mini-fab color="accent" routerLink="/create-post">
+        <mat-icon class="add-icon" aria-label="">add</mat-icon>
+      </button>
+    </mat-card-header>
+  </div>
+  <mat-card-content>
+    <div *ngFor="let x of apiPosts">
+      <div *ngIf="x.type === announcement" class="hover-card">
+        <mat-card class="extra-margin">
+          <mat-card-header class="post-header">
+            <div mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></div>
+            {{x.heading}}
+          </mat-card-header>
+          <mat-card-subtitle class="post-subtitle">
+            {{x.message}}
+            From Group: {{x.group}}
+          </mat-card-subtitle>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-content>
+    <h3 class="see-more-link">
+      <a mat-button routerLink="/view-posts">See more Announcements</a>
+    </h3>
+  </mat-card-content>
+</mat-card>
