@@ -3,10 +3,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 import { Group } from '../models/Group'
 import { GroupService } from '../group.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
-import { RequestOptions, Request, RequestMethod } from '@angular/http';
-import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -29,42 +27,24 @@ export class AddGroupComponent implements OnInit {
   formGroup: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   apiGroups: Group[];
 
   //group: Group;
   //sub: Subscription;
 
-  constructor(private formBuilder: FormBuilder, private groupService: GroupService, private httpClient: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, groupService: GroupService, private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.httpClient.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
     this.setChangeValidate();
-    
-
   }
-
-  //addGroup(group: Group): Observable<Group> {
-  //  let _headers = new Headers({ 'Content-Type': 'application/json' });
-  //  let options = new RequestOptions({ headers: _headers });
-  //  return this.httpClient.post('http://localhost:52363/api/groups', group, options).map(this.extractData)
-  //    .catch(this.handleErrorObservable);
-  //}
-  //extractData(response: Response) {
-  //  let body = response.json();
-  //  return body || {};
-  //}
-  //handleErrorObservable(error: Response | any) {
-  //  console.error(error.message || error);
-  //  return Observable.throw(error.message || error);
-  //}
-  //groups: IGroup[] = [
-  //  { value: 'base-0', viewValue: 'TalTech' },
-  //  { value: 'base-1', viewValue: 'IT Teaduskond' },
-  //  { value: 'base-2', viewValue: 'Äriinfotehnoloogia' }
-  //];
-
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.formGroup = this.formBuilder.group({
@@ -72,7 +52,6 @@ export class AddGroupComponent implements OnInit {
       'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       'parentId': [null],
       'admin': 'Administrator',
-      'id':565656
     });
   }
 
@@ -97,8 +76,25 @@ export class AddGroupComponent implements OnInit {
 
 
   onSubmit(post) {
-    this.post = post;
-    this.groupService.addGroup(post);
+    //this.post = post;
+    console.log(post);
+    this.httpClient.post('http://localhost:52363/api/groups',
+      {
+        "name": post.name,
+        "description": post.description,
+        "parentId": post.parentId,
+        "admin": post.admin,
+      }).subscribe(
+      (val) => {
+        console.log("POST call successful value returned in body", val);
+      },
+      response => {
+        console.log("POST call in error", response);
+      },
+      () => {
+        console.log("The Post observable is now completed");
+        this.router.navigateByUrl('dash-board');
+      });
   }
 
 
