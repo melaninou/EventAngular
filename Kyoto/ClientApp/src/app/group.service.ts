@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RequestOptions, Request, RequestMethod } from '@angular/http';
 import { SinglePost } from '../app/models/Post';
 import { Http } from '@angular/http';
+import { Group } from '../app/models/Group'
+import { Observable } from 'rxjs/Observable';
 
 
 //interface Maasikas {
@@ -22,7 +25,7 @@ import { Http } from '@angular/http';
 })
 export class GroupService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient, private http: Http) { }
 
   //groupUrl = 'assets/group_details.json';
   groupUrl: string;
@@ -30,10 +33,25 @@ export class GroupService {
   public apps: SinglePost[];
   public groups: SinglePost[];
 
+  public api = 'http://localhost:52363/api';
+  public groupsApi = `${this.api}/groups`;
+
+  add(group: Group): Observable<Group> {
+    let result: Observable<Group>;
+    if (group.id) {
+      result = this.httpClient.put<Group>(
+        `${this.groupsApi}/${group.id}`,
+        group);
+    } else {
+      result = this.httpClient.post<Group>(this.groupsApi, group);
+    }
+    return result;
+  }
+
 
   getGroupDetails(id) {
     this.groupUrl = 'assets/' +id +'.json';
-    return this.http.get(this.groupUrl);
+    return this.httpClient.get(this.groupUrl);
   }
 
   getGroupHost(id) {
@@ -49,6 +67,6 @@ export class GroupService {
 
     //console.log('object is', this.http.get('assets/postitused.json'));
     //console.log("Testime plastikust maasikaid   "  + this.http.get('assets/postitused.json'));
-    return this.http.get(this.groupUrl);
+    return this.httpClient.get(this.groupUrl);
   }
 }

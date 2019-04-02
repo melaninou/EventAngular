@@ -1,11 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { Group } from '../models/Group'
+import { GroupService } from '../group.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http } from '@angular/http';
+import { RequestOptions, Request, RequestMethod } from '@angular/http';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
-export interface Group {
-  value: string;
-  viewValue: string;
-}
+//export interface Group {
+//  value: string;
+//  viewValue: string;
+//}
 
 @Component({
   selector: 'app-add-group',
@@ -21,19 +29,43 @@ export class AddGroupComponent implements OnInit {
   titleAlert: string = 'This field is required';
   post: any = '';
 
-  constructor(private formBuilder: FormBuilder) { }
+  group: Group;
+  sub: Subscription;
+
+  constructor(private formBuilder: FormBuilder, private groupService: GroupService, private httpClient: HttpClient, private http: Http) { }
 
   ngOnInit() {
     this.createForm();
-    this.setChangeValidate()
+    this.setChangeValidate();
+
   }
 
+  //addGroup(group: Group): Observable<Group> {
+  //  let _headers = new Headers({ 'Content-Type': 'application/json' });
+  //  let options = new RequestOptions({ headers: _headers });
+  //  return this.httpClient.post('http://localhost:52363/api/groups', group, options).map(this.extractData)
+  //    .catch(this.handleErrorObservable);
+  //}
+  //extractData(response: Response) {
+  //  let body = response.json();
+  //  return body || {};
+  //}
+  //handleErrorObservable(error: Response | any) {
+  //  console.error(error.message || error);
+  //  return Observable.throw(error.message || error);
+  //}
 
-  groups: Group[] = [
-    { value: 'base-0', viewValue: 'TalTech' },
-    { value: 'base-1', viewValue: 'IT Teaduskond' },
-    { value: 'base-2', viewValue: 'Äriinfotehnoloogia' }
-  ];
+
+
+  //groups: Group[] = [
+  //  { value: 'base-0', viewValue: 'TalTech' },
+  //  { value: 'base-1', viewValue: 'IT Teaduskond' },
+  //  { value: 'base-2', viewValue: 'Äriinfotehnoloogia' }
+  //];
+
+
+
+
 
 
   createForm() {
@@ -61,7 +93,7 @@ export class AddGroupComponent implements OnInit {
   }
 
   get name() {
-    return this.formGroup.get('name') as FormControl
+    return this.formGroup.get('name') as FormControl;
   }
 
 

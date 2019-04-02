@@ -3,5 +3,5 @@ export interface Group {
   name: string;
   description: string;
   admin: string;
-  parent_id: string;
+  parentId: string;
 }

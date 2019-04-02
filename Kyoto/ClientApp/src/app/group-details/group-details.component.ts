@@ -32,7 +32,7 @@ export class GroupDetailsComponent implements OnInit {
         name: data['name'],
         description: data['description'],
         admin: data['admin'],
-        parent_id: data['parent_id']
+        parentId: data["parentId"]
       });
   }
 
