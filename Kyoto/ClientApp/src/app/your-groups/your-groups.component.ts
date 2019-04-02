@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { GroupService } from '../group.service';
+import { Group } from '../models/Group'
 
 
 export interface SingleGroup {
@@ -16,14 +17,14 @@ export interface SingleGroup {
 })
 export class YourGroupsComponent implements OnInit {
 
-  constructor(private groupService: GroupService, private httpService: HttpClient) { }
+  constructor(private groupService: GroupService, private httpClient: HttpClient) { }
 
   //groups: SingleGroup[];
-  apiGroups: SingleGroup[];
+  apiGroups: Group[];
 
   ngOnInit() {
     //this.showGroup("your-groups");
-    this.httpService.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as SingleGroup[]; });
+    this.httpClient.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
   }
   //showGroup(jsonFileName): void {
 

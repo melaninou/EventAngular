@@ -22,9 +22,9 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select placeholder="Select Parent Group" formControlName="groups">
-        <mat-option *ngFor="let group of groups" [value]="group.value">
-          {{group.viewValue}}
+      <mat-select placeholder="Select Parent Group" formControlName="parentId">
+        <mat-option *ngFor="let group of apiGroups" [value]="group.parentId">
+          {{group.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>

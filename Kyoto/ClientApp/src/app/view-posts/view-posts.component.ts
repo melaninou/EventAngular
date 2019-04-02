@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { GroupService } from '../group.service';
-import { SinglePost } from '../models/Post'
+import { Post } from '../models/Post'
+import { Group } from '../models/Group'
 
 
 
@@ -21,10 +23,13 @@ export interface SingleGroup {
 
 export class ViewPostsComponent implements OnInit{
 
-  constructor(private groupService: GroupService) {}
+  constructor(private groupService: GroupService, private httpClient: HttpClient) {}
 
-  apps: SinglePost[];
+  apps: Post[];
   groups: SingleGroup[];
+
+  apiPosts: Post[];
+  apiGroups: Group[];
 
   panelOpenState = false;
 
@@ -46,14 +51,16 @@ export class ViewPostsComponent implements OnInit{
 
   ngOnInit() {
 
-    this.showPost("postitused");
-    this.showGroup("groupslist");
+    //this.showPost("postitused");
+    //this.showGroup("groupslist");
+    this.httpClient.get('http://localhost:52363/api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
+    this.httpClient.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
   }
 
   showPost(jsonFileName): void {
     
     this.groupService.getGroupHost(jsonFileName).subscribe(result => {
-      this.apps = result as SinglePost[];
+      this.apps = result as Post[];
       console.log(this.apps);
     }, error => console.error(error));
    

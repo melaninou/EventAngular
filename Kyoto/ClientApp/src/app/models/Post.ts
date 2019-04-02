@@ -1,4 +1,4 @@
-export interface SinglePost {
+export interface Post {
   id: string;
   time: string;
   date: string;
@@ -8,4 +8,3 @@ export interface SinglePost {
   message: string;
   type: string;
 }
-//siia tuleb teha muutuja "type" juurde!

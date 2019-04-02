@@ -3,17 +3,18 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 import { Group } from '../models/Group'
 import { GroupService } from '../group.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { RequestOptions, Request, RequestMethod } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-//export interface Group {
+//export interface IGroup {
 //  value: string;
 //  viewValue: string;
 //}
+
 
 @Component({
   selector: 'app-add-group',
@@ -29,14 +30,18 @@ export class AddGroupComponent implements OnInit {
   titleAlert: string = 'This field is required';
   post: any = '';
 
-  group: Group;
-  sub: Subscription;
+  apiGroups: Group[];
 
-  constructor(private formBuilder: FormBuilder, private groupService: GroupService, private httpClient: HttpClient, private http: Http) { }
+  //group: Group;
+  //sub: Subscription;
+
+  constructor(private formBuilder: FormBuilder, private groupService: GroupService, private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.httpClient.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
     this.setChangeValidate();
+    
 
   }
 
@@ -54,27 +59,20 @@ export class AddGroupComponent implements OnInit {
   //  console.error(error.message || error);
   //  return Observable.throw(error.message || error);
   //}
-
-
-
-  //groups: Group[] = [
+  //groups: IGroup[] = [
   //  { value: 'base-0', viewValue: 'TalTech' },
   //  { value: 'base-1', viewValue: 'IT Teaduskond' },
   //  { value: 'base-2', viewValue: 'Äriinfotehnoloogia' }
   //];
-
-
-
-
-
 
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.formGroup = this.formBuilder.group({
       'name': [null, Validators.required],
       'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
-      'groups': [null, Validators.required],
-      'validate': ''
+      'parentId': [null],
+      'admin': 'Administrator',
+      'id':565656
     });
   }
 
@@ -100,6 +98,7 @@ export class AddGroupComponent implements OnInit {
 
   onSubmit(post) {
     this.post = post;
+    this.groupService.addGroup(post);
   }
 
 

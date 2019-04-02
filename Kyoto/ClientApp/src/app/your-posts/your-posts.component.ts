@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { GroupService } from '../group.service';
-import { SinglePost } from '../models/Post'
+import { Post } from '../models/Post'
 
 @Component({
   selector: 'app-your-posts',
@@ -10,22 +10,22 @@ import { SinglePost } from '../models/Post'
 })
 export class YourPostsComponent implements OnInit {
 
-  constructor(private groupService: GroupService, private httpService: HttpClient) { }
-  apiPosts: SinglePost[];
+  constructor(private groupService: GroupService, private httpClient: HttpClient) { }
+  apiPosts: Post[];
   event: string = "Event";
   announcement: string = "Announcement";
-  events: SinglePost[];
-  announcements: SinglePost[];
-  eventsCount: string;
-  announcementsCount: number;
+  //events: Post[];
+  //announcements: Post[];
+  //eventsCount: string;
+  //announcementsCount: number;
 
   ngOnInit() {
-    this.httpService.get('http://localhost:52363/api/posts').subscribe(data => { this.apiPosts = data as SinglePost[]; });
+    this.httpClient.get('http://localhost:52363/api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     //this.eventsCount  === this.getEventsCount(this.apiPosts);
     //this.getAnnouncementsCount(this.apiPosts);
   }
   //pole hetkel vajalik
-  //getEventsCount(apiPosts: SinglePost[]): string {
+  //getEventsCount(apiPosts: Post[]): string {
   //  for (var i = 0; i < apiPosts.length; i++) {
   //    if (apiPosts[i].type === this.event) {
   //      this.events.push(apiPosts[i]);
@@ -34,7 +34,7 @@ export class YourPostsComponent implements OnInit {
   //  }
 
   //}
-  //getAnnouncementsCount(apiPosts: SinglePost[]): void {
+  //getAnnouncementsCount(apiPosts: Post[]): void {
   //  for (var i = 0; i < apiPosts.length; i++) {
   //    if (apiPosts[i].type === this.announcement) {
   //      this.announcements.push(apiPosts[i]);

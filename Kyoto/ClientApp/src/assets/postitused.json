@@ -6,7 +6,8 @@
     "location": "Nohik",
     "group": "IABB43",
     "heading": "Kohvipaus",
-    "message": "Tule tasuta kohvile!"
+    "message": "Tule tasuta kohvile!",
+    "type":  "Announcement" 
   },
   {
     "id": "1112",
@@ -15,7 +16,8 @@
     "location": "Vanalinn",
     "group": "Äriinfotehnoloogia",
     "heading": "Bar brawl",
-    "message": "Naudime seltskonda ja lõõgastume."
+    "message": "Naudime seltskonda ja lõõgastume.",
+    "type": "Event"
   },
   {
     "id": "1113",
@@ -24,7 +26,8 @@
     "location": "Aula",
     "group": "TalTech",
     "heading": "Business ideas to life",
-    "message": "Annual business ideas competition with real investors as judges."
+    "message": "Annual business ideas competition with real investors as judges.",
+    "type": "Event"
   },
   {
     "id": "1114",
@@ -33,6 +36,7 @@
     "location": "IT maja",
     "group": "IABB",
     "heading": "Külalislektori Muhammed Thali loeng",
-    "message": "Külalislektor Muhammed Thali avab meile blockchaini maailma."
+    "message": "Külalislektor Muhammed Thali avab meile blockchaini maailma.",
+    "type": "Event"
   }
 ]

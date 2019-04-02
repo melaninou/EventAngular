@@ -18,7 +18,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <table>
-        <tr *ngFor="let x of groups">
+        <tr *ngFor="let x of apiGroups">
           <td><mat-checkbox class="more-space">{{x.name}}</mat-checkbox></td>
         </tr>
       </table>
@@ -31,7 +31,7 @@
 <br />
 
 <h5><b>Today, {{today}}</b></h5>
-<mat-accordion *ngFor="let x of apps">
+<mat-accordion *ngFor="let x of apiPosts">
   <div *ngIf="x.date === today">
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
@@ -52,7 +52,7 @@
 
 
 <h5><b>Tomorrow, {{tomorrow}}</b></h5>
-<mat-accordion *ngFor="let x of apps">
+<mat-accordion *ngFor="let x of apiPosts">
   <div *ngIf="x.date === tomorrow">
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
@@ -73,7 +73,7 @@
 
 
 <h5><b>{{day3}}, {{in2Days}}</b></h5>
-<mat-accordion *ngFor="let x of apps">
+<mat-accordion *ngFor="let x of apiPosts">
   <div *ngIf="x.date === in2Days">
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
@@ -94,7 +94,7 @@
 
 
 <h5><b>{{day4}}, {{in3Days}}</b></h5>
-<mat-accordion *ngFor="let x of apps">
+<mat-accordion *ngFor="let x of apiPosts">
   <div *ngIf="x.date === in3Days">
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
@@ -115,7 +115,7 @@
 
 
 <h5><b>{{day5}}, {{in4Days}}</b></h5>
-<mat-accordion *ngFor="let x of apps">
+<mat-accordion *ngFor="let x of apiPosts">
   <div *ngIf="x.date === in4Days">
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
@@ -136,7 +136,7 @@
 
 
 <h5><b>Future activities</b></h5>
-<mat-accordion *ngFor="let x of apps">
+<mat-accordion *ngFor="let x of apiPosts">
   <div *ngIf="x.date > in4Days">
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">

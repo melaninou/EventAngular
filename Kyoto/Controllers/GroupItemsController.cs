@@ -83,7 +83,7 @@ namespace Kyoto.Controllers
 
         // POST: api/GroupItems
         [HttpPost]
-        public async Task<IActionResult> PostGroupItem([FromBody] GroupItem groupItem)
+        public async Task<IActionResult> PostGroupItem(GroupItem groupItem)
         {
             if (!ModelState.IsValid)
             {

@@ -1,6 +1,6 @@
 //import { Injectable } from '@angular/core';
 //import { HttpClient } from '@angular/common/http';
-//import { SinglePost } from './view-posts/view-posts.component';
+//import { Post } from './view-posts/view-posts.component';
 //import { Http } from '@angular/http';
 
 
@@ -20,8 +20,8 @@
 //  constructor(private http: HttpClient) { }
 
 //  postUrl: string;
-//  public yourGroups: SinglePost[];
-//  public yourPosts: SinglePost[];
+//  public yourGroups: Post[];
+//  public yourPosts: Post[];
 
 
 //  getViewPostsDetails(id) {
