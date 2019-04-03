@@ -13,6 +13,6 @@ namespace Kyoto.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Admin { get; set; }
-        public string ParentId { get; set; }
+        public int ParentId { get; set; }
     }
 }

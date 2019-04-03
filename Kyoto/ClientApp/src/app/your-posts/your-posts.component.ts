@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { GroupService } from '../group.service';
 import { Post } from '../models/Post'
@@ -10,7 +10,11 @@ import { Post } from '../models/Post'
 })
 export class YourPostsComponent implements OnInit {
 
-  constructor(private groupService: GroupService, private httpClient: HttpClient) { }
+  baseUrl: string;
+  constructor(private httpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
   apiPosts: Post[];
   event: string = "Event";
   announcement: string = "Announcement";
@@ -20,7 +24,7 @@ export class YourPostsComponent implements OnInit {
   //announcementsCount: number;
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:52363/api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
+    this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     //this.eventsCount  === this.getEventsCount(this.apiPosts);
     //this.getAnnouncementsCount(this.apiPosts);
   }

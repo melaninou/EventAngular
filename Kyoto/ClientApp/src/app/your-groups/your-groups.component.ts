@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { GroupService } from '../group.service';
 import { Group } from '../models/Group'
@@ -17,14 +17,18 @@ export interface SingleGroup {
 })
 export class YourGroupsComponent implements OnInit {
 
-  constructor(private groupService: GroupService, private httpClient: HttpClient) { }
+  baseUrl: string;
+  constructor(private groupService: GroupService, private httpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
 
   //groups: SingleGroup[];
   apiGroups: Group[];
 
   ngOnInit() {
     //this.showGroup("your-groups");
-    this.httpClient.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
+    this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
   }
   //showGroup(jsonFileName): void {
 

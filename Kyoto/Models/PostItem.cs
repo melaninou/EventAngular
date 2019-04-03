@@ -12,7 +12,7 @@ namespace Kyoto.Models
 
         public string Location { get; set; }
 
-        public string Group { get; set; }
+        public int GroupId { get; set; }
 
         public string Heading { get; set; }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Group } from '../models/Group'
@@ -19,9 +19,6 @@ import { NgForm } from '@angular/forms';
   templateUrl: './add-group.component.html',
   styleUrls: ['./add-group.component.css']
 })
-
-
-
 export class AddGroupComponent implements OnInit {
 
   formGroup: FormGroup;
@@ -32,16 +29,22 @@ export class AddGroupComponent implements OnInit {
       'Content-Type': 'application/json'
     })
   }
+  public baseUrl: string;
 
   apiGroups: Group[];
 
   //group: Group;
   //sub: Subscription;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, groupService: GroupService, private httpClient: HttpClient) { }
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private httpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
+    this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
     this.setChangeValidate();
   }
@@ -78,7 +81,7 @@ export class AddGroupComponent implements OnInit {
   onSubmit(post) {
     //this.post = post;
     console.log(post);
-    this.httpClient.post('http://localhost:52363/api/groups',
+    this.httpClient.post(this.baseUrl + 'api/groups',
       {
         "name": post.name,
         "description": post.description,

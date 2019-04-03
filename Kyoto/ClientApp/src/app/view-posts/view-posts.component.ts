@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
@@ -23,7 +23,12 @@ export interface SingleGroup {
 
 export class ViewPostsComponent implements OnInit{
 
-  constructor(private groupService: GroupService, private httpClient: HttpClient) {}
+  baseUrl: string;
+  constructor(private groupService: GroupService,
+    private httpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
 
   apps: Post[];
   groups: SingleGroup[];
@@ -53,8 +58,8 @@ export class ViewPostsComponent implements OnInit{
 
     //this.showPost("postitused");
     //this.showGroup("groupslist");
-    this.httpClient.get('http://localhost:52363/api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
-    this.httpClient.get('http://localhost:52363/api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
+    this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
+    this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
   }
 
   showPost(jsonFileName): void {

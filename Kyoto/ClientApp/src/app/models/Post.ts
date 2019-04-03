@@ -3,7 +3,7 @@ export interface Post {
   time: string;
   date: string;
   location: string;
-  group: string;
+  groupId: string;
   heading: string;
   message: string;
   type: string;

@@ -4,7 +4,7 @@
     "time": "16:00",
     "date": "26.03.2019",
     "location": "Nohik",
-    "group": "IABB43",
+    "groupId": "IABB43",
     "heading": "Kohvipaus",
     "message": "Tule tasuta kohvile!",
     "type":  "Announcement" 
@@ -14,7 +14,7 @@
     "time": "20:00",
     "date": "26.03.2019",
     "location": "Vanalinn",
-    "group": "Äriinfotehnoloogia",
+    "groupId": "Äriinfotehnoloogia",
     "heading": "Bar brawl",
     "message": "Naudime seltskonda ja lõõgastume.",
     "type": "Event"
@@ -24,7 +24,7 @@
     "time": "12:00",
     "date": "28.03.2019",
     "location": "Aula",
-    "group": "TalTech",
+    "groupId": "TalTech",
     "heading": "Business ideas to life",
     "message": "Annual business ideas competition with real investors as judges.",
     "type": "Event"
@@ -34,7 +34,7 @@
     "time": "12:00",
     "date": "31.03.2019",
     "location": "IT maja",
-    "group": "IABB",
+    "groupId": "IABB",
     "heading": "Külalislektori Muhammed Thali loeng",
     "message": "Külalislektor Muhammed Thali avab meile blockchaini maailma.",
     "type": "Event"

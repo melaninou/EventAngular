@@ -22,45 +22,45 @@ namespace Kyoto.Data
                 //asp net paneb ID väärtused ise alates 1'st
                 new PostItem
                 {
-                    Time = "16:00", Date = "26.03.2019", Location = "Nohik", Group = "IABB43",
+                    Time = "16:00", Date = "26.03.2019", Location = "Nohik", GroupId = 4,
                     Heading = "Kohvipaus", Message = "Tule tasuta kohvile!", Type = "Announcement"
                 },
                 new PostItem
                 {
-                   Time = "20:00", Date = "26.03.2019", Location = "Vanalinn", Group = "Äriinfotehnoloogia",
+                   Time = "20:00", Date = "26.03.2019", Location = "Vanalinn", GroupId = 3,
                     Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event"
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "28.03.2019", Location = "Aula", Group = "TalTech",
+                   Time = "12:00", Date = "28.03.2019", Location = "Aula", GroupId = 1,
                     Heading = "Business ideas to life", Message = "Annual business ideas competition with real investors as judges.", Type = "Event"
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "31.03.2019", Location = "IT maja", Group = "IABB",
+                   Time = "12:00", Date = "31.03.2019", Location = "IT maja", GroupId = 2,
                     Heading = "Külalislektori Muhammed Thali loeng",
                     Message = "Külalislektor Muhammed Thali avab meile blockchaini maailma.", Type = "Event"
                 },
                 new PostItem
                 {
-                   Time = "20:00", Date = "30.03.2019", Location = "Nõmme spordikesus", Group = "TalTech",
+                   Time = "20:00", Date = "30.03.2019", Location = "Nõmme spordikesus", GroupId = 1,
                     Heading = "Tervisejooks", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event"
                 },
                 new PostItem
                 {
-                    Date = "29.03.2019", Group = "TalTech",
+                    Date = "29.03.2019", GroupId = 1,
                     Heading = "Liitu Fotoklubiga!!", Message = "Tule uuri ja vaata, mille huvitavaga me tegeleme @ FotoKlubi",
                     Type = "Announcement"
                 },
                 new PostItem
                 {
-                    Date = "29.03.2019", Group = "Äriinfotehnoloogia",
+                    Date = "29.03.2019", GroupId = 3,
                     Heading = "Tule täna kell 15.00 loengule", Message = "Muti Onu tuleb räägib küberturvalisusest: Be Safe!",
                     Type = "Announcement"
                 },
                 new PostItem
                 {
-                    Date = "29.03.2019", Group = "IABB",
+                    Date = "29.03.2019", GroupId = 4,
                     Heading = "Vajan head konspekti!", Message = "Kui kellelgi on head mata konspekti, siis võiks jagada.",
                     Type = "Announcement"
                 }
@@ -80,19 +80,19 @@ namespace Kyoto.Data
             {
                 new GroupItem
                 {
-                    Name = "TalTech", Description = "Töötab??", Admin = "Administrator", ParentId = "9999"
+                    Name = "TalTech", Description = "Töötab?", Admin = "Administrator", ParentId = 0
                 },
                 new GroupItem
                 {
-                    Name = "Infotehnoloogia teaduskond", Description = "TalTech grupp", Admin = "Administrator", ParentId = "0001"
+                    Name = "Infotehnoloogia teaduskond", Description = "TalTech grupp", Admin = "Administrator", ParentId = 1
                 },
                 new GroupItem
                 {
-                    Name = "Äriinfotehnoloogia", Description = "Infotehnoloogia teaduskonna grupp", Admin = "Administrator", ParentId = "0002"
+                    Name = "Äriinfotehnoloogia", Description = "Infotehnoloogia teaduskonna grupp", Admin = "Administrator", ParentId = 2
                 },
                 new GroupItem
                 {
-                    Name = "IABB42", Description = "Äriinfotehnoloogia grupp", Admin = "Administrator", ParentId = "00003"
+                    Name = "IABB42", Description = "Äriinfotehnoloogia grupp", Admin = "Administrator", ParentId = 3
                 }
             };
             foreach (var groupItem in groupItems)

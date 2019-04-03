@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -42,11 +43,12 @@ import { YourPostsComponent } from './your-posts/your-posts.component';
     GroupDetailsComponent,
     DashBoardComponent,
     YourGroupsComponent,
-    YourPostsComponent
+    YourPostsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HttpModule,
     ReactiveFormsModule,
     MaterialModule,
     FormsModule,
@@ -71,4 +73,4 @@ import { YourPostsComponent } from './your-posts/your-posts.component';
 })
 export class AppModule {
 }
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);//sama asi on main.ts-is
