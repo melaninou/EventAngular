@@ -11,22 +11,22 @@ interface GroupTree {
 const Group_Data: GroupTree[] = [
   {
     name: 'TalTech',
-    id: '1a',
+    id: '1',
     children: [
       {
         name: 'IT Teaduskond',
-        id: '1b',
+        id: '2',
         children: [
           {
             name: 'Äriinfotehnoloogia',
-            id: '1c',
+            id: '3',
             children: [
-              { name: 'IABB41', id: '1d' },
-              { name: 'IABB42', id: '1e' },
-              { name: 'IABB43', id: '1f' }
+              { name: 'IABB41', id: '4' },
+              { name: 'IABB42', id: '4' },
+              { name: 'IABB43', id: '4' }
               ]
           },
-          { name: 'Informaatika', id: '1g', }
+          { name: 'Informaatika', id: '5', }
         ]
       },
       {

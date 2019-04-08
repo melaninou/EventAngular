@@ -1,8 +1,10 @@
 
 .member-card {
-  width: 300px;
-  margin: 10px;
+  max-width: 100vw;
   float: left;
+  margin: 15px;
+  width: 30%;
+  padding: 0px;
 }
 .example-header-image {
   background-image: url(/panoram.jpg);

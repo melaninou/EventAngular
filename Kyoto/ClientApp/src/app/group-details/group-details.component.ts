@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GroupService } from '../group.service';
 import { Group } from '../models/Group'
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,25 +16,27 @@ import { Group } from '../models/Group'
 export class GroupDetailsComponent implements OnInit {
 
 
-  constructor(private route: ActivatedRoute, private groupService: GroupService) { }
+ // constructor(private route: ActivatedRoute, private groupService: GroupService) { }
+
+
+  baseUrl: string;
+  constructor(private route: ActivatedRoute, private httpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
 
   groupid: string;
   group: Group;
 
   ngOnInit() {
     this.groupid = this.route.snapshot.params['id'];
-    this.showGroup(this.groupid);
+   
+    this.httpClient.get(this.baseUrl + 'api/groups/' + this.groupid).subscribe(data => { this.group = data as Group });
+  }
   }
 
-  showGroup(groupId) {
-    this.groupService.getGroupDetails(groupId)
-      .subscribe((data: Group) => this.group = {
-        id: data['id'],
-        name: data['name'],
-        description: data['description'],
-        admin: data['admin'],
-        parentId: data["parentId"]
-      });
-  }
 
-}
+
+
+

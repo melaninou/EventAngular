@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\Group.ts" />
+    <None Remove="ClientApp\src\app\models\Member.ts" />
     <None Remove="ClientApp\src\app\models\Post.ts" />
     <None Remove="ClientApp\src\app\post.service.spec.ts" />
     <None Remove="ClientApp\src\app\post.service.ts" />
@@ -33,6 +34,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\Group.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Member.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Post.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\post.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\post.service.ts" />

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Post } from '../../models/Post'
+
 
 @Component({
   selector: 'app-group-posts',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupPostsComponent implements OnInit {
 
-  constructor() { }
+  baseUrl: string;
+  constructor(private httpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
+  apiPosts: Post[];
+  event: string = "Event";
+  announcement: string = "Announcement";
 
   ngOnInit() {
+    this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
   }
 
 }
