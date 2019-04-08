@@ -20,7 +20,7 @@ export class YourPostsComponent implements OnInit {
   announcement: string = "Announcement";
   //events: Post[];
   //announcements: Post[];
-  //eventsCount: string;
+  eventsCount: number;
   //announcementsCount: number;
 
   ngOnInit() {
@@ -29,13 +29,11 @@ export class YourPostsComponent implements OnInit {
     //this.getAnnouncementsCount(this.apiPosts);
   }
   //pole hetkel vajalik
-  //getEventsCount(apiPosts: Post[]): string {
-  //  for (var i = 0; i < apiPosts.length; i++) {
-  //    if (apiPosts[i].type === this.event) {
-  //      this.events.push(apiPosts[i]);
-  //    }
-  //    return this.event.length.toString();
-  //  }
+  //getEventsCount(apiPosts: Post[]): number {
+  //return apiPosts.filter(x => x.type === 'Event').length;
+
+
+  //}
 
   //}
   //getAnnouncementsCount(apiPosts: Post[]): void {
