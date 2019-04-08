@@ -1,3 +1,8 @@
+
+
+
+
+
 li .glyphicon {
     margin-right: 10px;
 }
@@ -18,12 +23,15 @@ li.link-active a:focus {
     right: 0;
     z-index: 1;
 }
+.top-bar {
+  float: right;
+}
 
 @media (min-width: 768px) {
     /* On small screens, convert the nav menu to a vertical sidebar */
     .main-nav {
         height: 100%;
-        width: calc(25% - 20px);
+        width: calc(20% - 20px);
     }
     .navbar {
         border-radius: 0px;
