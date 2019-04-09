@@ -100,6 +100,34 @@ namespace Kyoto.Data
                 context.GroupItem.Add(groupItem);
             }
 
+            var members = new Member[]
+            {
+                new Member
+                {
+                    Name = "Mari Maasikas", Image = "maasikas.jpg"
+                },
+                new Member
+                {
+                Name = "Mari Vaarikas", Image = "vaarikas.jpg"
+                },
+                new Member
+                {
+                    Name = "Mari Mustikas", Image = "mustikas.jpg"
+                },
+                new Member
+                {
+                    Name = "Mari Murakas", Image = "murakas.jpg"
+                },
+                new Member
+                {
+                    Name = "Mari Jõhvikas", Image = "johvikas.jpg"
+                }
+            };
+            foreach (var member in members)
+            {
+                context.Member.Add(member);
+            }
+
             context.SaveChanges();
         }
     }
