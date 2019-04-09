@@ -36,6 +36,9 @@ export class ViewPostsComponent implements OnInit{
   apiPosts: Post[];
   apiGroups: Group[];
 
+  event: string = "Event";
+  announcement: string = "Announcement";
+
   panelOpenState = false;
 
 
@@ -79,5 +82,10 @@ export class ViewPostsComponent implements OnInit{
     }, error => console.error(error));
   }
 
- // isDateCorrect(dateTime): boolean {}
+  //onSubmit(post) {
+  //  console.log(post);
+
+    
+
+  //}
 }

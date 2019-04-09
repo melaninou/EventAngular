@@ -22,45 +22,45 @@ namespace Kyoto.Data
                 //asp net paneb ID väärtused ise alates 1'st
                 new PostItem
                 {
-                    Time = "16:00", Date = "26.03.2019", Location = "Nohik", GroupId = 4,
+                    Time = "16:00", Date = "22.04.2019", Location = "Nohik", GroupId = 4,
                     Heading = "Kohvipaus", Message = "Tule tasuta kohvile!", Type = "Announcement"
                 },
                 new PostItem
                 {
-                   Time = "20:00", Date = "26.03.2019", Location = "Vanalinn", GroupId = 3,
+                   Time = "20:00", Date = "10.04.2019", Location = "Vanalinn", GroupId = 3,
                     Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event"
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "28.03.2019", Location = "Aula", GroupId = 1,
+                   Time = "12:00", Date = "12.04.2019", Location = "Aula", GroupId = 1,
                     Heading = "Business ideas to life", Message = "Annual business ideas competition with real investors as judges.", Type = "Event"
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "31.03.2019", Location = "IT maja", GroupId = 2,
+                   Time = "12:00", Date = "25.04.2019", Location = "IT maja", GroupId = 2,
                     Heading = "Külalislektori Muhammed Thali loeng",
                     Message = "Külalislektor Muhammed Thali avab meile blockchaini maailma.", Type = "Event"
                 },
                 new PostItem
                 {
-                   Time = "20:00", Date = "30.03.2019", Location = "Nõmme spordikesus", GroupId = 1,
+                   Time = "20:00", Date = "10.03.2019", Location = "Nõmme spordikesus", GroupId = 1,
                     Heading = "Tervisejooks", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event"
                 },
                 new PostItem
                 {
-                    Date = "29.03.2019", GroupId = 1,
+                    Date = "09.04.2019", GroupId = 1,
                     Heading = "Liitu Fotoklubiga!!", Message = "Tule uuri ja vaata, mille huvitavaga me tegeleme @ FotoKlubi",
                     Type = "Announcement"
                 },
                 new PostItem
                 {
-                    Date = "29.03.2019", GroupId = 3,
+                    Date = "11.04.2019", GroupId = 3,
                     Heading = "Tule täna kell 15.00 loengule", Message = "Muti Onu tuleb räägib küberturvalisusest: Be Safe!",
                     Type = "Announcement"
                 },
                 new PostItem
                 {
-                    Date = "29.03.2019", GroupId = 4,
+                    Date = "14.04.2019", GroupId = 4,
                     Heading = "Vajan head konspekti!", Message = "Kui kellelgi on head mata konspekti, siis võiks jagada.",
                     Type = "Announcement"
                 }
