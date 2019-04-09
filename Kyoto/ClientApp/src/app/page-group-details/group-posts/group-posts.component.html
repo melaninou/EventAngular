@@ -8,24 +8,25 @@
     </mat-card-header>
   </div>
   <mat-card-subtitle>
-        <div *ngFor="let x of apiPosts">
-          <div *ngIf="x.type === event" class="hover-card">
-            <mat-card class="extra-margin">
-              <mat-card-header class="post-header">
-                <div mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></div>
-                {{x.heading}}
-              </mat-card-header>
-              <mat-card-subtitle class="post-subtitle">
-                {{x.message}}
-                {{x.date}}
-                {{x.time}}
-                {{x.location}}
-              </mat-card-subtitle>
-            </mat-card>
-          </div>
-        </div>
+    <div *ngFor="let x of apiPosts">
+      <div *ngIf="x.type === event" class="hover-card">
+        <mat-card class="extra-margin">
+          <mat-card-header class="post-header">
+            <div mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></div>
+            {{x.heading}}
+          </mat-card-header>
+          <mat-card-subtitle class="post-subtitle">
+            {{x.message}}
+            {{x.date}}
+            {{x.time}}
+            {{x.location}}
+          </mat-card-subtitle>
+        </mat-card>
+      </div>
+    </div>
 
   </mat-card-subtitle>
+
 </mat-card>
 <mat-card class="your-events-card card-style">
   <div class="your-posts-header">

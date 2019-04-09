@@ -20,7 +20,7 @@ namespace Kyoto.Controllers
             _context = context;
         }
 
-        // GET: api/PostItems
+        // GET: api/posts
         [HttpGet]
         public IEnumerable<PostItem> GetPostItem()
         {
@@ -34,7 +34,7 @@ namespace Kyoto.Controllers
             }
         }
 
-        // GET: api/PostItems/5
+        // GET: api/posts/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPostItem([FromRoute] int id)
         {
