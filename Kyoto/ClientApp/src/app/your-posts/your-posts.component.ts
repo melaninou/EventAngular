@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { GroupService } from '../group.service';
 import { Post } from '../models/Post'
+import { Group } from '../models/Group'
 
 @Component({
   selector: 'app-your-posts',
@@ -16,6 +17,7 @@ export class YourPostsComponent implements OnInit {
     this.baseUrl = baseUrl;
   }
   apiPosts: Post[] = [];
+  apiGroups: Group[] = [];
   testingPosts: Post[] = [];
   event: string = "Event";
   announcement: string = "Announcement";
@@ -28,6 +30,7 @@ export class YourPostsComponent implements OnInit {
 
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
+    this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     console.log("from onINIT the lenght of apiposts is " + this.apiPosts.length);
     this.eventsCount = this.getEventsCount(this.apiPosts);
     //this.getAnnouncementsCount(this.apiPosts);

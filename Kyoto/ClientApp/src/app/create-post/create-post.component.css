@@ -75,11 +75,15 @@
   margin-right: 1% !important;
 }
 
-:host /deep/ .mat-form-field-infix {
+:host /deep/ .mat-form-field-flex {
   background-color: white;
   box-shadow: 0 1px 1px 1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 1px 0 rgba(0,0,0,.12);
   border-radius: 4px;
   min-height: 60px;
+}
+:host /deep/ .mat-form-field-underline, .mat-form-field-wrapper, .mat-form-field-flex{
+  max-width: 100%;
+  width: 100%;
 }
 
 :host /deep/ .mat-input-element, .mat-form-field-label, .mat-input-placeholder, .mat-form-field-placeholder, .input-placeholder {
@@ -103,3 +107,7 @@
 :host /deep/ .mat-select {
   padding: 16px 8px 16px 8px;
 }
+:host /deep/ .mat-form-field-suffix{
+  margin: 10px 14px 24px 14px;
+}
+

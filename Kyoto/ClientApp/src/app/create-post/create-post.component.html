@@ -33,7 +33,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <div>
+         <div>
             <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!firstFormGroup.valid">Next</button>
           </div>
         </form>
@@ -49,18 +49,24 @@
                 Required field, must be between 5 and 250 characters.
               </mat-error>
             </mat-form-field>
-            <mat-form-field class="form-element">
+            <!--<mat-form-field class="form-element">
               <textarea matInput placeholder="Date" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="date"></textarea>
               <mat-error *ngIf="!formGroup.controls['date'].valid && formGroup.controls['date'].touched">
                 Required field, must be between 5 and 250 characters.
               </mat-error>
-            </mat-form-field>
+            </mat-form-field>-->
             <mat-form-field class="form-element">
               <textarea matInput placeholder="Time" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="time"></textarea>
               <mat-error *ngIf="!formGroup.controls['time'].valid && formGroup.controls['time'].touched">
                 Required field, must be between 5 and 250 characters.
               </mat-error>
             </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Choose a Date" formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+              
             <div>
               <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!secondFormGroup.valid">Create Post!</button>
             </div>
