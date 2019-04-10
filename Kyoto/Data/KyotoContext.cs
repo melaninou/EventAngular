@@ -19,5 +19,7 @@ namespace Kyoto.Models
         public DbSet<Kyoto.Models.GroupItem> GroupItem { get; set; }
 
         public DbSet<Kyoto.Models.Member> Member { get; set; }
+
+        public DbSet<Kyoto.Models.Group> Group { get; set; }
     }
 }

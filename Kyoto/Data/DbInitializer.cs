@@ -93,6 +93,10 @@ namespace Kyoto.Data
                 new GroupItem
                 {
                     Name = "IABB42", Description = "Äriinfotehnoloogia grupp", Admin = "Administrator", ParentId = 3
+                },
+                new GroupItem
+                {
+                    Name = "Majandusteaduskond", Description = "TalTech group", Admin = "Administrator", ParentId = 1
                 }
             };
             foreach (var groupItem in groupItems)
