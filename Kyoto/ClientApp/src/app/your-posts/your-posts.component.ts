@@ -15,9 +15,12 @@ export class YourPostsComponent implements OnInit {
     @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
-  apiPosts: Post[];
+  apiPosts: Post[] = [];
+  testingPosts: Post[] = [];
   event: string = "Event";
   announcement: string = "Announcement";
+  eventCounter: number = 0;
+  announcementCounter: number = 0;
   //events: Post[];
   //announcements: Post[];
   eventsCount: number;
@@ -25,15 +28,17 @@ export class YourPostsComponent implements OnInit {
 
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
-    //this.eventsCount  === this.getEventsCount(this.apiPosts);
+    console.log("from onINIT the lenght of apiposts is " + this.apiPosts.length);
+    this.eventsCount = this.getEventsCount(this.apiPosts);
     //this.getAnnouncementsCount(this.apiPosts);
   }
   //pole hetkel vajalik
-  //getEventsCount(apiPosts: Post[]): number {
-  //return apiPosts.filter(x => x.type === 'Event').length;
+  getEventsCount(apiPosts: Post[] = []): number {
+    console.log("the lenght of apiposts is " + apiPosts.length);
+    return apiPosts.filter(x => x.type === 'Event').length;
 
 
-  //}
+  }
 
   //}
   //getAnnouncementsCount(apiPosts: Post[]): void {

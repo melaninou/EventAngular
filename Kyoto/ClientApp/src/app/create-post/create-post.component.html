@@ -1,72 +1,82 @@
-<mat-toolbar color="primary">
-  <span class="fill-remaining-space">Post a message!</span>
-</mat-toolbar>
+<mat-card class="create-post-card card-style">
+  <mat-toolbar color="accent" class="toolbar-style">
+    <span class="fill-remaining-space">Create a new Post!</span>
+  </mat-toolbar>
+  
+  <!--------------------------------------------------------------------------------------------------------------------------------------------->
+  <div class="container create-post-container" *ngIf="!Post; else forminfo" novalidate>
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" (ngSubmit)="submitAnnouncement(formGroup.value)" class="form">
+          <ng-template matStepLabel>Post Heading</ng-template>
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Heading" formControlName="heading" required>
+          </mat-form-field>
+          <ng-template matStepLabel>Description</ng-template>
+          <mat-form-field class="form-element">
+            <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="message"></textarea>
+            <mat-error *ngIf="!formGroup.controls['message'].valid && formGroup.controls['message'].touched">
+              Required field, must be between 5 and 250 characters.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="small-form-element select-option">
+            <mat-select placeholder="Select Group" formControlName="groupId">
+              <mat-option *ngFor="let group of apiGroups" [value]="group.id">
+                {{group.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="small-form-element select-option">
+            <mat-select placeholder="Select Post Type" formControlName="type">
+              <mat-option *ngFor="let type of postTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!firstFormGroup.valid">Next</button>
+          </div>
+        </form>
+      </mat-step>
 
-<div class="container" *ngIf="!post; else forminfo" novalidate>
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
-
-    <mat-form-field class="form-element">
-      <input matInput placeholder="Topic" formControlName="name">
-      <mat-error *ngIf="!name.valid && name.touched">
-        {{ titleAlert }}
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="form-element">
-      <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="message"></textarea>
-      <mat-error *ngIf="!formGroup.controls['message'].valid && formGroup.controls['message'].touched">
-        Required field, must be between 5 and 250 characters.
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="form-element">
-      <textarea matInput placeholder="Location" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="location"></textarea>
-      <mat-error *ngIf="!formGroup.controls['location'].valid && formGroup.controls['location'].touched">
-        Required field, must be between 5 and 250 characters.
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="form-element">
-      <textarea matInput placeholder="Date" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="date"></textarea>
-      <mat-error *ngIf="!formGroup.controls['date'].valid && formGroup.controls['date'].touched">
-        Required field, must be between 5 and 250 characters.
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="form-element">
-      <textarea matInput placeholder="Time" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="time"></textarea>
-      <mat-error *ngIf="!formGroup.controls['time'].valid && formGroup.controls['time'].touched">
-        Required field, must be between 5 and 250 characters.
-      </mat-error>
-    </mat-form-field>
-
-
-    <!--<mat-form-field class="small-form-element">
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker">
-      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>-->
-    <br />
-
-    <mat-form-field class="small-form-element">
-      <mat-select placeholder="Select Group" formControlName="groupId">
-        <mat-option *ngFor="let group of apiGroups" [value]="group.id">
-          {{group.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="small-form-element">
-      <mat-select placeholder="Select Post Type" formControlName="type">
-        <mat-option *ngFor="let type of postTypes" [value]="type">
-          {{type}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Create Post</button>
-    </div>
-  </form>
-</div>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit(formGroup.value)">
+          <ng-template matStepLabel>Details</ng-template>
+          <mat-card-content *ngIf="firstFormGroup.value.type === event; else onlyAnnouncement">
+            <mat-form-field class="form-element">
+              <textarea matInput placeholder="Location" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="location"></textarea>
+              <mat-error *ngIf="!formGroup.controls['location'].valid && formGroup.controls['location'].touched">
+                Required field, must be between 5 and 250 characters.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <textarea matInput placeholder="Date" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="date"></textarea>
+              <mat-error *ngIf="!formGroup.controls['date'].valid && formGroup.controls['date'].touched">
+                Required field, must be between 5 and 250 characters.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <textarea matInput placeholder="Time" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="time"></textarea>
+              <mat-error *ngIf="!formGroup.controls['time'].valid && formGroup.controls['time'].touched">
+                Required field, must be between 5 and 250 characters.
+              </mat-error>
+            </mat-form-field>
+            <div>
+              <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!secondFormGroup.valid">Create Post!</button>
+            </div>
+          </mat-card-content>
+          <ng-template matStepLabel #onlyAnnouncement></ng-template>
+            <mat-card-content *ngIf="firstFormGroup.value.type === announcement">
+              <div>
+                <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!firstFormGroup.valid">All Done Create Post!</button>
+              </div>
+            </mat-card-content>
+        </form>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+  <!--------------------------------------------------------------------------------------------------------------------------------------------->
+</mat-card>
 
 <ng-template #forminfo>
   <div class="container">

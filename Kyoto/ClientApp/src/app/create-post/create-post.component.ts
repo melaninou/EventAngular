@@ -15,8 +15,13 @@ import { Router } from '@angular/router';
 export class CreatePostComponent implements OnInit {
 
   formGroup: FormGroup;
+
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
   titleAlert: string = 'This field is required';
   post: any = '';
+  testPost: any = '';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -26,6 +31,8 @@ export class CreatePostComponent implements OnInit {
   baseUrl: string;
   apiGroups: Group[];
   postTypes: string[] = ["Announcement", "Event"];
+  event: string = "Event";
+  announcement: string = "Announcement";
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -38,7 +45,21 @@ export class CreatePostComponent implements OnInit {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
     //this.setChangeValidate()
+
+    this.firstFormGroup = this.formBuilder.group({
+      'heading': ['', Validators.required],
+      'message': ['', Validators.required],
+      'groupId': ['', Validators.required],
+      'type': ['', Validators.required]
+
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      'location': ['', Validators.required],
+      'date': ['', Validators.required],
+      'time': ['', Validators.required]
+    });
   }
+
 
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -52,6 +73,7 @@ export class CreatePostComponent implements OnInit {
       'type': [null, Validators.required]
     });
   }
+
 
   //setChangeValidate() {
   //  this.formGroup.get('validate').valueChanges.subscribe(
@@ -70,21 +92,28 @@ export class CreatePostComponent implements OnInit {
   get name() {
     return this.formGroup.get('name') as FormControl
   }
+  submitAnnouncement(somePost) {
+    console.log("From submitAnnouncement: ");
+    console.log(this.firstFormGroup.value);
+  }
 
 
 
-  onSubmit(post) {
-    //this.post = post;
-    console.log(post);
+  onSubmit(testPost) {
+    console.log("First Form Group: ");
+    console.log(this.firstFormGroup.value);
+    console.log("Second Form Group: ");
+    console.log(this.secondFormGroup.value);
+    console.log(testPost.description + ", " + testPost.heading);
     this.httpClient.post(this.baseUrl + 'api/posts',
       {
-        "time": post.time,
-        "date": post.date,
-        "location": post.location,
-        "groupId": post.groupId,
-        "heading": post.name,
-        "message": post.message,
-        "type": post.type
+        "time": this.secondFormGroup.value.time,
+        "date": this.secondFormGroup.value.date,
+        "location": this.secondFormGroup.value.location,
+        "groupId": this.firstFormGroup.value.groupId,
+        "heading": this.firstFormGroup.value.heading,
+        "message": this.firstFormGroup.value.message,
+        "type": this.firstFormGroup.value.type
       }).subscribe(
       (val) => {
         console.log("POST call successful value returned in body", val);
