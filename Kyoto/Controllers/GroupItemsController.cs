@@ -27,6 +27,89 @@ namespace Kyoto.Controllers
             return _context.GroupItem;
         }
 
+
+        [HttpGet]
+        [Route("tree")]
+        public IEnumerable<Group> GetGroupItemTree()
+        {
+            IEnumerable<GroupItem> allgroups = _context.GroupItem;
+
+
+
+            //Group baseGroup = new Group();
+            //foreach (var group in allgroups)
+            //{
+            //    if (group.Id == group.ParentId)
+            //    {
+            //        baseGroup = new Group
+            //        {
+            //            Id = group.Id, Name = group.Name, ParentId = group.ParentId
+            //        };
+
+            //        //addSubGroups(baseGroup.ParentId, allgroups, );
+
+            //        //Group subGroup = null;
+            //        //foreach (var child in allgroups)
+            //        //{
+            //        //    if()
+            //        //}
+
+            //    }
+            //}
+
+            return CreateGroupTree(allgroups);
+
+            //return _context.Group; 
+        }
+
+    
+
+    private List<Group> CreateGroupTree(IEnumerable<GroupItem> categories)
+        {
+            List<Group> nodes = new List<Group>();
+
+            foreach (var item in categories)
+            {
+                if (item.ParentId == 0)
+                    nodes.Add(new Group { Id = item.Id, Name = item.Name });
+                else
+                {
+                    CreateNode(nodes, item);
+                }
+            }
+            return nodes;
+        }
+
+        private void CreateNode(List<Group> nodes, GroupItem parent)
+        {
+            foreach (var node in nodes)
+            {
+                if (node.Id == parent.ParentId)
+                {
+                    node.Children.Add(new Group { Id = parent.Id, Name = parent.Name });
+                }
+                else
+                {
+                    CreateNode(node.Children, parent);
+                }
+            }
+       
+    }
+
+
+
+    //private void addSubGroups(int parentId, IEnumerable<GroupItem> allgroups, )
+    //    {
+    //        Group subGroup = null;
+    //        foreach (var child in allgroups)
+    //        {
+    //            if (child.ParentId == parentId)
+    //            {
+
+    //            }
+    //        }
+    //    }
+
         // GET: api/GroupItems/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGroupItem([FromRoute] int id)
@@ -122,4 +205,5 @@ namespace Kyoto.Controllers
             return _context.GroupItem.Any(e => e.Id == id);
         }
     }
+
 }
