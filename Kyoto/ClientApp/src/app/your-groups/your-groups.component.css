@@ -6,41 +6,49 @@
   margin: 18px;
   padding: 0;
 }
+
 .card-style {
   background-color: rgba(235, 235, 235, 0.92);
   box-shadow: 0 3px 3px 3px rgba(0,0,0,.2), 0 3px 3px 0 rgba(0,0,0,.14), 0 3px 3px 0 rgba(0,0,0,.12);
 }
+
 .your-groups-header {
   padding: 20px 16px 20px 16px;
 }
+
 .add-button {
   float: right;
   margin-left: auto;
   margin-right: 0;
 }
-.add-button:hover {
-  background-color: #3f51b5;
-}
+
+  .add-button:hover {
+    background-color: #3f51b5;
+  }
+
 .add-icon {
   color: white;
 }
+
 .group-header {
   padding: 0 16px 10px 16px;
   font-size: 20px;
 }
-.group-subtitle{
+
+.group-subtitle {
   margin: 10px 16px;
 }
-
 
 .example-header-image {
   background-size: cover;
   padding: 4px 0px 0px 16px;
 }
+
 .extra-margin {
-  margin: 10px;  
+  margin: 10px;
   padding: 10px;
 }
+
 .hover-card:hover > .extra-margin:hover {
   box-shadow: 0 4px 4px 4px rgba(0,0,0,.2), 0 4px 4px 0 rgba(0,0,0,.14), 0 4px 4px 0 rgba(0,0,0,.12);
   transform: translate3d(0,0,0);
@@ -68,4 +76,3 @@
 .see-more-link {
   float: right;
 }
-
