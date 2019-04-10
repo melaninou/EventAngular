@@ -8,3 +8,7 @@
 .nav-bar-width {
   width: 20%
 }
+
+:host /deep/ .col-sm-9 {
+  min-width: 80%;
+}
