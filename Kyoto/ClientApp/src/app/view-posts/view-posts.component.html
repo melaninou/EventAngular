@@ -1,94 +1,84 @@
-<h1><b>View posts</b></h1>
+<div class="view-card">
+  <h1><b class="page-header">View posts</b></h1>
 
-<!--<table>
-  <tr *ngFor="let app of groups">
-    <td>{{app.id}}</td>
-    <td>{{app.name}}</td>
-  </tr>
-</table>-->
+  <div class="add-padding">
+    <!-- Search form -->
+    <form class="form-inline md-form form-sm active-pink active-pink-2">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
+             mdbInput>
+      <button class="button mat-raised-button mat-accent" style="margin-left: 10px">
+        Search
+      </button>
+    </form>
+
+    <!-- type="submit" ng-reflect-disabled="false" ng-reflect-color="primary"><span class="mat-button-wrapper">Create Group</span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-di-->
+    <br />
+    <br />
 
 
-<form class="example-form">
-  <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title class="post-header">
-          Choose groups
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <table>
-        <tr *ngFor="let x of apiGroups">
-          <td><mat-checkbox class="more-space">{{x.name}}</mat-checkbox></td>
-        </tr>
-      </table>
-      <button mat-button>Filter</button>
-    </mat-expansion-panel>
-  </mat-accordion>
-</form>
+    <form class="example-form">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="post-header">
+              Choose groups
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table>
+            <tr *ngFor="let x of apiGroups">
+              <td><mat-checkbox class="more-space">{{x.name}}</mat-checkbox></td>
+            </tr>
+          </table>
+          <button mat-button>Filter</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </div>
+</div>
 
 <br />
 <br />
 
 <div class="view-card">
+  <div class="view-card">
   <div class="date-header"><b>Today, {{today}}</b></div>
-    <mat-card class="your-events-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
-        </mat-card-header>
-      </div>
-      <mat-card-content>
-        <div *ngFor="let x of apiPosts">
-          <div *ngIf="x.date === today && x.date >= today && x.type === event">
-            <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
-                                 (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
-                <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
-              </mat-expansion-panel-header>
-              <table>
-                <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
-                <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
-                <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
-                <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
-                <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-              </table>
-            </mat-expansion-panel>
-          </div>
+  <mat-card class="your-events-card card-style">
+    <div class="your-posts-header">
+      <mat-card-header>
+        <mat-card-title class="comp-header">EVENTS</mat-card-title>
+      </mat-card-header>
+    </div>
+    <mat-card-content>
+      <div *ngFor="let x of apiPosts">
+        <div *ngIf="x.date === today && x.date >= today && x.type === event">
+          <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+              <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <table>
+              <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
+              <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+              <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+              <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+              <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+            </table>
+          </mat-expansion-panel>
         </div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="your-announcements-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">ANNOUNCEMENTS</mat-card-title>
-        </mat-card-header>
       </div>
-      <mat-card-content>
-        <div *ngFor="let x of apiPosts">
-          <div *ngIf="x.date === today && x.type === announcement">
-            <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
-                                 (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
-              </mat-expansion-panel-header>
-              <table>
-                <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-                <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
-              </table>
-            </mat-expansion-panel>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 
 
 <div class="view-card">
-<div class="date-header"><b>Tomorrow, {{tomorrow}}</b></div>
+
+  <div class="date-header"><b>Tomorrow, {{tomorrow}}</b></div>
+
   <mat-card class="your-events-card card-style">
     <div class="your-posts-header">
       <mat-card-header>
@@ -116,36 +106,13 @@
       </div>
     </mat-card-content>
   </mat-card>
-
-  <mat-card class="your-announcements-card card-style">
-    <div class="your-posts-header">
-      <mat-card-header>
-        <mat-card-title class="comp-header">ANNOUNCEMENTS</mat-card-title>
-      </mat-card-header>
-    </div>
-    <mat-card-content>
-      <div *ngFor="let x of apiPosts">
-        <div *ngIf="x.date === tomorrow && x.type === announcement">
-          <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <table>
-              <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-              <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
-            </table>
-          </mat-expansion-panel>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
 </div>
 
 
+  <div class="view-card">
 
-<div class="view-card">
-<div class="date-header"><b>{{day3}}, {{in2Days}}</b></div>
+  <div class="date-header"><b>{{day3}}, {{in2Days}}</b></div>
+
   <mat-card class="your-events-card card-style">
     <div class="your-posts-header">
       <mat-card-header>
@@ -173,36 +140,13 @@
       </div>
     </mat-card-content>
   </mat-card>
-
-  <mat-card class="your-announcements-card card-style">
-    <div class="your-posts-header">
-      <mat-card-header>
-        <mat-card-title class="comp-header">ANNOUNCEMENTS</mat-card-title>
-      </mat-card-header>
-    </div>
-    <mat-card-content>
-      <div *ngFor="let x of apiPosts">
-        <div *ngIf="x.date === in2Days && x.type === announcement">
-          <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <table>
-              <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-              <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
-            </table>
-          </mat-expansion-panel>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
 </div>
 
 
+  <div class="view-card">
 
-<div class="view-card">
-<div class="date-header"><b>{{day4}}, {{in3Days}}</b></div>
+  <div class="date-header"><b>{{day4}}, {{in3Days}}</b></div>
+
   <mat-card class="your-events-card card-style">
     <div class="your-posts-header">
       <mat-card-header>
@@ -230,36 +174,12 @@
       </div>
     </mat-card-content>
   </mat-card>
-
-  <mat-card class="your-announcements-card card-style">
-    <div class="your-posts-header">
-      <mat-card-header>
-        <mat-card-title class="comp-header">ANNOUNCEMENTS</mat-card-title>
-      </mat-card-header>
-    </div>
-    <mat-card-content>
-      <div *ngFor="let x of apiPosts">
-        <div *ngIf="x.date === in3Days && x.type === announcement">
-          <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <table>
-              <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-              <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
-            </table>
-          </mat-expansion-panel>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
 </div>
 
 
-
 <div class="view-card">
-<div class="date-header"><b>{{day5}}, {{in4Days}}</b></div>
+  <div class="date-header"><b>{{day5}}, {{in4Days}}</b></div>
+
   <mat-card class="your-events-card card-style">
     <div class="your-posts-header">
       <mat-card-header>
@@ -287,24 +207,32 @@
       </div>
     </mat-card-content>
   </mat-card>
+</div>
 
-  <mat-card class="your-announcements-card card-style">
+  <div class="view-card">
+  <div class="date-header"><b>Future activities</b></div>
+
+  <mat-card class="your-events-card card-style">
     <div class="your-posts-header">
       <mat-card-header>
-        <mat-card-title class="comp-header">ANNOUNCEMENTS</mat-card-title>
+        <mat-card-title class="comp-header">EVENTS</mat-card-title>
       </mat-card-header>
     </div>
     <mat-card-content>
       <div *ngFor="let x of apiPosts">
-        <div *ngIf="x.date === in4Days && x.type === announcement">
+        <div *ngIf="x.date > in4Days && x.date >= today && x.type === event">
           <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
-              <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
+              <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
+              <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
             </mat-expansion-panel-header>
             <table>
-              <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
               <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
+              <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
+              <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
+              <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
+              <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
             </table>
           </mat-expansion-panel>
         </div>
@@ -313,38 +241,7 @@
   </mat-card>
 </div>
 
-
-
-<div class="view-card">
-  <div class="date-header"><b>Future activities</b></div>
-    <mat-card class="your-events-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
-        </mat-card-header>
-      </div>
-      <mat-card-content>
-        <div *ngFor="let x of apiPosts">
-          <div *ngIf="x.date > in4Days && x.date >= today && x.type === event">
-            <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
-                                 (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title class="post-header">{{x.time}}</mat-panel-title>
-                <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
-              </mat-expansion-panel-header>
-              <table>
-                <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
-                <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
-                <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
-                <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
-                <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-              </table>
-            </mat-expansion-panel>
-          </div>
-          </div>
-      </mat-card-content>
-    </mat-card>
-
+  <div>
     <mat-card class="your-announcements-card card-style">
       <div class="your-posts-header">
         <mat-card-header>
@@ -353,7 +250,7 @@
       </div>
       <mat-card-content>
         <div *ngFor="let x of apiPosts">
-          <div *ngIf="x.date > in4Days && x.type === announcement">
+          <div *ngIf="x.type === announcement">
             <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
                                  (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
@@ -369,6 +266,6 @@
       </mat-card-content>
     </mat-card>
   </div>
-
+</div>
 
 <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->

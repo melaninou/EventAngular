@@ -10,9 +10,8 @@
 }
 
 .example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+  width: 50%;
+
 }
 
 .example-full-width {
@@ -22,6 +21,15 @@
 .example-user-input {
   margin-right: 8px;
 }
+
+.search-button {
+  margin-left: 15px;
+  background-color: #ff4081;
+  border-radius: 3px;
+  color: white;
+}
+
+
 .more-space {
   margin: 10px 10px 0px 0px;
 }
@@ -30,6 +38,14 @@
   color: black;
   text-align: center;
   margin-right: 10px;
+  margin-top: 10px;
+}
+
+.page-header {
+  font-size: 25px;
+  color: black;
+  text-align: center;
+  padding: 10px;
 }
 
 .date-header {
@@ -45,7 +61,7 @@
   max-width: 100vw;
   min-height: 20px;
   float: left;
-  margin: 15px;
+  margin: 0px;
   width: 100%;
   padding: 0px;
 }
@@ -79,7 +95,7 @@
   min-height: 10px;
   float: left;
   margin: 15px;
-  width: 40%;
+  width: 30%;
   padding: 0px;
 }
 
@@ -120,6 +136,10 @@
   padding: 10px;
 }
 
+.add-padding{
+  padding: 10px;
+}
+
 .post-data {
   margin: 10px;
 }
@@ -139,3 +159,20 @@
   overflow: hidden;
   outline: none;
 }
+
+:host /deep/ .mat-button:hover {
+  background-color: #ff4081;
+  color: white;
+}
+
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #ff4081;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+
+:host /deep/ .mat-expansion-panel{
+  border-radius: 3px;
+}
+
+
+
