@@ -54,7 +54,7 @@
   padding: 4px 0px 0px 16px;
 }
 
-:host /deep/ .post-header {
+.post-header {
   padding: 10px 10px 0 10px;
   font-size: 20px;
   /*align-items: center;*/
@@ -108,4 +108,8 @@
 
 .see-more-link {
   float: right;
+}
+
+:host /deep/ .mat-card-content {
+  margin-bottom: 0;
 }

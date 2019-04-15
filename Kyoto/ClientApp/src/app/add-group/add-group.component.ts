@@ -46,14 +46,14 @@ export class AddGroupComponent implements OnInit {
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
-    this.setChangeValidate();
+    //this.setChangeValidate();
   }
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.formGroup = this.formBuilder.group({
       'name': [null, Validators.required],
       'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
-      'parentId': [null],
+      'parentId': [null, Validators.required],
       'admin': 'Administrator',
     });
   }
@@ -81,6 +81,8 @@ export class AddGroupComponent implements OnInit {
   onSubmit(post) {
     //this.post = post;
     console.log(post);
+    console.log("The parent id is: ");
+    console.log(this.formGroup.value.parentId);
     this.httpClient.post(this.baseUrl + 'api/groups',
       {
         "name": post.name,

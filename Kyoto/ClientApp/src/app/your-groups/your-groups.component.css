@@ -31,7 +31,7 @@
 }
 
 .group-header {
-  padding: 0 16px 10px 16px;
+  padding: 10px 10px 0 10px;
   font-size: 20px;
 }
 
@@ -75,4 +75,8 @@
 
 .see-more-link {
   float: right;
+}
+
+:host /deep/ .mat-card-content {
+  margin-bottom: 0;
 }
