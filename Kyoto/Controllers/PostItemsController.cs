@@ -34,6 +34,30 @@ namespace Kyoto.Controllers
             }
         }
 
+        [HttpGet("group/{id}")]
+        public IEnumerable<PostItem> GetGroupPostItems([FromRoute] int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var allPosts = _context.PostItem;
+                var groupPosts = new List<PostItem>();
+
+                foreach (var group in allPosts)
+                {
+                    if (group.GroupId == id)
+                    {
+                        groupPosts.Add(group);
+                    }
+                }
+
+                return groupPosts;
+            }
+            else
+            {
+                throw new Exception("Unable to GET PostItems because the Model State is invalid.");
+            }
+        }
+
         // GET: api/posts/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPostItem([FromRoute] int id)

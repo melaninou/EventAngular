@@ -97,6 +97,14 @@ namespace Kyoto.Data
                 new GroupItem
                 {
                     Name = "Majandusteaduskond", Description = "TalTech group", Admin = "Administrator", ParentId = 1
+                },
+                new GroupItem
+                {
+                    Name = "Tartu Ülikool", Description = "TÜ", Admin = "Administrator", ParentId = 0
+                },
+                new GroupItem
+                {
+                    Name = "Arstiteaduskond", Description = "TÜ grupp", Admin = "Administrator", ParentId = 6
                 }
             };
             foreach (var groupItem in groupItems)

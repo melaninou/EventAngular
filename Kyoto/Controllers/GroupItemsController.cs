@@ -34,32 +34,9 @@ namespace Kyoto.Controllers
         {
             IEnumerable<GroupItem> allgroups = _context.GroupItem;
 
-
-
-            //Group baseGroup = new Group();
-            //foreach (var group in allgroups)
-            //{
-            //    if (group.Id == group.ParentId)
-            //    {
-            //        baseGroup = new Group
-            //        {
-            //            Id = group.Id, Name = group.Name, ParentId = group.ParentId
-            //        };
-
-            //        //addSubGroups(baseGroup.ParentId, allgroups, );
-
-            //        //Group subGroup = null;
-            //        //foreach (var child in allgroups)
-            //        //{
-            //        //    if()
-            //        //}
-
-            //    }
-            //}
-
             return CreateGroupTree(allgroups);
 
-            //return _context.Group; 
+             
         }
 
     
@@ -97,18 +74,6 @@ namespace Kyoto.Controllers
     }
 
 
-
-    //private void addSubGroups(int parentId, IEnumerable<GroupItem> allgroups, )
-    //    {
-    //        Group subGroup = null;
-    //        foreach (var child in allgroups)
-    //        {
-    //            if (child.ParentId == parentId)
-    //            {
-
-    //            }
-    //        }
-    //    }
 
         // GET: api/GroupItems/5
         [HttpGet("{id}")]

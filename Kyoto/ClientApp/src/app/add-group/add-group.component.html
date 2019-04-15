@@ -25,7 +25,7 @@
 
           <mat-form-field class="small-form-element select-option">
             <mat-select placeholder="Select Parent Group" formControlName="parentId">
-              <mat-option *ngFor="let group of apiGroups" [value]="group.parentId">
+              <mat-option *ngFor="let group of apiGroups" [value]="group.ParentId">
                 {{group.name}}
               </mat-option>
             </mat-select>
