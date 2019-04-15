@@ -41,20 +41,19 @@
 <br />
 <br />
 
+<div class="big-card">
   <div class="view-card">
     <div class="date-header"><b>Today, {{today}}</b></div>
+
     <mat-card class="your-events-card card-style">
       <div _ngcontent-c3="" class="your-posts-header">
         <mat-card-header _ngcontent-c3="" class="mat-card-header">
-          <div>
-            <mat-icon _ngcontent-c10="" class="mat-icon notranslate mat-badge material-icons
-                  mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
+          <mat-card-title class="comp-header">
+            <mat-icon _ngcontent-c10="" class="mat-icon notranslate
+          mat-badge material-icons mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
                       matbadgecolor="accent" role="img" aria-hidden="true" ng-reflect-color="primary"
-                      ng-reflect-content="0">
-              event_note
-            </mat-icon>
-          </div>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
+                      ng-reflect-content="0">event_note</mat-icon> <label class="card-header">EVENTS</label>
+          </mat-card-title>
         </mat-card-header>
       </div>
 
@@ -81,31 +80,6 @@
     </mat-card>
   </div>
 
-<br/>
-  <mat-card class="your-announcements-card card-style">
-    <div class="your-posts-header">
-      <mat-card-header>
-        <mat-card-title class="comp-header">ANNOUNCEMENTS</mat-card-title>
-      </mat-card-header>
-    </div>
-    <mat-card-content>
-      <div *ngFor="let x of apiPosts">
-        <div *ngIf="x.type === announcement">
-          <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <table>
-              <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-              <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
-            </table>
-          </mat-expansion-panel>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
 
 
   <div class="view-card">
@@ -113,11 +87,17 @@
     <div class="date-header"><b>Tomorrow, {{tomorrow}}</b></div>
 
     <mat-card class="your-events-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
+      <div _ngcontent-c3="" class="your-posts-header">
+        <mat-card-header _ngcontent-c3="" class="mat-card-header">
+          <mat-card-title class="comp-header">
+            <mat-icon _ngcontent-c10="" class="mat-icon notranslate
+          mat-badge material-icons mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
+                      matbadgecolor="accent" role="img" aria-hidden="true" ng-reflect-color="primary"
+                      ng-reflect-content="0">event_note</mat-icon> <label class="card-header">EVENTS</label>
+          </mat-card-title>
         </mat-card-header>
       </div>
+
       <mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.date === tomorrow && x.date >= today && x.type === event">
@@ -147,11 +127,17 @@
     <div class="date-header"><b>{{day3}}, {{in2Days}}</b></div>
 
     <mat-card class="your-events-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
+      <div _ngcontent-c3="" class="your-posts-header">
+        <mat-card-header _ngcontent-c3="" class="mat-card-header">
+          <mat-card-title class="comp-header">
+            <mat-icon _ngcontent-c10="" class="mat-icon notranslate
+          mat-badge material-icons mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
+                      matbadgecolor="accent" role="img" aria-hidden="true" ng-reflect-color="primary"
+                      ng-reflect-content="0">event_note</mat-icon> <label class="card-header">EVENTS</label>
+          </mat-card-title>
         </mat-card-header>
       </div>
+
       <mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.date === in2Days && x.date >= today && x.type === event">
@@ -181,11 +167,17 @@
     <div class="date-header"><b>{{day4}}, {{in3Days}}</b></div>
 
     <mat-card class="your-events-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
+      <div _ngcontent-c3="" class="your-posts-header">
+        <mat-card-header _ngcontent-c3="" class="mat-card-header">
+          <mat-card-title class="comp-header">
+            <mat-icon _ngcontent-c10="" class="mat-icon notranslate
+          mat-badge material-icons mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
+                      matbadgecolor="accent" role="img" aria-hidden="true" ng-reflect-color="primary"
+                      ng-reflect-content="0">event_note</mat-icon> <label class="card-header">EVENTS</label>
+          </mat-card-title>
         </mat-card-header>
       </div>
+
       <mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.date === in3Days && x.date >= today && x.type === event">
@@ -214,11 +206,17 @@
     <div class="date-header"><b>{{day5}}, {{in4Days}}</b></div>
 
     <mat-card class="your-events-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
+      <div _ngcontent-c3="" class="your-posts-header">
+        <mat-card-header _ngcontent-c3="" class="mat-card-header">
+          <mat-card-title class="comp-header">
+            <mat-icon _ngcontent-c10="" class="mat-icon notranslate
+          mat-badge material-icons mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
+                      matbadgecolor="accent" role="img" aria-hidden="true" ng-reflect-color="primary"
+                      ng-reflect-content="0">event_note</mat-icon> <label class="card-header">EVENTS</label>
+          </mat-card-title>
         </mat-card-header>
       </div>
+
       <mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.date === in4Days && x.date >= today && x.type === event">
@@ -246,11 +244,17 @@
     <div class="date-header"><b>Future activities</b></div>
 
     <mat-card class="your-events-card card-style">
-      <div class="your-posts-header">
-        <mat-card-header>
-          <mat-card-title class="comp-header">EVENTS</mat-card-title>
+      <div _ngcontent-c3="" class="your-posts-header">
+        <mat-card-header _ngcontent-c3="" class="mat-card-header">
+          <mat-card-title class="comp-header">
+            <mat-icon _ngcontent-c10="" class="mat-icon notranslate
+          mat-badge material-icons mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
+                      matbadgecolor="accent" role="img" aria-hidden="true" ng-reflect-color="primary"
+                      ng-reflect-content="0">event_note</mat-icon> <label class="card-header">EVENTS</label>
+          </mat-card-title>
         </mat-card-header>
       </div>
+
       <mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.date > in4Days && x.date >= today && x.type === event">
@@ -272,6 +276,42 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div>
+</div>
+</div>
+
+
+
+<mat-card class="your-announcements-card card-style">
+  <mat-card class="your-events-card card-style">
+    <div _ngcontent-c3="" class="your-posts-header">
+      <mat-card-header _ngcontent-c3="" class="mat-card-header">
+        <mat-card-title class="comp-header">
+          <mat-icon _ngcontent-c10="" class="mat-icon notranslate mat-badge material-icons
+                     mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium"
+                     matbadge="5" matbadgecolor="primary" role="img" aria-hidden="true"
+                     ng-reflect-color="primary" ng-reflect-content="5">announcement
+                      </mat-icon> <label class="card-header">ANNOUNCEMENTS</label>
+        </mat-card-title>
+      </mat-card-header>
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <div *ngFor="let x of apiPosts">
+          <div *ngIf="x.type === announcement">
+            <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
+              </mat-expansion-panel-header>
+              <table>
+                <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
+                <tr><mat-icon class="more-space">groupId</mat-icon>{{x.groupId}}</tr>
+              </table>
+            </mat-expansion-panel>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
 
 <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
