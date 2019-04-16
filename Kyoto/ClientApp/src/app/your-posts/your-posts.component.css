@@ -21,6 +21,25 @@
   padding: 0px;
 }
 
+.response-button {
+  max-width: 33%;
+  min-width: calc(33% - 20px);
+  margin: 0 10px 0 10px;
+}
+
+.response-button:hover {
+    color: #FF4081;
+
+}
+  .response-button:focus {
+    background-color: hsla(0, 0%, 88%, 0.9);
+    color: #FF4081;
+  }
+
+.response-buttons-class {
+  display: flex;
+}
+
 .your-posts-header {
   padding: 20px 16px 20px 16px;
 }
@@ -55,8 +74,11 @@
 }
 
 .post-header {
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 10px 10px;
   font-size: 20px;
+  background-color: hsla(0, 0%, 96%, 0.75);
+  border-radius: inherit;
+  /*font-weight: bold;*/
   /*align-items: center;*/
 }
 

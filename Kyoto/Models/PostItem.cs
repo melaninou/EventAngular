@@ -18,5 +18,7 @@ namespace Kyoto.Models
 
         public string Message { get; set; }
         public string Type { get; set; }
+        public ResponseStatus ResponseStatus { get; set; }
+        public bool HasResponse { get; set; }
     }
 }

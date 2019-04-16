@@ -1,3 +1,4 @@
+import { ResponseStatus } from '../models/ResponseStatus';
 export interface Post {
   id: string;
   time: string;
@@ -7,4 +8,6 @@ export interface Post {
   heading: string;
   message: string;
   type: string;
+  responseStatus: ResponseStatus;
+  hasResponse: boolean;
 }
