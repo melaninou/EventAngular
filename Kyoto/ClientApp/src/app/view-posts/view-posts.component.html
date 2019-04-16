@@ -294,7 +294,6 @@
         </mat-card-title>
       </mat-card-header>
     </div>
-    <mat-card>
       <mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.type === announcement">
@@ -311,7 +310,6 @@
           </div>
         </div>
       </mat-card-content>
-    </mat-card>
   </mat-card>
 
 <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
