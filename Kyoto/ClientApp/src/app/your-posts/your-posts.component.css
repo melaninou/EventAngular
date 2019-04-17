@@ -78,12 +78,18 @@
 
 .post-header {
   padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
   font-size: 20px;
   background-color: hsla(0, 0%, 96%, 0.75);
   border-radius: inherit;
   /*font-weight: bold;*/
   /*align-items: center;*/
 }
+
+  .post-header:hover {
+    box-shadow: 0 2px 2px 2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 2px 2px 0 rgba(0,0,0,.12);
+    color: #3f51b5;
+  }
 
 :host /deep/ .post-subtitle {
   padding: 10px;
@@ -108,7 +114,7 @@
 
 
 .hover-card:hover > .extra-margin:hover {
-  box-shadow: 0 4px 4px 4px rgba(0,0,0,.2), 0 4px 4px 0 rgba(0,0,0,.14), 0 4px 4px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 2px 2px 0 rgba(0,0,0,.12);
   transform: translate3d(0,0,0);
   transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
 }
@@ -137,4 +143,12 @@
 
 :host /deep/ .mat-card-content {
   margin-bottom: 0;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+.header-icon{
+  float: right;
+  align-self: right;
 }

@@ -1,0 +1,38 @@
+.extra-margin {
+  margin: 10px;
+  padding: 10px;
+}
+
+.post-header {
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  background-color: hsla(0, 0%, 96%, 0.75);
+  border-radius: inherit;
+  /*font-weight: bold;*/
+  /*align-items: center;*/
+}
+
+:host /deep/ .post-subtitle {
+  padding: 10px;
+  margin: 0px 10px 10px 10px;
+  width: 90%;
+}
+
+.more-space {
+  margin: 6px 6px 0 0;
+}
+
+.your-post-card {
+  max-width: 100vw;
+  min-width: 33%;
+  float: left;
+  margin: 18px;
+  padding: 10px;
+  width: 50%;
+}
+
+.card-style {
+  background-color: rgba(235, 235, 235, 0.92);
+  box-shadow: 0 3px 3px 3px rgba(0,0,0,.2), 0 3px 3px 0 rgba(0,0,0,.14), 0 3px 3px 0 rgba(0,0,0,.12);
+}

@@ -1,0 +1,25 @@
+<mat-card class="your-post-card card-style">
+  <mat-card class="extra-margin">
+    <mat-card-header class="post-header pointer" color="primary">
+      heading
+    </mat-card-header>
+    <mat-card-subtitle>
+      <mat-card-content>
+        <mat-card-content>
+          <table class="post-subtitle">
+            <tr><mat-icon class="more-space" color="accent"> message</mat-icon>message</tr>
+            <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>date and time</tr>
+            <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>location</tr>
+            <tr><mat-icon class="more-space" color="accent">group</mat-icon>from group</tr>
+          </table>
+        </mat-card-content>
+      </mat-card-content>
+    </mat-card-subtitle>
+    <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">
+      <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+      <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+      <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+    </mat-card-content>
+  </mat-card>
+
+</mat-card>

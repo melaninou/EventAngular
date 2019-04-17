@@ -24,6 +24,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { YourGroupsComponent } from './your-groups/your-groups.component';
 import { YourPostsComponent } from './your-posts/your-posts.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { YourPostsComponent } from './your-posts/your-posts.component';
     DashBoardComponent,
     YourGroupsComponent,
     YourPostsComponent,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -63,7 +65,8 @@ import { YourPostsComponent } from './your-posts/your-posts.component';
       { path: 'members', component: MembersComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'dash-board', component: DashBoardComponent}
+      { path: 'dash-board', component: DashBoardComponent },
+      { path: 'post-details/:id', component: PostDetailsComponent }
     ]),
     BrowserAnimationsModule
   ],
