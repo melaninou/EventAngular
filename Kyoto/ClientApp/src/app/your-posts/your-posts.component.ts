@@ -14,14 +14,14 @@ import { ResponseStatus } from '../models/ResponseStatus';
 export class YourPostsComponent implements OnInit {
   baseUrl: string;
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router,
+  constructor(private httpClient: HttpClient, private router: Router,
     @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     })
   }
 
@@ -60,6 +60,7 @@ export class YourPostsComponent implements OnInit {
     console.log("post id is: " + post.id);
     this.httpClient.put(this.baseUrl + 'api/posts/' + post.id,
       {
+        "id": post.id,
         "time": post.time,
         "date": post.date,
         "location": post.location,
@@ -79,6 +80,7 @@ export class YourPostsComponent implements OnInit {
       () => {
         console.log("The Put observable is now completed");
         this.router.navigateByUrl('dash-board');
+        this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
       });
   }
   onResponseMaybe(post: any) {
@@ -86,6 +88,7 @@ export class YourPostsComponent implements OnInit {
     console.log(post);
     this.httpClient.put(this.baseUrl + 'api/posts/' + post.id,
       {
+        "id": post.id,
         "time": post.time,
         "date": post.date,
         "location": post.location,
@@ -95,7 +98,7 @@ export class YourPostsComponent implements OnInit {
         "type": post.type,
         "responseStatus": ResponseStatus.Maybe,
         "hasResponse": true
-      }, this.httpOptions).subscribe(
+      }).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
       },
@@ -105,6 +108,7 @@ export class YourPostsComponent implements OnInit {
       () => {
         console.log("The Put observable is now completed");
         this.router.navigateByUrl('dash-board');
+        this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
       });
   }
   onResponseCantGo(post: any) {
@@ -112,6 +116,7 @@ export class YourPostsComponent implements OnInit {
     console.log(post.groupId);
     this.httpClient.put(this.baseUrl + 'api/posts/' + post.id,
       {
+        "id": post.id,
         "time": post.time,
         "date": post.date,
         "location": post.location,
@@ -131,6 +136,7 @@ export class YourPostsComponent implements OnInit {
       () => {
         console.log("The Put observable is now completed");
         this.router.navigateByUrl('dash-board');
+        this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
       });
   }
 

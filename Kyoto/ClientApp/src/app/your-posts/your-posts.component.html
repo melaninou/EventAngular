@@ -12,6 +12,65 @@
     <mat-tab-group color="accent">
       <mat-tab label="GOING">
         <div *ngFor="let x of apiPosts">
+          <div *ngIf="x.type === event && x.responseStatus === 2" class="hover-card">
+            <mat-card class="extra-margin">
+              <mat-card-header class="post-header" color="primary">
+                <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
+                {{x.heading}}
+              </mat-card-header>
+              <mat-card-subtitle>
+                <mat-card-content *ngFor="let g of apiGroups">
+                  <mat-card-content *ngIf="x.groupId === g.id">
+                    <table class="post-subtitle">
+                      <tr><mat-icon class="more-space" color="accent"> message</mat-icon>{{x.message}}</tr>
+                      <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{x.date}} {{x.time}}</tr>
+                      <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{x.location}}</tr>
+                      <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{g.name}}</tr>
+                    </table>
+                  </mat-card-content>
+                </mat-card-content>
+              </mat-card-subtitle>
+              <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">
+                <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+                <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+                <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+              </mat-card-content>
+              
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="PENDING">
+        <div *ngFor="let x of apiPosts">
+          <div *ngIf="x.type === event && x.responseStatus === 1" class="hover-card">
+            <mat-card class="extra-margin">
+              <mat-card-header class="post-header" color="primary">
+                <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
+                {{x.heading}}
+              </mat-card-header>
+              <mat-card-subtitle>
+                <mat-card-content *ngFor="let g of apiGroups">
+                  <mat-card-content *ngIf="x.groupId === g.id">
+                    <table class="post-subtitle">
+                      <tr><mat-icon class="more-space" color="accent"> message</mat-icon>{{x.message}}</tr>
+                      <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{x.date}} {{x.time}}</tr>
+                      <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{x.location}}</tr>
+                      <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{g.name}}</tr>
+                    </table>
+                  </mat-card-content>
+                </mat-card-content>
+              </mat-card-subtitle>
+              <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">
+                <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+                <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+                <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="ALL">
+        <div *ngFor="let x of apiPosts">
           <div *ngIf="x.type === event" class="hover-card">
             <mat-card class="extra-margin">
               <mat-card-header class="post-header" color="primary">
@@ -30,25 +89,15 @@
                   </mat-card-content>
                 </mat-card-content>
               </mat-card-subtitle>
-              <!--<mat-tab-group>
-                <mat-tab label="Going">-->
-              <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">{{x.responseStatus}}
-                <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)">Going</button>
-                <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)">Maybe</button>
-                <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)">Can't Go</button>
+              <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">
+                <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+                <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+                <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
               </mat-card-content>
-              
-
-                <!--</mat-tab>
-                <mat-tab label="Maybe"></mat-tab>
-                <mat-tab label="Can't Go"></mat-tab>-->
-              <!--</mat-tab-group>-->
             </mat-card>
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="PENDING">PENDING</mat-tab>
-      <mat-tab label="ALL">ALL</mat-tab>
     </mat-tab-group>
     <!--<mat-card-actions>
       <button mat-button>GOING</button>

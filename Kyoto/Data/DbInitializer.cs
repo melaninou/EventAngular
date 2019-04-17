@@ -28,20 +28,20 @@ namespace Kyoto.Data
                 new PostItem
                 {
                    Time = "20:00", Date = "10.04.2019", Location = "Vanalinn", GroupId = 3,
-                    Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event", ResponseStatus = ResponseStatus.None, HasResponse = false
+                    Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event", ResponseStatus = ResponseStatus.Going, HasResponse = true
                 },
                 new PostItem
                 {
                    Time = "12:00", Date = "12.04.2019", Location = "Aula", GroupId = 1,
                     Heading = "Business ideas to life", Message = "Annual business ideas competition with real investors as judges.",
-                    Type = "Event", ResponseStatus = ResponseStatus.None, HasResponse = false
+                    Type = "Event", ResponseStatus = ResponseStatus.Going, HasResponse = true
                 },
                 new PostItem
                 {
                    Time = "12:00", Date = "25.04.2019", Location = "IT maja", GroupId = 2,
                     Heading = "Külalislektori Muhammed Thali loeng",
                     Message = "Külalislektor Muhammed Thali avab meile blockchaini maailma.", Type = "Event",
-                    ResponseStatus = ResponseStatus.None, HasResponse = false
+                    ResponseStatus = ResponseStatus.Maybe, HasResponse = true
                 },
                 new PostItem
                 {

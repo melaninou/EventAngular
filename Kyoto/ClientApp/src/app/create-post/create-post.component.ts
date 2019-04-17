@@ -5,6 +5,7 @@ import { Group } from '../models/Group';
 import { Post } from '../models/Post'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ResponseStatus } from '../models/ResponseStatus';
 
 
 @Component({
@@ -113,7 +114,10 @@ export class CreatePostComponent implements OnInit {
         "groupId": this.firstFormGroup.value.groupId,
         "heading": this.firstFormGroup.value.heading,
         "message": this.firstFormGroup.value.message,
-        "type": this.firstFormGroup.value.type
+        "type": this.firstFormGroup.value.type,
+        "responseStatus": ResponseStatus.None,
+        "hasResponse": false
+
       }).subscribe(
       (val) => {
         console.log("POST call successful value returned in body", val);
