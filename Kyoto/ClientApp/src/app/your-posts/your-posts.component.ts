@@ -24,8 +24,7 @@ export class YourPostsComponent implements OnInit {
       "Content-Type": "application/json"
     })
   }
-
-  apiPosts: Post[] = [];
+ apiPosts: Post[] = [];
   apiGroups: Group[] = [];
   testingPosts: Post[] = [];
   event: string = "Event";

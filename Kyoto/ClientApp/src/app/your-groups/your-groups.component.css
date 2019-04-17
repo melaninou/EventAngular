@@ -80,3 +80,6 @@
 :host /deep/ .mat-card-content {
   margin-bottom: 0;
 }
+.pointer:hover{
+  cursor: pointer;
+}
