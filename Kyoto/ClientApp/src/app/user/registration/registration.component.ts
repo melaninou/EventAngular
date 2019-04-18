@@ -16,6 +16,7 @@ export class RegistrationComponent implements OnInit {
     this.usernameTaken = false;
   }
   onSubmit() {
+    this.usernameTaken = false;
     this.service.register().subscribe((response: any) => {
         if (response.succeeded) {
           this.service.formModel.reset();
