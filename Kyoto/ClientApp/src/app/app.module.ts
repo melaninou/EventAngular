@@ -25,6 +25,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 import { YourGroupsComponent } from './your-groups/your-groups.component';
 import { YourPostsComponent } from './your-posts/your-posts.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,9 @@ import { PostDetailsComponent } from './post-details/post-details.component';
       { path: 'dash-board', component: DashBoardComponent },
       { path: 'post-details/:id', component: PostDetailsComponent }
     ]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

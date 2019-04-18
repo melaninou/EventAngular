@@ -24,7 +24,9 @@ export class YourPostsComponent implements OnInit {
       "Content-Type": "application/json"
     })
   }
- apiPosts: Post[] = [];
+
+  dateFormat: string = 'dd/MM/yyyy HH:mm:ss';
+  apiPosts: Post[] = [];
   apiGroups: Group[] = [];
   testingPosts: Post[] = [];
   event: string = "Event";
@@ -60,7 +62,6 @@ export class YourPostsComponent implements OnInit {
     this.httpClient.put(this.baseUrl + 'api/posts/' + post.id,
       {
         "id": post.id,
-        "time": post.time,
         "date": post.date,
         "location": post.location,
         "groupId": post.groupId,
@@ -88,7 +89,6 @@ export class YourPostsComponent implements OnInit {
     this.httpClient.put(this.baseUrl + 'api/posts/' + post.id,
       {
         "id": post.id,
-        "time": post.time,
         "date": post.date,
         "location": post.location,
         "groupId": post.groupId,
@@ -116,7 +116,6 @@ export class YourPostsComponent implements OnInit {
     this.httpClient.put(this.baseUrl + 'api/posts/' + post.id,
       {
         "id": post.id,
-        "time": post.time,
         "date": post.date,
         "location": post.location,
         "groupId": post.groupId,

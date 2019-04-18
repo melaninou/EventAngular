@@ -1,8 +1,7 @@
 import { ResponseStatus } from '../models/ResponseStatus';
 export interface Post {
   id: string;
-  time: string;
-  date: string;
+  date: Date;
   location: string;
   groupId: string;
   heading: string;
