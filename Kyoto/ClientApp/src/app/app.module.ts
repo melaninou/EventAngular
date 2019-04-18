@@ -26,6 +26,10 @@ import { YourGroupsComponent } from './your-groups/your-groups.component';
 import { YourPostsComponent } from './your-posts/your-posts.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { UserComponent } from './user/user.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { AppRoutingModule } from './app-routing.module';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     YourGroupsComponent,
     YourPostsComponent,
     PostDetailsComponent,
+    UserComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -71,9 +77,10 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 
 })

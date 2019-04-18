@@ -47,7 +47,7 @@
           <div *ngFor="let x of apiPosts">
             <div *ngIf="x.type === event && x.responseStatus === 1" class="hover-card">
               <mat-card class="extra-margin">
-                <mat-card-header class="post-header" color="primary">
+                <mat-card-header class="post-header pointer" color="primary" routerLink="/post-details/{{x.id}}">
                   <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
                   {{x.heading}}
                 </mat-card-header>
@@ -79,7 +79,7 @@
           <div *ngFor="let x of apiPosts">
             <div *ngIf="x.type === event" class="hover-card">
               <mat-card class="extra-margin">
-                <mat-card-header class="post-header" color="primary">
+                <mat-card-header class="post-header pointer" color="primary" routerLink="/post-details/{{x.id}}">
                   <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
                   {{x.heading}}
                 </mat-card-header>
@@ -134,7 +134,7 @@
       <div *ngFor="let x of apiPosts">
         <div *ngIf="x.type === announcement" class="hover-card">
           <mat-card class="extra-margin">
-            <mat-card-header class="post-header">
+            <mat-card-header class="post-header pointer" routerLink="/post-details/{{x.id}}">
               <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
               {{x.heading}}
             </mat-card-header>
