@@ -1,0 +1,48 @@
+<div class="container">
+  <div>
+    <form [formGroup]="service.formModel" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-element" required>
+        <input matInput placeholder="Username" formControlName="UserName" required>
+        <mat-error *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">
+          This field is mandatory!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Email" formControlName="Email" required>
+        <mat-error *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">
+          Email is invalid!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="FirstName" formControlName="FirstName" required>
+      </mat-form-field>
+      <div formGroupName="Passwords">
+        <mat-form-field class="form-element" required>
+          <input matInput type="password" placeholder="Password" formControlName="Password" required>
+          <mat-error *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">
+            This field is mandatory!
+          </mat-error>
+          <mat-error *ngIf="service.formModel.get('Passwords.Password').errors?.minlength">
+            Minimum 4 characters required!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element" required>
+          <input matInput type="password" placeholder="Confirm Password" formControlName="ConfirmPassword" required>
+          <mat-error *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">
+            This field is mandatory!
+          </mat-error>
+          <mat-error *ngIf="service.formModel.get('Passwords.ConfirmPassword').errors?.minlength">
+            Minimum 4 characters required!
+          </mat-error>
+          <mat-error *ngIf="service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">
+            Confirm Password does not match Password!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!service.formModel.valid">Sign Up</button>
+        <label matLabel *ngIf="usernameTaken; else notTaken">This username is already taken! Try a new one.</label>
+      </div>
+    </form>
+  </div>
+</div>

@@ -30,6 +30,7 @@ export class ViewPostsComponent implements OnInit{
     this.baseUrl = baseUrl;
   }
 
+
   apps: Post[];
   groups: SingleGroup[];
 
@@ -55,7 +56,7 @@ export class ViewPostsComponent implements OnInit{
   myControl = new FormControl();
 
   i: number = 0;
-
+  dateFormat: string = 'dd/MM/yyyy HH:mm:ss';
 
   ngOnInit() {
 

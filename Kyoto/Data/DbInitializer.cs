@@ -16,53 +16,57 @@ namespace Kyoto.Data
             {
                 return;
             }
-
+            // Response Status 
             var postItems = new PostItem[]
             {
                 //asp net paneb ID väärtused ise alates 1'st
                 new PostItem
                 {
-                    Time = "16:00", Date = "22.04.2019", Location = "Nohik", GroupId = 4,
-                    Heading = "Kohvipaus", Message = "Tule tasuta kohvile!", Type = "Announcement"
+                    Date = DateTime.Today.AddHours(12), Location = "Nohik", GroupId = 4,
+                    Heading = "Kohvipaus", Message = "Tule tasuta kohvile!", Type = "Announcement", ResponseStatus = ResponseStatus.None, HasResponse = false
                 },
                 new PostItem
                 {
-                   Time = "20:00", Date = "10.04.2019", Location = "Vanalinn", GroupId = 3,
-                    Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event"
+                    Date = DateTime.Today.AddHours(12), Location = "Vanalinn", GroupId = 3,
+                    Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event", ResponseStatus = ResponseStatus.Going, HasResponse = true
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "12.04.2019", Location = "Aula", GroupId = 1,
-                    Heading = "Business ideas to life", Message = "Annual business ideas competition with real investors as judges.", Type = "Event"
+                    Date = DateTime.Today.AddHours(12), Location = "Aula", GroupId = 1,
+                    Heading = "Business ideas to life", Message = "Annual business ideas competition with real investors as judges.",
+                    Type = "Event", ResponseStatus = ResponseStatus.Going, HasResponse = true
                 },
                 new PostItem
                 {
-                   Time = "12:00", Date = "25.04.2019", Location = "IT maja", GroupId = 2,
+                    Date = DateTime.Today.AddHours(12), Location = "IT maja", GroupId = 2,
                     Heading = "Külalislektori Muhammed Thali loeng",
-                    Message = "Külalislektor Muhammed Thali avab meile blockchaini maailma.", Type = "Event"
+                    Message = "Külalislektor Muhammed Thali avab meile blockchaini maailma.", Type = "Event",
+                    ResponseStatus = ResponseStatus.Maybe, HasResponse = true
                 },
                 new PostItem
                 {
-                   Time = "20:00", Date = "10.03.2019", Location = "Nõmme spordikesus", GroupId = 1,
-                    Heading = "Tervisejooks", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event"
+                    Date = DateTime.Today.AddHours(12), Location = "Nõmme spordikesus", GroupId = 1,
+                    Heading = "Tervisejooks", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event",
+                    ResponseStatus = ResponseStatus.None, HasResponse = false
                 },
                 new PostItem
                 {
-                    Date = "09.04.2019", GroupId = 1,
+                    Date = DateTime.Now, GroupId = 1,
                     Heading = "Liitu Fotoklubiga!!", Message = "Tule uuri ja vaata, mille huvitavaga me tegeleme @ FotoKlubi",
-                    Type = "Announcement"
+                    Type = "Announcement", ResponseStatus = ResponseStatus.None, HasResponse = false
+
                 },
                 new PostItem
                 {
-                    Date = "11.04.2019", GroupId = 3,
+                    Date = DateTime.Today.AddHours(12), GroupId = 3,
                     Heading = "Tule täna kell 15.00 loengule", Message = "Muti Onu tuleb räägib küberturvalisusest: Be Safe!",
-                    Type = "Announcement"
+                    Type = "Announcement", ResponseStatus = ResponseStatus.None, HasResponse = false
                 },
                 new PostItem
                 {
-                    Date = "14.04.2019", GroupId = 4,
+                    Date = DateTime.Today.AddHours(12), GroupId = 4,
                     Heading = "Vajan head konspekti!", Message = "Kui kellelgi on head mata konspekti, siis võiks jagada.",
-                    Type = "Announcement"
+                    Type = "Announcement", ResponseStatus = ResponseStatus.None, HasResponse = false
                 }
 
             };

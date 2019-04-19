@@ -7,19 +7,22 @@
         <mat-icon class="add-icon" aria-label="">add</mat-icon>
       </button>
     </mat-card-header>
-   </div>
-  <!--<div *ngFor="let x of groups" class="hover-card">-->
-  <div *ngFor="let x of apiGroups" class="hover-card">
-    <mat-card class="extra-margin">
-      <mat-card-header class="group-header">
-        <div mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></div>
-        {{x.name}}
-      </mat-card-header>
-      <mat-card-subtitle class="group-subtitle">
-        {{x.description}}
-      </mat-card-subtitle>
-    </mat-card>
   </div>
+  <!--<div *ngFor="let x of groups" class="hover-card">-->
+  <div class="scrollable-groups">
+    <div *ngFor="let x of apiGroups" class="hover-card pointer" routerLink="/group-details/{{x.id}}">
+      <mat-card class="extra-margin">
+        <mat-card-header class="group-header">
+          <div mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></div>
+          {{x.name}}
+        </mat-card-header>
+        <mat-card-subtitle class="group-subtitle">
+          {{x.description}}
+        </mat-card-subtitle>
+      </mat-card>
+    </div>
+  </div>
+
   <mat-card-content>
     <h3 class="see-more-link">
       <a mat-button routerLink="/view-groups">See more Groups</a>

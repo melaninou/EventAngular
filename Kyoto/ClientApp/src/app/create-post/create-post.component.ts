@@ -5,6 +5,7 @@ import { Group } from '../models/Group';
 import { Post } from '../models/Post'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ResponseStatus } from '../models/ResponseStatus';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class CreatePostComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  dateNow = Date.now();
 
   titleAlert: string = 'This field is required';
   post: any = '';
@@ -55,16 +57,13 @@ export class CreatePostComponent implements OnInit {
     });
     this.secondFormGroup = this.formBuilder.group({
       'location': ['', Validators.required],
-      'date': ['', Validators.required],
-      'time': ['', Validators.required]
+      'date': [null, Validators.required],
     });
   }
 
 
   createForm() {
-    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.formGroup = this.formBuilder.group({
-      'time': [null, Validators.required],
       'date': [null, Validators.required],
       'location': [null, Validators.required],
       'groupId': [null],
@@ -104,16 +103,21 @@ export class CreatePostComponent implements OnInit {
     console.log(this.firstFormGroup.value);
     console.log("Second Form Group: ");
     console.log(this.secondFormGroup.value);
-    console.log(testPost.description + ", " + testPost.heading);
+    if (!this.secondFormGroup.value.date) {
+      var date = new Date(parseInt(this.dateNow.toString()));
+      this.secondFormGroup.value.date = date.toISOString();
+    }
     this.httpClient.post(this.baseUrl + 'api/posts',
       {
-        "time": this.secondFormGroup.value.time,
         "date": this.secondFormGroup.value.date,
         "location": this.secondFormGroup.value.location,
         "groupId": this.firstFormGroup.value.groupId,
         "heading": this.firstFormGroup.value.heading,
         "message": this.firstFormGroup.value.message,
-        "type": this.firstFormGroup.value.type
+        "type": this.firstFormGroup.value.type,
+        "responseStatus": ResponseStatus.None,
+        "hasResponse": false
+
       }).subscribe(
       (val) => {
         console.log("POST call successful value returned in body", val);

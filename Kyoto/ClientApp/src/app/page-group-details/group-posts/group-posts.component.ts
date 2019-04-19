@@ -21,6 +21,7 @@ export class GroupPostsComponent implements OnInit {
   event: string = "Event";
   announcement: string = "Announcement";
   groupId: string;
+  dateFormat: string = 'dd/MM/yyyy HH:mm:ss';
 
   ngOnInit() {
     this.groupId = this.route.snapshot.params['id'];

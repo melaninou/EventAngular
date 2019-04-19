@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kyoto.Models
 {
@@ -6,9 +7,7 @@ namespace Kyoto.Models
     {
         [Key]
         public int ID { get; set; }
-
-        public string Time { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         public string Location { get; set; }
 
@@ -18,5 +17,7 @@ namespace Kyoto.Models
 
         public string Message { get; set; }
         public string Type { get; set; }
+        public ResponseStatus ResponseStatus { get; set; }
+        public bool HasResponse { get; set; }
     }
 }

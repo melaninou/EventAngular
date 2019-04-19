@@ -24,6 +24,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { YourGroupsComponent } from './your-groups/your-groups.component';
 import { YourPostsComponent } from './your-posts/your-posts.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { UserComponent } from './user/user.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { AppRoutingModule } from './app-routing.module';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +50,9 @@ import { YourPostsComponent } from './your-posts/your-posts.component';
     DashBoardComponent,
     YourGroupsComponent,
     YourPostsComponent,
+    PostDetailsComponent,
+    UserComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -63,11 +72,15 @@ import { YourPostsComponent } from './your-posts/your-posts.component';
       { path: 'members', component: MembersComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'dash-board', component: DashBoardComponent}
+      { path: 'dash-board', component: DashBoardComponent },
+      { path: 'post-details/:id', component: PostDetailsComponent }
     ]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 
 })

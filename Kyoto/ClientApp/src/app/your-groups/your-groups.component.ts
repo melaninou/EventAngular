@@ -25,6 +25,8 @@ export class YourGroupsComponent implements OnInit {
 
   //groups: SingleGroup[];
   apiGroups: Group[];
+  groupDetailsPath: string = "/group-details/1";
+  currentGroupId: string = "3";
 
   ngOnInit() {
     //this.showGroup("your-groups");

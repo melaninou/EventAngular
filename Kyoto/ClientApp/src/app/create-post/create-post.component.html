@@ -2,12 +2,12 @@
   <mat-toolbar color="accent" class="toolbar-style">
     <span class="fill-remaining-space">Create a new Post!</span>
   </mat-toolbar>
-  
+
   <!--------------------------------------------------------------------------------------------------------------------------------------------->
   <div class="container create-post-container" *ngIf="!Post; else forminfo" novalidate>
     <mat-vertical-stepper [linear]="isLinear" #stepper>
       <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup" (ngSubmit)="submitAnnouncement(formGroup.value)" class="form">
+        <form [formGroup]="firstFormGroup" (ngSubmit)="submitAnnouncement(firstFormGroup.value)" class="form">
           <ng-template matStepLabel>Post Heading</ng-template>
           <mat-form-field class="form-element">
             <input matInput placeholder="Heading" formControlName="heading" required>
@@ -33,14 +33,14 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-         <div>
+          <div>
             <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!firstFormGroup.valid">Next</button>
           </div>
         </form>
       </mat-step>
 
       <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit(formGroup.value)">
+        <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit(secondFormGroup.value)">
           <ng-template matStepLabel>Details</ng-template>
           <mat-card-content *ngIf="firstFormGroup.value.type === event; else onlyAnnouncement">
             <mat-form-field class="form-element">
@@ -55,28 +55,21 @@
                 Required field, must be between 5 and 250 characters.
               </mat-error>
             </mat-form-field>-->
-            <mat-form-field class="form-element">
-              <textarea matInput placeholder="Time" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="time"></textarea>
-              <mat-error *ngIf="!formGroup.controls['time'].valid && formGroup.controls['time'].touched">
-                Required field, must be between 5 and 250 characters.
-              </mat-error>
-            </mat-form-field>
             <mat-form-field>
-              <input matInput [matDatepicker]="picker1" placeholder="Choose a Date" formControlName="date">
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
+              <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time" formControlName="date">
+              <owl-date-time #dt1></owl-date-time>
             </mat-form-field>
-              
+
             <div>
               <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!secondFormGroup.valid">Create Post!</button>
             </div>
           </mat-card-content>
           <ng-template matStepLabel #onlyAnnouncement></ng-template>
-            <mat-card-content *ngIf="firstFormGroup.value.type === announcement">
-              <div>
-                <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!firstFormGroup.valid">All Done Create Post!</button>
-              </div>
-            </mat-card-content>
+          <mat-card-content *ngIf="firstFormGroup.value.type === announcement">
+            <div>
+              <button mat-raised-button color="primary" matStepperNext type="submit" class="button" [disabled]="!firstFormGroup.valid">All Done Create Post!</button>
+            </div>
+          </mat-card-content>
         </form>
       </mat-step>
     </mat-vertical-stepper>

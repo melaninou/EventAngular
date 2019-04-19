@@ -17,8 +17,7 @@
           </mat-card-header>
           <mat-card-subtitle class="post-subtitle">
             {{x.message}}
-            {{x.date}}
-            {{x.time}}
+            {{x.date | date: dateFormat}}
             {{x.location}}
           </mat-card-subtitle>
         </mat-card>

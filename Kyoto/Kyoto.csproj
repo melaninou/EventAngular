@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
@@ -28,11 +29,13 @@
     <None Remove="ClientApp\src\app\models\Group.ts" />
     <None Remove="ClientApp\src\app\models\Member.ts" />
     <None Remove="ClientApp\src\app\models\Post.ts" />
+    <None Remove="ClientApp\src\app\models\ResponseStatus.ts" />
     <None Remove="ClientApp\src\app\post.service.spec.ts" />
     <None Remove="ClientApp\src\app\post.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\ResponseStatus.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Group.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Member.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Post.ts" />

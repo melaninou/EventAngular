@@ -11,32 +11,101 @@
   <mat-card-subtitle>
     <mat-tab-group color="accent">
       <mat-tab label="GOING">
-        <div *ngFor="let x of apiPosts">
-          <div *ngIf="x.type === event" class="hover-card">
-            <mat-card class="extra-margin">
-              <mat-card-header class="post-header">
-                <mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>
-                {{x.heading}}
-              </mat-card-header>
-              <mat-card-subtitle>
-                <mat-card-content *ngFor="let g of apiGroups">
-                  <mat-card-content *ngIf="x.groupId === g.id">
-                    <table class="post-subtitle">
-                      <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-                      <tr><mat-icon class="more-space">alarm</mat-icon>{{x.time}}</tr>
-                      <tr><mat-icon class="more-space">date_range</mat-icon>{{x.date}}</tr>
-                      <tr><mat-icon class="more-space"> location_on</mat-icon>{{x.location}}</tr>
-                      <tr><mat-icon class="more-space">group</mat-icon>{{g.name}}</tr>
-                    </table>
+        <div class="scrollable">
+          <div *ngFor="let x of apiPosts">
+            <div *ngIf="x.type === event && x.responseStatus === 2" class="hover-card">
+              <mat-card class="extra-margin">
+                <mat-card-header class="post-header pointer" color="primary" routerLink="/post-details/{{x.id}}">
+                  {{x.heading}}
+                </mat-card-header>
+                <mat-card-subtitle>
+                  <mat-card-content *ngFor="let g of apiGroups">
+                    <mat-card-content *ngIf="x.groupId === g.id">
+                      <table class="post-subtitle">
+                        <tr><mat-icon class="more-space" color="accent"> message</mat-icon>{{x.message}}</tr>
+                        <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{x.date | date: dateFormat}}</tr>
+                        <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{x.location}}</tr>
+                        <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{g.name}}</tr>
+                      </table>
+                    </mat-card-content>
                   </mat-card-content>
-                </mat-card-content>
                 </mat-card-subtitle>
-            </mat-card>
+                <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">
+                  <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+                  <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+                  <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+                </mat-card-content>
+
+              </mat-card>
+            </div>
           </div>
         </div>
+
       </mat-tab>
-      <mat-tab label="PENDING">PENDING</mat-tab>
-      <mat-tab label="ALL">ALL</mat-tab>
+      <mat-tab label="PENDING">
+        <div class="scrollable">
+          <div *ngFor="let x of apiPosts">
+            <div *ngIf="x.type === event && x.responseStatus === 1" class="hover-card">
+              <mat-card class="extra-margin">
+                <mat-card-header class="post-header pointer" color="primary" routerLink="/post-details/{{x.id}}">
+                  <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
+                  {{x.heading}}
+                </mat-card-header>
+                <mat-card-subtitle>
+                  <mat-card-content *ngFor="let g of apiGroups">
+                    <mat-card-content *ngIf="x.groupId === g.id">
+                      <table class="post-subtitle">
+                        <tr><mat-icon class="more-space" color="accent"> message</mat-icon>{{x.message}}</tr>
+                        <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{x.date | date: dateFormat}}</tr>
+                        <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{x.location}}</tr>
+                        <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{g.name}}</tr>
+                      </table>
+                    </mat-card-content>
+                  </mat-card-content>
+                </mat-card-subtitle>
+                <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">
+                  <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+                  <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+                  <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="ALL">
+        <div class="scrollable">
+          <div *ngFor="let x of apiPosts">
+            <div *ngIf="x.type === event" class="hover-card">
+              <mat-card class="extra-margin">
+                <mat-card-header class="post-header pointer" color="primary" routerLink="/post-details/{{x.id}}">
+                  <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
+                  {{x.heading}}
+                </mat-card-header>
+                <mat-card-subtitle>
+                  <mat-card-content *ngFor="let g of apiGroups">
+                    <mat-card-content *ngIf="x.groupId === g.id">
+                      <table class="post-subtitle">
+                        <tr><mat-icon class="more-space" color="accent"> message</mat-icon>{{x.message}}</tr>
+                        <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{x.date | date: dateFormat}}</tr>
+                        <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{x.location}}</tr>
+                        <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{g.name}}</tr>
+                      </table>
+                    </mat-card-content>
+                  </mat-card-content>
+                </mat-card-subtitle>
+                <mat-card-content class="response-buttons-class" *ngIf="x; let currentPost">
+                  <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+                  <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+                  <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+      </mat-tab>
     </mat-tab-group>
     <!--<mat-card-actions>
       <button mat-button>GOING</button>
@@ -61,24 +130,26 @@
     </mat-card-header>
   </div>
   <mat-card-content>
-    <div *ngFor="let x of apiPosts">
-      <div *ngIf="x.type === announcement" class="hover-card">
-        <mat-card class="extra-margin">
-          <mat-card-header class="post-header">
-            <mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>
-            {{x.heading}}
-          </mat-card-header>
-          <mat-card-content *ngFor="let g of apiGroups">
-            <mat-card-content *ngIf="x.groupId === g.id">
-              <table>
-                <mat-card-subtitle class="post-subtitle">
-                  <tr><mat-icon class="more-space"> message</mat-icon>{{x.message}}</tr>
-                  <tr><mat-icon class="more-space">group</mat-icon>{{g.name}}</tr>
-                </mat-card-subtitle>
-              </table>
+    <div class="scrollable-announcements">
+      <div *ngFor="let x of apiPosts">
+        <div *ngIf="x.type === announcement" class="hover-card">
+          <mat-card class="extra-margin">
+            <mat-card-header class="post-header pointer" routerLink="/post-details/{{x.id}}">
+              <!--<mat-card-content mat-card-avatar><mat-icon color="accent">fiber_manual_record</mat-icon></mat-card-content>-->
+              {{x.heading}}
+            </mat-card-header>
+            <mat-card-content *ngFor="let g of apiGroups">
+              <mat-card-content *ngIf="x.groupId === g.id">
+                <table>
+                  <mat-card-subtitle class="post-subtitle">
+                    <tr><mat-icon class="more-space" color="accent"> message</mat-icon>{{x.message}}</tr>
+                    <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{g.name}}</tr>
+                  </mat-card-subtitle>
+                </table>
+              </mat-card-content>
             </mat-card-content>
-          </mat-card-content>
-        </mat-card>
+          </mat-card>
+        </div>
       </div>
     </div>
   </mat-card-content>

@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Kyoto.Models;
+using Kyoto.Models.User_Registration;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
@@ -37,6 +39,20 @@ namespace Kyoto
 
             services.AddDbContext<KyotoContext>(options =>
                     options.UseInMemoryDatabase("KyotoContext"));
+            services.AddDbContext<AuthenticationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddEntityFrameworkStores<AuthenticationContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+            });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +67,10 @@ namespace Kyoto
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseCors(builder => builder.WithOrigins("").AllowAnyHeader().AllowAnyMethod());
+
+            app.UseAuthentication();
 
             app.UseStaticFiles();
             //app.UseStaticFiles(new StaticFileOptions()

@@ -1,0 +1,112 @@
+<mat-card class="your-post-card card-style">
+  <mat-card class="extra-margin" *ngIf="!editEnabled">
+    <div>
+      <mat-card-header class="post-header pointer" color="primary" *ngIf="currentPost">
+        {{currentPost.heading}}
+      </mat-card-header>
+      <button mat-mini-fab class="edit-button" color="accent" (click)="onEdit()">
+        <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+      </button>
+    </div>
+    <mat-card-subtitle>
+      <mat-card-content *ngFor="let g of apiGroups">
+        <mat-card-content *ngIf="currentPost && currentPost.groupId === g.id">
+          <table class="post-subtitle">
+            <tr><mat-icon class="more-space" color="accent">message</mat-icon>{{currentPost.message}}</tr>
+            <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{currentPost.date | date: dateFormat}}</tr>
+            <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{currentPost.location}}</tr>
+            <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{g.name}}</tr>
+            <tr>Response status is: {{currentPost.responseStatus}}</tr>
+          </table>
+        </mat-card-content>
+      </mat-card-content>
+    </mat-card-subtitle>
+    <mat-card-content class="response-buttons-class" *ngIf="currentPost">
+      <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+      <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+      <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+    </mat-card-content>
+    <div>This is the date: {{currentPost.date | date: dateFormat}}</div>
+  </mat-card>
+  <!----------------------------------------EDIT FORM----------------------------------------------------------->
+  <div *ngIf="editEnabled">Edit is enabled</div>
+  <form [formGroup]="editForm" (ngSubmit)="onEditSubmit(editForm.value)" *ngIf="editEnabled">
+    <mat-card class="extra-margin">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Post Heading" formControlName="heading" [(ngModel)]="currentPost.heading">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Message" formControlName="message" [(ngModel)]="currentPost.message">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+        <owl-date-time #dt1></owl-date-time>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Location" formControlName="location" [(ngModel)]="currentPost.location">
+      </mat-form-field>
+      <mat-form-field class="small-form-element select-option">
+        <mat-label>Belongs to Group</mat-label>
+        <mat-select formControlName="groupId" [(ngModel)]="currentPost.groupId">
+          <mat-option *ngFor="let group of apiGroups" [value]="group.id">
+            {{group.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+      <!--<tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{currentPost.date | date: dateFormat}}</tr>
+  <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{currentPost.location}}</tr>
+  <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{currentPost.groupId}}</tr>
+  <tr>Response status is: {{currentPost.responseStatus}}</tr>-->
+      <!--<mat-form-field class="form-element">
+    <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="description"></textarea>
+    <mat-error *ngIf="!formGroup.controls['description'].valid && formGroup.controls['description'].touched">
+      Required field, must be between 5 and 250 characters.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="small-form-element select-option">
+    <mat-select placeholder="Select Parent Group" formControlName="parentId">
+      <mat-option *ngFor="let group of apiGroups" [value]="group.id">
+        {{group.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>-->
+
+
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button">OK!</button>
+      </div>
+    </mat-card>
+  </form>
+  <!--<mat-card class="extra-margin" *ngIf="editEnabled">
+    <div>
+      <mat-card-header class="post-header pointer" color="primary" *ngIf="currentPost">
+        {{currentPost.heading}}
+      </mat-card-header>
+    </div>
+
+    <mat-card-subtitle>
+      <mat-card-content>
+        <mat-card-content *ngIf="currentPost">
+          <table class="post-subtitle">
+            <tr><mat-icon class="more-space" color="accent">message</mat-icon>{{currentPost.message}}</tr>
+            <tr><mat-icon class="more-space" color="accent">date_range</mat-icon>{{currentPost.date | date: dateFormat}}</tr>
+            <tr><mat-icon class="more-space" color="accent"> location_on</mat-icon>{{currentPost.location}}</tr>
+            <tr><mat-icon class="more-space" color="accent">group</mat-icon>{{currentPost.groupId}}</tr>
+            <tr>Response status is: {{currentPost.responseStatus}}</tr>
+          </table>
+        </mat-card-content>
+      </mat-card-content>
+    </mat-card-subtitle>
+    <mat-card-content class="response-buttons-class" *ngIf="currentPost">
+      <button mat-raised-button class="response-button" (click)="onResponseGoing(currentPost)" [color]="currentPost.responseStatus === 2 ? 'primary' : 'secondary'">Going</button>
+      <button mat-raised-button class="response-button" (click)="onResponseMaybe(currentPost)" [color]="currentPost.responseStatus === 3 ? 'primary' : 'secondary'">Maybe</button>
+      <button mat-raised-button class="response-button" (click)="onResponseCantGo(currentPost)" [color]="currentPost.responseStatus === 4 ? 'primary' : 'secondary'">Can't Go</button>
+    </mat-card-content>
+  </mat-card>-->
+
+
+</mat-card>
