@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Kyoto.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,8 @@ namespace Kyoto.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(150)", nullable: true)
+                    FirstName = table.Column<string>(type: "nvarchar(150)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(150)", nullable: true)
                 },
                 constraints: table =>
                 {
