@@ -1,17 +1,15 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Group } from '../models/Group'
 import { GroupService } from '../group.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule, HttpEventType } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Guid } from "guid-typescript";
 
-//export interface IGroup {
-//  value: string;
-//  viewValue: string;
-//}
+
 
 
 @Component({
@@ -20,6 +18,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-group.component.css']
 })
 export class AddGroupComponent implements OnInit {
+
+  public fileName: string;
+  @Output() public onUploadFinished = new EventEmitter();
+
 
   formGroup: FormGroup;
   titleAlert: string = 'This field is required';
@@ -30,6 +32,7 @@ export class AddGroupComponent implements OnInit {
     })
   }
   public baseUrl: string;
+  fileData: File = null;
 
   apiGroups: Group[];
 
@@ -55,6 +58,7 @@ export class AddGroupComponent implements OnInit {
       'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       'parentId': [null, Validators.required],
       'admin': 'Administrator',
+      'image': [null, Validators.required]
     });
   }
 
@@ -77,9 +81,7 @@ export class AddGroupComponent implements OnInit {
   }
 
 
-
   onSubmit(post) {
-    //this.post = post;
     console.log(post);
     console.log("The parent id is: ");
     console.log(this.formGroup.value.parentId);
@@ -89,6 +91,7 @@ export class AddGroupComponent implements OnInit {
         "description": post.description,
         "parentId": post.parentId,
         "admin": post.admin,
+        "image": this.fileName
       }).subscribe(
       (val) => {
         console.log("POST call successful value returned in body", val);
@@ -102,5 +105,31 @@ export class AddGroupComponent implements OnInit {
       });
   }
 
+
+  public uploadFile = (files) => {
+    if (files.length === 0) {
+      return;
+    }
+
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, this.fileName);
+
+    this.httpClient.post(this.baseUrl + 'api/groups/upload', formData, { reportProgress: true, observe: 'events' })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {}
+
+        else if (event.type === HttpEventType.Response) {
+
+          this.onUploadFinished.emit(event.body);
+        }
+      });
+  }
+
+  getFileName() {
+    this.fileName = Guid.create().toString() + '.jpg';
+  }
+
+  
 
 }

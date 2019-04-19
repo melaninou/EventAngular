@@ -14,5 +14,6 @@ namespace Kyoto.Models
         public string Description { get; set; }
         public string Admin { get; set; }
         public int ParentId { get; set; }
+        public string Image { get; set; }
     }
 }

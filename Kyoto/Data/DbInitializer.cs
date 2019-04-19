@@ -80,31 +80,31 @@ namespace Kyoto.Data
             {
                 new GroupItem
                 {
-                    Name = "TalTech", Description = "Töötab?", Admin = "Administrator", ParentId = 0
+                    Name = "TalTech", Description = "Töötab?", Admin = "Administrator", ParentId = 0, Image = "image1.jpg"
                 },
                 new GroupItem
                 {
-                    Name = "Infotehnoloogia teaduskond", Description = "TalTech grupp", Admin = "Administrator", ParentId = 1
+                    Name = "Infotehnoloogia teaduskond", Description = "TalTech grupp", Admin = "Administrator", ParentId = 1, Image = "image2.jpg"
                 },
                 new GroupItem
                 {
-                    Name = "Äriinfotehnoloogia", Description = "Infotehnoloogia teaduskonna grupp", Admin = "Administrator", ParentId = 2
+                    Name = "Äriinfotehnoloogia", Description = "Infotehnoloogia teaduskonna grupp", Admin = "Administrator", ParentId = 2, Image = "image3.jpg"
                 },
                 new GroupItem
                 {
-                    Name = "IABB42", Description = "Äriinfotehnoloogia grupp", Admin = "Administrator", ParentId = 3
+                    Name = "IABB42", Description = "Äriinfotehnoloogia grupp", Admin = "Administrator", ParentId = 3, Image = "image4.jpg"
                 },
                 new GroupItem
                 {
-                    Name = "Majandusteaduskond", Description = "TalTech group", Admin = "Administrator", ParentId = 1
+                    Name = "Majandusteaduskond", Description = "TalTech group", Admin = "Administrator", ParentId = 1, Image = "image5.jpg"
                 },
                 new GroupItem
                 {
-                    Name = "Tartu Ülikool", Description = "TÜ", Admin = "Administrator", ParentId = 0
+                    Name = "Tartu Ülikool", Description = "TÜ", Admin = "Administrator", ParentId = 0, Image = "image6.jpg"
                 },
                 new GroupItem
                 {
-                    Name = "Arstiteaduskond", Description = "TÜ grupp", Admin = "Administrator", ParentId = 6
+                    Name = "Arstiteaduskond", Description = "TÜ grupp", Admin = "Administrator", ParentId = 6, Image = "image7.jpg"
                 }
             };
             foreach (var groupItem in groupItems)
