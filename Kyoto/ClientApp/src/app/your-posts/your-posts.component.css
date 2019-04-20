@@ -1,19 +1,19 @@
 .your-events-card {
   max-width: 100vw;
   min-height: 650px;
-  height: 95vh;
+  height: 92vh;
   float: left;
-  margin: 18px;
+  margin: 0 18px 18px 18px;
   width: 30%;
   padding: 0px;
 }
 .scrollable{
   overflow: auto;
-  height: 75vh;
+  height: calc(82vh - 80px); /*48 + 10 (padding) + 36 = 94*/
 }
-.scrollable-announcements{
+.scrollable-announcements {
   overflow: auto;
-  height: 80vh;
+  height: calc(82vh - 36px);
 }
 
 .card-style {
@@ -24,9 +24,9 @@
 .your-announcements-card {
   max-width: 100vw;
   min-height: 650px;
-  height: 95vh;
+  height: 92vh;
   float: left;
-  margin: 18px;
+  margin: 0 18px 18px 18px;
   width: 30%;
   padding: 0px;
 }
@@ -61,6 +61,10 @@
   max-width: 33%;
   min-width: 33%;
   padding: 0;
+  opacity: 1;
+}
+:host /deep/ .mat-tab-header{
+  position: page;
 }
 
 .add-button {
@@ -76,9 +80,24 @@
 .add-icon {
   color: white;
 }
+.post-data-table {
+  height: 100%;
+  width: 100%;
+  padding: 0 10px 10px 10px;
+}
+.post-data-row {
+  white-space: normal;
+  display:flex;    
+  align-items:center;
+}
+.post-data-col {
+  margin-left: 6px;
+  display: inline-block;
 
-.posts-list {
-  flex-direction: row;
+}
+.post-data-icon {
+  margin: 0 6px 0 6px;
+  display: inline-block;
 }
 
 .example-header-image {
@@ -116,9 +135,7 @@
   margin: 10px;
 }
 
-.more-space {
-  margin: 6px 6px 0 0;
-}
+
 
 
 

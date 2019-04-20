@@ -56,7 +56,7 @@ export class ViewPostsComponent implements OnInit{
   myControl = new FormControl();
 
   i: number = 0;
-  dateFormat: string = 'dd/MM/yyyy HH:mm:ss';
+  dateFormat: string = 'dd/MM/yyyy HH:mm';
 
   ngOnInit() {
 
@@ -64,6 +64,10 @@ export class ViewPostsComponent implements OnInit{
     //this.showGroup("groupslist");
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
+  }
+  getDateFormat(date: Date): string {
+    var momentDate = moment(date.toString()).format('DD.MM.YYYY');
+    return momentDate.toString();
   }
 
   showPost(jsonFileName): void {
