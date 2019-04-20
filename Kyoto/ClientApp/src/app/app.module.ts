@@ -30,6 +30,7 @@ import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './shared/user.service';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { UserService } from './shared/user.service';
     PostDetailsComponent,
     UserComponent,
     RegistrationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -102,3 +102,15 @@
   width: 43%;
   margin-right: 1% !important;
 }
+:host /deep/ .owl-dt-popup-container, owl-dt-container, owl-date-time-container, .owl-dt-inline-container, .owl-dt-popup {
+  width: 30em !important;
+  height: 40em !important;
+}
+:host /deep/.owl-dt-container {
+  font-size: 1.5rem;
+}
+.owl-datetime{
+  width: 30em !important;
+  height: 40em !important;
+}
+

@@ -5,6 +5,7 @@ import { Post } from '../models/Post'
 import { Group } from '../models/Group'
 import { ResponseStatus } from '../models/ResponseStatus';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-post-details',
@@ -31,6 +32,7 @@ export class PostDetailsComponent implements OnInit {
   editEnabled: boolean = false;
   editForm: FormGroup;
   dateFormat: string = 'dd/MM/yyyy HH:mm:ss';
+  formattedDate: string;
 
   ngOnInit() {
 
@@ -40,12 +42,18 @@ export class PostDetailsComponent implements OnInit {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
   }
+  getDateFormat() {
+    var dateAsString = this.currentPost.date.toString();
+    var momentDate = moment(dateAsString).format('DD.MM.YYYY, HH:mm');
+    this.formattedDate =  momentDate.toString();
+  }
   onEdit() {
     if (this.editEnabled === true) {
       this.editEnabled = false
     } else {
       this.editEnabled = true;
     }
+    this.getDateFormat();
   }
   createForm() {
     this.editForm = this.formBuilder.group({
