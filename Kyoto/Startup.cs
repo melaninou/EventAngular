@@ -134,8 +134,9 @@ namespace Kyoto
                 var scopeServiceProvider = serviceScope.ServiceProvider;
                 try
                 {
-                    var context = scopeServiceProvider.GetService<KyotoContext>();
-                    DbInitializer.Initialize(context);
+                    var kyotoContext = scopeServiceProvider.GetService<KyotoContext>();
+                    var authContext = scopeServiceProvider.GetService<AuthenticationContext>();
+                    DbInitializer.Initialize(kyotoContext, authContext);
                 }
                 catch (Exception e)
                 {
