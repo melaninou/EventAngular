@@ -17,6 +17,7 @@ export class UserService {
     UserName: ['', Validators.required],
     Email: ['', Validators.email],
     FirstName: [''],
+    LastName: [''],
     Passwords: this.formBuilder.group({
       Password: ['', [Validators.required, Validators.minLength(4)]],
       ConfirmPassword: ['', [Validators.required, Validators.minLength(4)]]
@@ -37,10 +38,17 @@ export class UserService {
       UserName: this.formModel.value.UserName,
       Email: this.formModel.value.Email,
       FirstName: this.formModel.value.FirstName,
+      LastName: this.formModel.value.LastName,
       Password: this.formModel.value.Passwords.Password,
     };
     console.log(body);
     return this.httpClient.post(this.baseUrl + 'api/ApplicationUser/Register', body);
     
+  }
+  login(formData) {
+    return this.httpClient.post(this.baseUrl + 'api/ApplicationUser/Login', formData);
+  }
+  getUserProfile() {
+    return this.httpClient.get(this.baseUrl + 'api/UserProfile');
   }
 }

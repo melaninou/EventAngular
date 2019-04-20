@@ -1,3 +1,23 @@
-<p>
-  login works!
-</p>
+<img src="/Images/login image.png" class="mx-auto d-block" style="height: 200px; width: 200px;"/>
+<form #form="ngForm" (submit)="onSubmit(form)">
+  <div class="form-group">
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Username" name="Username" #UserName="ngModel" [(ngModel)]="formModel.UserName" required>
+      <mat-error>
+        This field is mandatory!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-element">
+      <input matInput type="password" placeholder="Password" name="Password" #Password="ngModel" [(ngModel)]="formModel.Password" required>
+      <mat-error>
+        This field is mandatory!
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Login</button>
+    <mat-error *ngIf="errorBoolean">
+      {{errorMessage}}
+    </mat-error>
+  </div>
+</form>
