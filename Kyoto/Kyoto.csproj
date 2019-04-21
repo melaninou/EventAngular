@@ -37,6 +37,7 @@
     <None Remove="ClientApp\src\app\models\ResponseStatus.ts" />
     <None Remove="ClientApp\src\app\post.service.spec.ts" />
     <None Remove="ClientApp\src\app\post.service.ts" />
+    <None Remove="ClientApp\src\app\validators\ImageValidator.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\Post.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\post.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\post.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\validators\ImageValidator.ts" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Group } from '../models/Group'
 import { GroupService } from '../group.service';
@@ -8,6 +8,7 @@ import { Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Guid } from "guid-typescript";
+import { ImageValidator } from '../validators/ImageValidator';
 
 
 
@@ -33,6 +34,7 @@ export class AddGroupComponent implements OnInit {
   }
   public baseUrl: string;
   fileData: File = null;
+  uploadedFileName: string;
 
   apiGroups: Group[];
 
@@ -58,7 +60,13 @@ export class AddGroupComponent implements OnInit {
       'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       'parentId': [null, Validators.required],
       'admin': 'Administrator',
-      'image': [null, Validators.required]
+    //  'image': [null, ImageValidator.validUsername],
+      image: new FormControl('', Validators.compose([
+        Validators.required,
+        ImageValidator.validFile
+      ]))
+    //  'imageInput': [null, ImageValidator.imageExtentsionValidator(this.uploadedFileName)]
+
     });
   }
 
@@ -79,6 +87,8 @@ export class AddGroupComponent implements OnInit {
   get name() {
     return this.formGroup.get('name') as FormControl;
   }
+
+
 
 
   onSubmit(post) {
@@ -112,6 +122,11 @@ export class AddGroupComponent implements OnInit {
     }
 
     let fileToUpload = <File>files[0];
+
+    //this.formGroup.controls['imageInput'].setValue(fileToUpload.name); // <-- Set Value for Validation
+    console.log("Uploaded file nimi on: ", fileToUpload.name);
+    this.uploadedFileName = fileToUpload.name;
+
     const formData = new FormData();
     formData.append('file', fileToUpload, this.fileName);
 
@@ -129,6 +144,7 @@ export class AddGroupComponent implements OnInit {
   getFileName() {
     this.fileName = Guid.create().toString() + '.jpg';
   }
+
 
   
 
