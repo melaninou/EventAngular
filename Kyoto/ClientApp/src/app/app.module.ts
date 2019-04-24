@@ -32,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './shared/user.service';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
       { path: 'members', component: MembersComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'dash-board', component: DashBoardComponent },
+      { path: 'dash-board', component: DashBoardComponent, canActivate: [AuthGuard] },
       { path: 'post-details/:id', component: PostDetailsComponent }
     ]),
     BrowserAnimationsModule,

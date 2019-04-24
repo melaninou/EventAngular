@@ -56,7 +56,7 @@
   </mat-card>
   <!----------------------------------------EDIT FORM----------------------------------------------------------->
   <form [formGroup]="editForm" (ngSubmit)="onEditSubmit(editForm.value)" *ngIf="editEnabled">
-    <mat-card *ngIf="currentPost.type === 'Event'; else announcement">
+    <mat-card *ngIf="currentPost.type === 'Event'">
       <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
         <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
       </button>
@@ -88,8 +88,7 @@
         </div>
       </div>
     </mat-card>
-    <ng-template #announcement></ng-template>
-    <mat-card>
+    <mat-card *ngIf="currentPost.type === 'Announcement'">
       <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
         <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
       </button>
