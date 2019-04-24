@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Kyoto.Models;
+using System.IO;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Kyoto.Controllers
 {
@@ -14,10 +17,12 @@ namespace Kyoto.Controllers
     public class GroupItemsController : ControllerBase
     {
         private readonly KyotoContext _context;
+        private IHostingEnvironment _hostingEnvironment;
 
-        public GroupItemsController(KyotoContext context)
+        public GroupItemsController(KyotoContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: api/GroupItems
@@ -168,6 +173,47 @@ namespace Kyoto.Controllers
         private bool GroupItemExists(int id)
         {
             return _context.GroupItem.Any(e => e.Id == id);
+        }
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("upload")]
+        public IActionResult Upload()
+        {
+            try
+            {
+
+                var file = Request.Form.Files[0];
+
+                var folderName = "Images";
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var pathToSave = Path.Combine(webRootPath, folderName);
+                if (!Directory.Exists(pathToSave))
+                {
+                    Directory.CreateDirectory(pathToSave);
+                }
+
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+                    return Ok(new { dbPath });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 

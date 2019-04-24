@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kyoto.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20190418161105_AuthMig")]
-    partial class AuthMig
+    [Migration("20190420152948_AuthMigrationNew")]
+    partial class AuthMigrationNew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

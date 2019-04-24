@@ -4,4 +4,5 @@ export interface Group {
   description: string;
   admin: string;
   parentId: string;
+  image: string;
 }

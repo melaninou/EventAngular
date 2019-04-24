@@ -5,6 +5,8 @@ import { Post } from '../models/Post'
 import { Group } from '../models/Group'
 import { ResponseStatus } from '../models/ResponseStatus';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import * as moment from 'moment';
+//import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-post-details',
@@ -30,7 +32,9 @@ export class PostDetailsComponent implements OnInit {
   splitArray: string[] = [];
   editEnabled: boolean = false;
   editForm: FormGroup;
-  dateFormat: string = 'dd/MM/yyyy HH:mm:ss';
+  dateFormat: string = 'dd/MM/yyyy HH:mm';
+  formattedDate: string;
+  postUpdated: boolean = false;
 
   ngOnInit() {
 
@@ -40,12 +44,25 @@ export class PostDetailsComponent implements OnInit {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
   }
+  durationInSeconds = 5;
+  //openSnackBar() {
+  //  this.snackBar.open('Message archived', 'Undo', {
+  //    duration: 3000
+  //  });
+  //}
+  getDateFormat() {
+    var dateAsString = this.currentPost.date.toString();
+    var momentDate = moment(dateAsString).format('DD.MM.YYYY, HH:mm');
+    this.formattedDate =  momentDate.toString();
+  }
   onEdit() {
     if (this.editEnabled === true) {
       this.editEnabled = false
     } else {
       this.editEnabled = true;
     }
+    this.postUpdated = false;
+    this.getDateFormat();
   }
   createForm() {
     this.editForm = this.formBuilder.group({
@@ -60,6 +77,34 @@ export class PostDetailsComponent implements OnInit {
     console.log("The form value is:");
     console.log(post);
     this.editEnabled = false;
+    this.postUpdated = false;
+    if (!post.date) {
+      post.date = this.currentPost.date;
+    }
+    console.log("the date is " + post.date);
+    this.httpClient.put(this.baseUrl + 'api/posts/' + this.currentPost.id,
+      {
+        "id": this.currentPost.id,
+        "date": post.date,
+        "location": post.location,
+        "groupId": post.groupId,
+        "heading": post.heading,
+        "message": post.message,
+        "type": this.currentPost.type,
+        "responseStatus": this.currentPost.responseStatus,
+        "hasResponse": true
+      }, this.httpOptions).subscribe(
+      (val) => {
+        console.log("PUT call successful value returned in body", val);
+      },
+      response => {
+        console.log("PUT call in error", response);
+      },
+      () => {
+        console.log("The Put observable is now completed");
+        this.postUpdated = true;
+        this.httpClient.get(this.baseUrl + 'api/posts/' + this.postId).subscribe(data => { this.currentPost = data as Post });
+      });
   }
 
   onResponseGoing(post: any) {

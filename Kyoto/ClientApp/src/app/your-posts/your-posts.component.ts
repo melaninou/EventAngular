@@ -25,35 +25,30 @@ export class YourPostsComponent implements OnInit {
     })
   }
 
-  dateFormat: string = 'dd/MM/yyyy HH:mm:ss';
+  dateFormat: string = 'dd/MM/yyyy HH:mm';
   apiPosts: Post[] = [];
   apiGroups: Group[] = [];
-  testingPosts: Post[] = [];
   event: string = "Event";
   announcement: string = "Announcement";
-  eventCounter: number = 0;
-  announcementCounter: number = 0;
-  //events: Post[];
-  //announcements: Post[];
-  eventsCount: number;
-  //announcementsCount: number;
 
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
-    //console.log("from onINIT the lenght of apiposts is " + this.apiPosts.length);
-    //this.eventsCount = this.getEventsCount(this.apiPosts);
-    //this.getAnnouncementsCount(this.apiPosts);
-    //this.responseFormGroup = this.formBuilder.group({
-    //  'going': 
-    //});
+
   }
   //pole hetkel vajalik
   getEventsCount(apiPosts: Post[] = []): number {
-    console.log("the lenght of apiposts is " + apiPosts.length);
     return apiPosts.filter(x => x.type === 'Event').length;
-
-
+  }
+  getAnnouncementsCount(apiPosts: Post[] = []): number {
+    return apiPosts.filter(x => x.type === 'Announcement').length;
+  }
+  getGoingEventsCount(apiPosts: Post[] = []): number {
+    return apiPosts.filter(x => x.responseStatus === ResponseStatus.Going).length;
+  }
+  getPendingEventsCount(apiPosts: Post[] = []): number {
+    var length = apiPosts.filter(x => x.responseStatus === ResponseStatus.None && x.type === 'Event').length;
+    return length;
   }
   onResponseGoing(post: any) {
     console.log("this is the current GOING post");

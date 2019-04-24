@@ -13,7 +13,6 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.service.formModel.reset();
-    this.usernameTaken = false;
   }
   onSubmit() {
     this.usernameTaken = false;

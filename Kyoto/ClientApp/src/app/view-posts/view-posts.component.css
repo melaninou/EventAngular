@@ -10,10 +10,26 @@
   color: white;
 }
 
-.more-space {
-  margin: 10px 10px 0px 0px;
+.post-data-table {
+  height: 100%;
+  width: 100%;
 }
 
+.post-data-row {
+  white-space: normal;
+  display: flex;
+  align-items: center;
+}
+
+.post-data-col {
+  margin-left: 6px;
+  display: inline-block;
+}
+
+.post-data-icon {
+  margin: 0 6px 0 6px;
+  display: inline-block;
+}
 .extra-margin {
   margin: 10px;
   padding: 10px;

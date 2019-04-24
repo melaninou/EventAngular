@@ -31,9 +31,16 @@
             </mat-select>
           </mat-form-field>
 
-
+          <div class="row" style="margin-bottom:15px;">
+            <div class="col-md-3">
+              <input type="file" #file placeholder="Choose file" formControlName="image" (change)="getFileName()">  
+            </div>
+          </div>
+          <mat-error *ngIf="!formGroup.controls['image'].valid && formGroup.controls['image'].touched">
+            Required field, must be .jpg file.
+          </mat-error>
           <div class="form-element">
-            <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Create Group</button>
+            <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid" (click)="uploadFile(file.files)">Create Group</button>
           </div>
 
         </form>
@@ -48,3 +55,6 @@
     {{ post | json }}
   </div>
 </ng-template>
+
+
+

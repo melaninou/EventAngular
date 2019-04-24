@@ -26,21 +26,33 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\login image.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\auth\auth.interceptor.ts" />
     <None Remove="ClientApp\src\app\models\Group.ts" />
     <None Remove="ClientApp\src\app\models\Member.ts" />
     <None Remove="ClientApp\src\app\models\Post.ts" />
     <None Remove="ClientApp\src\app\models\ResponseStatus.ts" />
     <None Remove="ClientApp\src\app\post.service.spec.ts" />
     <None Remove="ClientApp\src\app\post.service.ts" />
+    <None Remove="ClientApp\src\app\validators\ImageValidator.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\auth\auth.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\ResponseStatus.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Group.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Member.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Post.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\post.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\post.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\validators\ImageValidator.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\login image.png" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
