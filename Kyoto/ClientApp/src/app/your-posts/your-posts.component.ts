@@ -36,12 +36,39 @@ export class YourPostsComponent implements OnInit {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
 
   }
-  //pole hetkel vajalik
+  onRemove(announcement: Post) {
+    console.log("Clicked remove button");
+    announcement.onDashboard = false;
+    console.log(announcement.onDashboard);
+    this.httpClient.put(this.baseUrl + 'api/posts/' + announcement.id,
+      {
+        "id": announcement.id,
+        "date": announcement.date,
+        "location": announcement.location,
+        "groupId": announcement.groupId,
+        "heading": announcement.heading,
+        "message": announcement.message,
+        "type": announcement.type,
+        "responseStatus": announcement.responseStatus,
+        "hasResponse": true,
+        "onDashboard": false
+      }, this.httpOptions).subscribe(
+      (val) => {
+        console.log("PUT call successful value returned in body", val);
+      },
+      response => {
+        console.log("PUT call in error", response);
+      },
+      () => {
+        console.log("The Put observable is now completed");
+      });
+  }
+
   getEventsCount(apiPosts: Post[] = []): number {
     return apiPosts.filter(x => x.type === 'Event').length;
   }
   getAnnouncementsCount(apiPosts: Post[] = []): number {
-    return apiPosts.filter(x => x.type === 'Announcement').length;
+    return apiPosts.filter(x => x.type === 'Announcement' && x.onDashboard === true).length;
   }
   getGoingEventsCount(apiPosts: Post[] = []): number {
     return apiPosts.filter(x => x.responseStatus === ResponseStatus.Going).length;
@@ -64,7 +91,8 @@ export class YourPostsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.Going,
-        "hasResponse": true
+        "hasResponse": true,
+        "onDashboard": true
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -91,7 +119,8 @@ export class YourPostsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.Maybe,
-        "hasResponse": true
+        "hasResponse": true,
+        "onDashboard": true
       }).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -118,7 +147,8 @@ export class YourPostsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.CantGo,
-        "hasResponse": true
+        "hasResponse": true,
+        "onDashboard": true
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);

@@ -64,6 +64,33 @@ export class PostDetailsComponent implements OnInit {
     this.postUpdated = false;
     this.getDateFormat();
   }
+
+  onAddToDashboard(announcement: Post) {
+    announcement.onDashboard = true;
+    this.httpClient.put(this.baseUrl + 'api/posts/' + announcement.id,
+      {
+        "id": announcement.id,
+        "date": announcement.date,
+        "location": announcement.location,
+        "groupId": announcement.groupId,
+        "heading": announcement.heading,
+        "message": announcement.message,
+        "type": announcement.type,
+        "responseStatus": announcement.responseStatus,
+        "hasResponse": true,
+        "onDashboard": true
+      }, this.httpOptions).subscribe(
+      (val) => {
+        console.log("PUT call successful value returned in body", val);
+      },
+      response => {
+        console.log("PUT call in error", response);
+      },
+      () => {
+        console.log("The Put observable is now completed");
+      });
+  }
+
   createForm() {
     this.editForm = this.formBuilder.group({
       'heading': [null, Validators.required],

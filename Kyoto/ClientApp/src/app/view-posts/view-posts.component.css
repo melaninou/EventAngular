@@ -1,6 +1,5 @@
 .filter-box-form {
   width: 30%;
-
 }
 
 .search-button {
@@ -12,7 +11,8 @@
 
 .post-data-table {
   height: 100%;
-  width: 100%;
+  width: calc(100% - 60px);
+  float: left;
 }
 
 .post-data-row {
@@ -30,6 +30,7 @@
   margin: 0 6px 0 6px;
   display: inline-block;
 }
+
 .extra-margin {
   margin: 10px;
   padding: 10px;
@@ -50,7 +51,7 @@
   font-size: 15px;
   color: black;
   text-align: left;
-  line-break:auto;
+  line-break: auto;
   padding: 10px;
 }
 
@@ -154,7 +155,48 @@
   color: #ff4081
 }
 
+.add-dashboard-button {
+  margin: 0 20px 0 10px;
+  float: right;
+  display: inline-block; 
+  align-content: center;
+  align-self: center;
+  height: 24px;
+  width: 24px;
+}
 
+:host /deep/ .mat-stroked-button {
+  min-width: 26px;
+  min-height: 26px;
+}
 
+.add-to-dashboard-icon {
+  margin-bottom: 10px;
+}
 
+.edit-button {
+  margin: 0;
+  display: inline-block;
+}
 
+.edit-icon {
+  color: white;
+}
+
+.add-dasboard-tooltip {
+  background: #ff4081;
+  font-size: 15px;
+  color: white;
+}
+
+:host /deep/ .matTooltipClass {
+  background: #ff4081;
+  font-size: 15px;
+  color: white;
+}
+
+:host /deep/ .mat-stroked-button {
+  max-width: 26px;
+  max-height: 26px;
+  padding: 0;
+}

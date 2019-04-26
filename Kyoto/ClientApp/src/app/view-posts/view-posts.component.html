@@ -66,26 +66,31 @@
                 <mat-panel-title class="post-header">{{x.date | date: dateFormat}}</mat-panel-title>
                 <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
               </mat-expansion-panel-header>
-              <div class="post-data-table" *ngFor="let g of apiGroups">
-                <div *ngIf="x.groupId === g.id">
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">message</mat-icon>
-                    <div class="post-data-col">{{x.message}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
-                    <div class="post-data-col">{{x.date | date: dateFormat}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
-                    <div class="post-data-col">{{x.location}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">group</mat-icon>
-                    <div class="post-data-col">{{g.name}}</div>
+              <div class="post-data-table">
+                <div *ngFor="let g of apiGroups">
+                  <div *ngIf="x.groupId === g.id">
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                      <div class="post-data-col">{{x.message}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
+                      <div class="post-data-col">{{x.date | date: dateFormat}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
+                      <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                      <div class="post-data-col">{{g.name}}</div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <button mat-mini-fab class="edit-button" color="primary" routerLink="/post-details/{{x.id}}">
+                <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+              </button>
             </mat-expansion-panel>
           </div>
         </div>
@@ -120,26 +125,31 @@
                 <mat-panel-title class="post-header">{{x.date | date: dateFormat}}</mat-panel-title>
                 <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
               </mat-expansion-panel-header>
-              <div class="post-data-table" *ngFor="let g of apiGroups">
-                <div *ngIf="x.groupId === g.id">
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">message</mat-icon>
-                    <div class="post-data-col">{{x.message}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
-                    <div class="post-data-col">{{x.date | date: dateFormat}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
-                    <div class="post-data-col">{{x.location}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">group</mat-icon>
-                    <div class="post-data-col">{{g.name}}</div>
+              <div class="post-data-table">
+                <div *ngFor="let g of apiGroups">
+                  <div *ngIf="x.groupId === g.id">
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                      <div class="post-data-col">{{x.message}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
+                      <div class="post-data-col">{{x.date | date: dateFormat}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
+                      <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                      <div class="post-data-col">{{g.name}}</div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <button mat-mini-fab class="edit-button" color="primary" routerLink="/post-details/{{x.id}}">
+                <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+              </button>
             </mat-expansion-panel>
           </div>
         </div>
@@ -173,26 +183,31 @@
                 <mat-panel-title class="post-header">{{x.date | date: dateFormat}}</mat-panel-title>
                 <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
               </mat-expansion-panel-header>
-              <div class="post-data-table" *ngFor="let g of apiGroups">
-                <div *ngIf="x.groupId === g.id">
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">message</mat-icon>
-                    <div class="post-data-col">{{x.message}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
-                    <div class="post-data-col">{{x.date | date: dateFormat}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
-                    <div class="post-data-col">{{x.location}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">group</mat-icon>
-                    <div class="post-data-col">{{g.name}}</div>
+              <div class="post-data-table">
+                <div *ngFor="let g of apiGroups">
+                  <div *ngIf="x.groupId === g.id">
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                      <div class="post-data-col">{{x.message}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
+                      <div class="post-data-col">{{x.date | date: dateFormat}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
+                      <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                      <div class="post-data-col">{{g.name}}</div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <button mat-mini-fab class="edit-button" color="primary" routerLink="/post-details/{{x.id}}">
+                <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+              </button>
             </mat-expansion-panel>
           </div>
         </div>
@@ -226,27 +241,31 @@
                 <mat-panel-title class="post-header">{{x.date | date: dateFormat}}</mat-panel-title>
                 <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
               </mat-expansion-panel-header>
-              <div class="post-data-table" *ngFor="let g of apiGroups">
-                <div *ngIf="x.groupId === g.id">
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">message</mat-icon>
-                    <div class="post-data-col">{{x.message}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
-                    <div class="post-data-col">{{x.date | date: dateFormat}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
-                    <div class="post-data-col">{{x.location}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">group</mat-icon>
-                    <div class="post-data-col">{{g.name}}</div>
+              <div class="post-data-table">
+                <div *ngFor="let g of apiGroups">
+                  <div *ngIf="x.groupId === g.id">
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                      <div class="post-data-col">{{x.message}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
+                      <div class="post-data-col">{{x.date | date: dateFormat}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
+                      <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                      <div class="post-data-col">{{g.name}}</div>
+                    </div>
                   </div>
                 </div>
-
               </div>
+              <button mat-mini-fab class="edit-button" color="primary" routerLink="/post-details/{{x.id}}">
+                <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+              </button>
             </mat-expansion-panel>
           </div>
         </div>
@@ -279,26 +298,31 @@
                 <mat-panel-title class="post-header">{{x.date | date: dateFormat}}</mat-panel-title>
                 <mat-panel-description class="post-header">{{x.heading}}</mat-panel-description>
               </mat-expansion-panel-header>
-              <div class="post-data-table" *ngFor="let g of apiGroups">
-                <div *ngIf="x.groupId === g.id">
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">message</mat-icon>
-                    <div class="post-data-col">{{x.message}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
-                    <div class="post-data-col">{{x.date | date: dateFormat}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
-                    <div class="post-data-col">{{x.location}}</div>
-                  </div>
-                  <div class="post-data-row">
-                    <mat-icon class="post-data-icon" color="accent">group</mat-icon>
-                    <div class="post-data-col">{{g.name}}</div>
+              <div class="post-data-table">
+                <div *ngFor="let g of apiGroups">
+                  <div *ngIf="x.groupId === g.id">
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                      <div class="post-data-col">{{x.message}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
+                      <div class="post-data-col">{{x.date | date: dateFormat}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
+                      <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                      <div class="post-data-col">{{g.name}}</div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <button mat-mini-fab class="edit-button" color="primary" routerLink="/post-details/{{x.id}}">
+                <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+              </button>
             </mat-expansion-panel>
           </div>
         </div>
@@ -350,6 +374,9 @@
                   </div>
                 </div>
               </div>
+              <button mat-mini-fab class="edit-button" color="primary" routerLink="/post-details/{{x.id}}">
+                <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+              </button>
             </mat-expansion-panel>
           </div>
         </div>
@@ -360,7 +387,7 @@
 
 
 
-<mat-card class="your-announcements-card card-style">
+<mat-card class="your-announcements-card">
   <mat-card class="your-events-card card-style">
     <div _ngcontent-c3="" class="your-posts-header">
       <mat-card-header _ngcontent-c3="" class="mat-card-header">
@@ -381,23 +408,40 @@
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
+              <button *ngIf="x.onDashboard === true" mat-stroked-button matTooltip="Add to Dashboard"
+                      matTooltipClass="add-dasboard-tooltip"[matTooltipPosition]="'above'"
+                      class="add-dashboard-button" color="accent" (click)="onAddToDashboard(x)">
+                <mat-icon class="add-to-dashboard-icon">check_box</mat-icon>
+              </button>
+              <button *ngIf="x.onDashboard === false" mat-stroked-button matTooltip="Add to Dashboard"
+                      matTooltipClass="add-dasboard-tooltip"[matTooltipPosition]="'above'"
+                      class="add-dashboard-button" color="accent" (click)="onAddToDashboard(x)">
+                <mat-icon class="add-to-dashboard-icon">check_box_outline_blank</mat-icon>
+              </button>
             </mat-expansion-panel-header>
-            <div class="post-data-table" *ngFor="let g of apiGroups">
-              <div *ngIf="x.groupId === g.id">
-                <div class="post-data-row">
-                  <mat-icon class="post-data-icon" color="accent">message</mat-icon>
-                  <div class="post-data-col">{{x.message}}</div>
-                </div>
-                <div class="post-data-row">
-                  <mat-icon class="post-data-icon" color="accent">group</mat-icon>
-                  <div class="post-data-col">{{g.name}}</div>
+            <div class="post-data-table">
+              <div *ngFor="let g of apiGroups">
+                <div *ngIf="x.groupId === g.id">
+                  <div class="post-data-row">
+                    <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                    <div class="post-data-col">{{x.message}}</div>
+                  </div>
+                  <div class="post-data-row">
+                    <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                    <div class="post-data-col">{{g.name}}</div>
+                  </div>
                 </div>
               </div>
             </div>
+            <button mat-mini-fab class="edit-button" color="primary" routerLink="/post-details/{{x.id}}">
+              <mat-icon class="edit-icon" aria-label="">edit</mat-icon>
+            </button>
           </mat-expansion-panel>
         </div>
       </div>
     </mat-card-content>
   </mat-card>
+
+
 
   <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->

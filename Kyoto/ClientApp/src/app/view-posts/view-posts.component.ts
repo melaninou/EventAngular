@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { GroupService } from '../group.service';
@@ -30,7 +30,11 @@ export class ViewPostsComponent implements OnInit{
     this.baseUrl = baseUrl;
   }
 
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json"
+    })
+  }
   apps: Post[];
   groups: SingleGroup[];
 
@@ -41,6 +45,7 @@ export class ViewPostsComponent implements OnInit{
   announcement: string = "Announcement";
 
   panelOpenState = false;
+  dashboardTrue: boolean;
 
 
   day3 = (moment().add(2, 'days').format('dddd'));
@@ -65,6 +70,36 @@ export class ViewPostsComponent implements OnInit{
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
   }
+  onAddToDashboard(announcement: Post) {
+    if (!announcement.onDashboard) {
+      announcement.onDashboard = true;
+    } else {
+      announcement.onDashboard = false;
+    }
+    this.httpClient.put(this.baseUrl + 'api/posts/' + announcement.id,
+      {
+        "id": announcement.id,
+        "date": announcement.date,
+        "location": announcement.location,
+        "groupId": announcement.groupId,
+        "heading": announcement.heading,
+        "message": announcement.message,
+        "type": announcement.type,
+        "responseStatus": announcement.responseStatus,
+        "hasResponse": true,
+        "onDashboard": announcement.onDashboard
+      }, this.httpOptions).subscribe(
+      (val) => {
+        console.log("PUT call successful value returned in body", val);
+      },
+      response => {
+        console.log("PUT call in error", response);
+      },
+      () => {
+        console.log("The Put observable is now completed");
+      });
+  }
+
   getDateFormat(date: Date): string {
     var momentDate = moment(date.toString()).format('DD.MM.YYYY');
     return momentDate.toString();
