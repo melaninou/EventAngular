@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -35,7 +33,7 @@ import { UserService } from './shared/user.service';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
-import { ProfileComponent } from './profile/profile.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +49,6 @@ import { ProfileComponent } from './profile/profile.component';
     GroupDetailsComponent,
     MembersComponent,
     GroupPostsComponent,
-
     GroupDetailsComponent,
     DashBoardComponent,
     YourGroupsComponent,
@@ -60,7 +57,7 @@ import { ProfileComponent } from './profile/profile.component';
     UserComponent,
     RegistrationComponent,
     LoginComponent,
-    ProfileComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -73,22 +70,20 @@ import { ProfileComponent } from './profile/profile.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'add-group', component: AddGroupComponent },
-      { path: 'create-post', component: CreatePostComponent },
-      { path: 'view-posts', component: ViewPostsComponent },
-      { path: 'view-groups', component: ViewGroupsComponent },
-      { path: 'members', component: MembersComponent },
-      { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'dash-board', component: DashBoardComponent, canActivate: [AuthGuard] },
-      { path: 'profile', component: ProfileComponent},
-      { path: 'post-details/:id', component: PostDetailsComponent }
+      { path: 'add-group', component: AddGroupComponent, canActivate: [AuthGuard] },
+      { path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard] },
+      { path: 'view-posts', component: ViewPostsComponent, canActivate: [AuthGuard] },
+      { path: 'view-groups', component: ViewGroupsComponent, canActivate: [AuthGuard], data: { permittedRoles: ['User'] } },
+      { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
+      { path: 'group-details/:id', component: GroupDetailsComponent, canActivate: [AuthGuard] },
+      { path: 'dash-board', component: DashBoardComponent/*, canActivate: [AuthGuard] */},
+      { path: 'post-details/:id', component: PostDetailsComponent, canActivate: [AuthGuard] },
+      { path: 'forbidden', component: ForbiddenComponent}
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    AppRoutingModule,
-    MDBBootstrapModule.forRoot()
+    AppRoutingModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,

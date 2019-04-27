@@ -45,6 +45,15 @@
             <mat-icon class="post-data-icon" color="accent">group</mat-icon>
             <div class="post-data-col">{{g.name}}</div>
           </div>
+          <div *ngIf="currentPost.onDashboard === false">
+            <div class="separator-line"></div>
+            <div class="post-data-row">
+              <button mat-icon-button class="add-dashboard-button" color="accent" (click)="onAddToDashboard(currentPost)">
+                <mat-icon class="edit-icon" color="accent">note_check</mat-icon>
+              </button>
+              <div class="post-data-col">Add Back to Dashboard</div>
+            </div>
+          </div>
         </div>
       </mat-card-content>
     </mat-card-content>

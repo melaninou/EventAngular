@@ -116,7 +116,8 @@ export class CreatePostComponent implements OnInit {
         "message": this.firstFormGroup.value.message,
         "type": this.firstFormGroup.value.type,
         "responseStatus": ResponseStatus.None,
-        "hasResponse": false
+        "hasResponse": false,
+        "onDashboard": true
 
       }).subscribe(
       (val) => {

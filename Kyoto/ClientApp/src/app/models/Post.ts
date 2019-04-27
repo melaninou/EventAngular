@@ -9,4 +9,5 @@ export interface Post {
   type: string;
   responseStatus: ResponseStatus;
   hasResponse: boolean;
+  onDashboard: boolean;
 }

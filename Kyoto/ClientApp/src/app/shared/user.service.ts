@@ -51,4 +51,16 @@ export class UserService {
   getUserProfile() {
     return this.httpClient.get(this.baseUrl + 'api/UserProfile');
   }
+  roleMatch(allowedRoles): boolean {
+    var isMatch = false;
+    var payload = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])); //gets payload from JWT token
+    var userRole = payload.role;
+    allowedRoles.forEach(element => {
+      if (userRole == element) {
+        isMatch = true;
+        return false;
+      }
+    });
+    return isMatch;
+  }
 }
