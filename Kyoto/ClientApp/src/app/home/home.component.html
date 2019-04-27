@@ -8,11 +8,3 @@
   <h1></h1>
 </div>
 <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
-<mat-card *ngIf="userDetails">
-  <ul class="list-group">
-    <li class="list-group-item">Username is {{userDetails.userName}}</li>
-    <li class="list-group-item">First name is {{userDetails.firstName}}</li>
-    <li class="list-group-item">Last name is {{userDetails.lastName}}</li>
-    <li class="list-group-item">Email is {{userDetails.email}}</li>
-  </ul>
-</mat-card>

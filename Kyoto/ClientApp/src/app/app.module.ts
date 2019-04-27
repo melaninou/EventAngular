@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -33,6 +35,7 @@ import { UserService } from './shared/user.service';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import { AuthGuard } from './auth/auth.guard';
     UserComponent,
     RegistrationComponent,
     LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,12 +81,14 @@ import { AuthGuard } from './auth/auth.guard';
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'group-details/:id', component: GroupDetailsComponent },
       { path: 'dash-board', component: DashBoardComponent, canActivate: [AuthGuard] },
+      { path: 'profile', component: ProfileComponent},
       { path: 'post-details/:id', component: PostDetailsComponent }
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,
