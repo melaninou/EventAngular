@@ -6,9 +6,6 @@ import { GroupService } from '../group.service';
 import { Post } from '../models/Post'
 import { Group } from '../models/Group'
 
-
-
-
 export interface SingleGroup {
   id: string;
   name: string;

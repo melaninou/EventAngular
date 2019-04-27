@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Kyoto.Models;
 using System.IO;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Kyoto.Controllers
 {
+    //[Authorize(Roles = "User")]
     [Route("api/groups")]
     [ApiController]
     public class GroupItemsController : ControllerBase

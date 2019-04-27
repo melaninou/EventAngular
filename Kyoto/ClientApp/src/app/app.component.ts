@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  //checkIfUserIsLoggedIn(): boolean {
+  //  if (localStorage.getItem('token')) {
+  //    return true;
+  //  } else {
+  //    return false;
+  //  }
+  //}
+
 }

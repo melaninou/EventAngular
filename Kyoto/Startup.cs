@@ -17,6 +17,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
+using System.Threading.Tasks;
 
 namespace Kyoto
 {
@@ -48,6 +49,7 @@ namespace Kyoto
             services.AddDbContext<AuthenticationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AuthenticationContext>();
             services.Configure<IdentityOptions>(options =>
             {
@@ -79,10 +81,11 @@ namespace Kyoto
                     ClockSkew = TimeSpan.Zero //checking expiration time
                 };
             });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             Initialize(app.ApplicationServices);
             if (env.IsDevelopment())
@@ -125,6 +128,7 @@ namespace Kyoto
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+            CreateRolesAndAdminUser(serviceProvider);
         }
 
         public static void Initialize(IServiceProvider service)
@@ -145,5 +149,60 @@ namespace Kyoto
                 }
             }
         }
+        private static void CreateRolesAndAdminUser(IServiceProvider serviceProvider)
+        {
+            const string adminRoleName = "Administrator";
+            
+            // Get these value from "appsettings.json" file.
+            string adminUserEmail = "admin@admin.com";
+            string adminPwd = "1234";//admin password
+            AddUserToRole(serviceProvider, adminUserEmail, adminPwd, adminRoleName);
+        }
+        private static void CreateRole(IServiceProvider serviceProvider, string roleName)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            Task<bool> roleExists = roleManager.RoleExistsAsync(roleName);
+            roleExists.Wait();
+
+            if (!roleExists.Result)
+            {
+                Task<IdentityResult> roleResult = roleManager.CreateAsync(new IdentityRole(roleName));
+                roleResult.Wait();
+            }
+        }
+        private static void AddUserToRole(IServiceProvider serviceProvider, string userEmail,
+            string userPwd, string roleName)
+        {
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            Task<ApplicationUser> checkAppUser = userManager.FindByEmailAsync(userEmail);
+            checkAppUser.Wait();
+
+            ApplicationUser appUser = checkAppUser.Result;
+
+            if (checkAppUser.Result == null)
+            {
+                ApplicationUser newAppUser = new ApplicationUser
+                {
+                    Email = userEmail,
+                    UserName = "admin",
+                    FirstName = "Admin",
+                    LastName = "User"
+                };
+
+                Task<IdentityResult> taskCreateAppUser = userManager.CreateAsync(newAppUser, userPwd);
+                taskCreateAppUser.Wait();
+
+                if (taskCreateAppUser.Result.Succeeded)
+                {
+                    appUser = newAppUser;
+                }
+            }
+
+            Task<IdentityResult> newUserRole = userManager.AddToRoleAsync(appUser, roleName);
+            newUserRole.Wait();
+        }
+
     }
 }

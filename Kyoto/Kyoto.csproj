@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\auth\auth.interceptor.ts" />
+    <ApplicationDefinition Include="ClientApp\src\app\auth\auth.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\ResponseStatus.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Group.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Member.ts" />
