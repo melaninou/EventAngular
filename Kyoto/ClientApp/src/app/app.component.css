@@ -9,6 +9,7 @@
   width: 20%
 }
 
+
 :host /deep/ .col-sm-9 {
   min-width: 80%;
   padding: 0;
@@ -24,7 +25,7 @@
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: #3F51B5;
+  background-color: #000000;
 }
 :host /deep/ .navbar{
   margin-bottom: 10px;

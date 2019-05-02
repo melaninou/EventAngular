@@ -30,8 +30,9 @@ namespace Kyoto.Controllers
         }
 
         [HttpPost("Register")] //POST: api/ApplicationUser/Register
-        public async Task<Object> PostApplicationUser(ApplicationUserModel model)
+        public async Task<IActionResult> PostApplicationUser(ApplicationUserModel model)
         {
+            model.Role = "User";
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
@@ -39,9 +40,16 @@ namespace Kyoto.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName
             };
+
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                await _userManager.AddToRoleAsync(applicationUser, model.Role);
+                var loginModel = new LoginModel
+                {
+                    UserName = model.UserName,
+                    Password = model.Password
+                };
                 return Ok(result);
             }
             catch (Exception e)
@@ -57,13 +65,17 @@ namespace Kyoto.Controllers
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
+                // Get Role assigned to user
+                var role = await _userManager.GetRolesAsync(user);
+                IdentityOptions _options = new IdentityOptions();
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserID", user.Id.ToString())
+                        new Claim("UserID", user.Id.ToString()),
+                        new Claim(_options.ClaimsIdentity.RoleClaimType, role.FirstOrDefault()), //saves the role claim in the JWT payload section.
                     }),
-                    Expires = DateTime.UtcNow.AddHours(3), //login time window is 5 minutes.
+                    Expires = DateTime.UtcNow.AddHours(3), //login time window is 3 hours.
                     SigningCredentials = new SigningCredentials(
                         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.Secret)),
                         SecurityAlgorithms.HmacSha256Signature)
@@ -71,11 +83,11 @@ namespace Kyoto.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new {token});
+                return Ok(new { token });
             }
             else
             {
-                return BadRequest(new {message = "Username or Password is incorrect!"});
+                return BadRequest(new { message = "Username or Password is incorrect!" });
             }
         }
     }

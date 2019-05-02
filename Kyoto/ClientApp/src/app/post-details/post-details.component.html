@@ -45,6 +45,15 @@
             <mat-icon class="post-data-icon" color="accent">group</mat-icon>
             <div class="post-data-col">{{g.name}}</div>
           </div>
+          <div *ngIf="currentPost.onDashboard === false">
+            <div class="separator-line"></div>
+            <div class="post-data-row">
+              <button mat-icon-button class="add-dashboard-button" color="accent" (click)="onAddToDashboard(currentPost)">
+                <mat-icon class="edit-icon" color="accent">note_check</mat-icon>
+              </button>
+              <div class="post-data-col">Add Back to Dashboard</div>
+            </div>
+          </div>
         </div>
       </mat-card-content>
     </mat-card-content>
@@ -56,7 +65,7 @@
   </mat-card>
   <!----------------------------------------EDIT FORM----------------------------------------------------------->
   <form [formGroup]="editForm" (ngSubmit)="onEditSubmit(editForm.value)" *ngIf="editEnabled">
-    <mat-card *ngIf="currentPost.type === 'Event'; else announcement">
+    <mat-card *ngIf="currentPost.type === 'Event'">
       <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
         <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
       </button>
@@ -88,8 +97,7 @@
         </div>
       </div>
     </mat-card>
-    <ng-template #announcement></ng-template>
-    <mat-card>
+    <mat-card *ngIf="currentPost.type === 'Announcement'">
       <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
         <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
       </button>

@@ -14,6 +14,9 @@
         <span matBadge={{getGoingEventsCount(apiPosts)}} matBadgeOverlap="false">GOING </span>
       </ng-template>
       <div class="scrollable">
+        <mat-card-content class="no-content" *ngIf="getGoingEventsCount(apiPosts) === 0">
+          Nothing to display :( Go to ALL Events
+        </mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.type === event && x.responseStatus === 2" class="hover-card">
             <mat-card class="extra-margin">
@@ -59,6 +62,10 @@
         <span matBadge={{getPendingEventsCount(apiPosts)}} matBadgeOverlap="false">PENDING </span>
       </ng-template>
       <div class="scrollable">
+        <mat-card-content class="no-content" *ngIf="getPendingEventsCount(apiPosts) === 0">
+          Nothing to display :(
+          <button mat-button class="route-btn" color="primary" routerLink="/create-post">Create Event</button>
+        </mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.type === event && x.responseStatus === 1" class="hover-card">
             <mat-card class="extra-margin">
@@ -68,14 +75,22 @@
               <mat-card-content *ngFor="let g of apiGroups">
                 <mat-card-content *ngIf="x.groupId === g.id">
                   <div class="post-data-table">
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">message</mat-icon>
-                      <div class="post-data-col">{{x.message}}</div></div>
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
-                      <div class="post-data-col">{{x.date | date: dateFormat}}</div></div>
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
-                      <div class="post-data-col">{{x.location}}</div></div>
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">group</mat-icon>
-                      <div class="post-data-col">{{g.name}}</div></div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                      <div class="post-data-col">{{x.message}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
+                      <div class="post-data-col">{{x.date | date: dateFormat}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
+                      <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                      <div class="post-data-col">{{g.name}}</div>
+                    </div>
                   </div>
                 </mat-card-content>
               </mat-card-content>
@@ -92,6 +107,10 @@
     </mat-tab>
     <mat-tab label="ALL">
       <div class="scrollable">
+        <mat-card-content class="no-content" *ngIf="getEventsCount(apiPosts) === 0">
+          Nothing to display :(
+          <button mat-button class="route-btn" color="primary" routerLink="/create-post">Create Event</button>
+        </mat-card-content>
         <div *ngFor="let x of apiPosts">
           <div *ngIf="x.type === event" class="hover-card">
             <mat-card class="extra-margin">
@@ -101,10 +120,22 @@
               <mat-card-content *ngFor="let g of apiGroups">
                 <mat-card-content *ngIf="x.groupId === g.id">
                   <div class="post-data-table">
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">message</mat-icon><div class="post-data-col">{{x.message}}</div></div>
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">date_range</mat-icon><div class="post-data-col">{{x.date | date: dateFormat}}</div></div>
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">location_on</mat-icon><div class="post-data-col">{{x.location}}</div></div>
-                    <div class="post-data-row"><mat-icon class="post-data-icon" color="accent">group</mat-icon><div class="post-data-col">{{g.name}}</div></div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">message</mat-icon>
+                      <div class="post-data-col">{{x.message}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">date_range</mat-icon>
+                      <div class="post-data-col">{{x.date | date: dateFormat}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
+                      <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">group</mat-icon>
+                      <div class="post-data-col">{{g.name}}</div>
+                    </div>
                   </div>
                 </mat-card-content>
               </mat-card-content>
@@ -131,6 +162,7 @@
     </h3>
   </mat-card-content>
 </mat-card>
+<!---------------------------------------------ANNOUNCEMENTS------------------------------------------------------------>
 <mat-card class="your-announcements-card card-style">
   <div class="your-posts-header">
     <mat-card-header>
@@ -141,13 +173,20 @@
       </button>
     </mat-card-header>
   </div>
+  <mat-card-content class="no-content" *ngIf="getAnnouncementsCount(apiPosts) === 0">
+    No Announcements to display :(
+    <button mat-button class="route-btn" color="primary" routerLink="/view-posts">Add to Dashboard</button>
+  </mat-card-content>
   <mat-card-content>
     <div class="scrollable-announcements">
       <div *ngFor="let x of apiPosts">
-        <div *ngIf="x.type === announcement" class="hover-card">
+        <div *ngIf="x.type === announcement && x.onDashboard === true" class="hover-card">
           <mat-card class="extra-margin">
-            <mat-card-header class="post-header pointer" routerLink="/post-details/{{x.id}}">
-              {{x.heading}}
+            <mat-card-header class="post-header">
+              <div class="pointer announcement-header" routerLink="/post-details/{{x.id}}">{{x.heading}}</div>
+              <button mat-stroked-button class="remove-button" color="accent" (click)="onRemove(x)">
+                <mat-icon class="remove-icon" aria-label="">close</mat-icon>
+              </button>
             </mat-card-header>
             <mat-card-content *ngFor="let g of apiGroups">
               <mat-card-content *ngIf="x.groupId === g.id">

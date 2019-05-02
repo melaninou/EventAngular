@@ -32,6 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './shared/user.service';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthGuard } from './auth/auth.guard';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     GroupDetailsComponent,
     MembersComponent,
     GroupPostsComponent,
-
     GroupDetailsComponent,
     DashBoardComponent,
     YourGroupsComponent,
@@ -56,6 +57,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     UserComponent,
     RegistrationComponent,
     LoginComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -68,15 +70,15 @@ import { AuthInterceptor } from './auth/auth.interceptor';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'add-group', component: AddGroupComponent },
-      { path: 'create-post', component: CreatePostComponent },
-      { path: 'view-posts', component: ViewPostsComponent },
-      { path: 'view-groups', component: ViewGroupsComponent },
-      { path: 'members', component: MembersComponent },
-      { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'group-details/:id', component: GroupDetailsComponent },
-      { path: 'dash-board', component: DashBoardComponent },
-      { path: 'post-details/:id', component: PostDetailsComponent }
+      { path: 'add-group', component: AddGroupComponent, canActivate: [AuthGuard] },
+      { path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard] },
+      { path: 'view-posts', component: ViewPostsComponent, canActivate: [AuthGuard] },
+      { path: 'view-groups', component: ViewGroupsComponent, canActivate: [AuthGuard], data: { permittedRoles: ['User'] } },
+      { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
+      { path: 'group-details/:id', component: GroupDetailsComponent, canActivate: [AuthGuard] },
+      { path: 'dash-board', component: DashBoardComponent/*, canActivate: [AuthGuard] */},
+      { path: 'post-details/:id', component: PostDetailsComponent, canActivate: [AuthGuard] },
+      { path: 'forbidden', component: ForbiddenComponent}
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,

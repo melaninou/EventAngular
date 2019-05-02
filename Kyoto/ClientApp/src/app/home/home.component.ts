@@ -9,20 +9,9 @@ import { UserService } from '../shared/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  userDetails;
+  constructor(private router: Router) {}
 
-  constructor(private router: Router, private service: UserService) {}
-
-  ngOnInit() {
-    this.service.getUserProfile().subscribe(
-      response => {
-        this.userDetails = response;
-      },
-      err => {
-        console.log(err);
-      },
-    )
-  }
+  ngOnInit() { }
 
   onLogout() {
     localStorage.removeItem('token');

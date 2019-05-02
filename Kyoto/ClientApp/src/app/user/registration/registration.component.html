@@ -44,7 +44,10 @@
       </div>
       <div>
         <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!service.formModel.valid">Sign Up</button>
-        <label matLabel *ngIf="usernameTaken; else notTaken">This username is already taken! Try a new one.</label>
+      </div>
+      <div>
+        <label matLabel *ngIf="usernameTaken">This username is already taken! Try a new one.</label>
+        <label matLabel *ngIf="registrationSuccess">Registration was successful!</label>
       </div>
     </form>
   </div>

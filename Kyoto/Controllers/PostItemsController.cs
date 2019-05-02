@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Kyoto.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Kyoto.Controllers
 {
+    //[Authorize(Roles = "User")]
     [Route("api/posts")]
     [ApiController]
     public class PostItemsController : ControllerBase
