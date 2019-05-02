@@ -408,7 +408,7 @@
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
-              <button *ngIf="x.onDashboard === true" mat-stroked-button matTooltip="Add to Dashboard"
+              <button *ngIf="x.onDashboard === true" mat-stroked-button matTooltip="Remove from Dashboard"
                       matTooltipClass="add-dasboard-tooltip"[matTooltipPosition]="'above'"
                       class="add-dashboard-button" color="accent" (click)="onAddToDashboard(x)">
                 <mat-icon class="add-to-dashboard-icon">check_box</mat-icon>

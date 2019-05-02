@@ -58,7 +58,7 @@ export class ViewPostsComponent implements OnInit{
   myControl = new FormControl();
 
   i: number = 0;
-  dateFormat: string = 'dd/MM/yyyy HH:mm';
+  dateFormat: string = 'HH:mm';
 
   ngOnInit() {
 
