@@ -403,20 +403,21 @@
     <mat-card-content>
       <div *ngFor="let x of apiPosts">
         <div *ngIf="x.type === announcement">
+          <button *ngIf="x.onDashboard === true" mat-stroked-button matTooltip="Remove from Dashboard"
+                  matTooltipClass="add-dashboard-tooltip"[matTooltipPosition]="'above'"
+                  class="add-dashboard-button" color="accent" (click)="onAddToDashboard(x)">
+            <mat-icon class="add-to-dashboard-icon">check_box</mat-icon>
+          </button>
+          <button *ngIf="x.onDashboard === false" mat-stroked-button matTooltip="Add to Dashboard"
+                  matTooltipClass="add-dashboard-tooltip"[matTooltipPosition]="'above'"
+                  class="add-dashboard-button" color="accent" (click)="onAddToDashboard(x)">
+            <mat-icon class="add-to-dashboard-icon">check_box_outline_blank</mat-icon>
+          </button>
           <mat-expansion-panel class="extra-margin" (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title class="post-header">{{x.heading}}</mat-panel-title>
-              <button *ngIf="x.onDashboard === true" mat-stroked-button matTooltip="Remove from Dashboard"
-                      matTooltipClass="add-dasboard-tooltip"[matTooltipPosition]="'above'"
-                      class="add-dashboard-button" color="accent" (click)="onAddToDashboard(x)">
-                <mat-icon class="add-to-dashboard-icon">check_box</mat-icon>
-              </button>
-              <button *ngIf="x.onDashboard === false" mat-stroked-button matTooltip="Add to Dashboard"
-                      matTooltipClass="add-dasboard-tooltip"[matTooltipPosition]="'above'"
-                      class="add-dashboard-button" color="accent" (click)="onAddToDashboard(x)">
-                <mat-icon class="add-to-dashboard-icon">check_box_outline_blank</mat-icon>
-              </button>
+
             </mat-expansion-panel-header>
             <div class="post-data-table">
               <div *ngFor="let g of apiGroups">

@@ -157,8 +157,10 @@
 }
 
 .add-dashboard-button {
-  margin: 0 20px 0 10px;
+  
   float: right;
+  right: 15%;
+  bottom: calc(50% - 24px);
   display: inline-block; 
   align-content: center;
   align-self: center;
@@ -184,7 +186,7 @@
   color: white;
 }
 
-.add-dasboard-tooltip {
+.add-dashboard-tooltip {
   background: #ff4081;
   font-size: 15px;
   color: white;

@@ -57,7 +57,7 @@ export class PostDetailsComponent implements OnInit {
   }
   onEdit() {
     if (this.editEnabled === true) {
-      this.editEnabled = false
+      this.editEnabled = false;
     } else {
       this.editEnabled = true;
     }
@@ -66,7 +66,11 @@ export class PostDetailsComponent implements OnInit {
   }
 
   onAddToDashboard(announcement: Post) {
-    announcement.onDashboard = true;
+    if (!announcement.onDashboard) {
+      announcement.onDashboard = true;
+    } else {
+      announcement.onDashboard = false;
+    }
     this.httpClient.put(this.baseUrl + 'api/posts/' + announcement.id,
       {
         "id": announcement.id,
@@ -78,8 +82,8 @@ export class PostDetailsComponent implements OnInit {
         "type": announcement.type,
         "responseStatus": announcement.responseStatus,
         "hasResponse": true,
-        "onDashboard": true
-      }, this.httpOptions).subscribe(
+        "onDashboard": announcement.onDashboard
+  }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
       },
