@@ -49,7 +49,16 @@
             <div class="separator-line"></div>
             <div class="post-data-row">
               <button mat-icon-button class="add-dashboard-button" color="accent" (click)="onAddToDashboard(currentPost)">
-                <mat-icon class="edit-icon" color="accent">note_check</mat-icon>
+                <mat-icon class="add-to-dashboard-icon">check_box_outline_blank</mat-icon>
+              </button>
+              <div class="post-data-col">Add Back to Dashboard</div>
+            </div>
+          </div>
+          <div *ngIf="currentPost.onDashboard === true">
+            <div class="separator-line"></div>
+            <div class="post-data-row">
+              <button mat-icon-button class="add-dashboard-button" color="accent" (click)="onAddToDashboard(currentPost)">
+                <mat-icon class="add-to-dashboard-icon">check_box</mat-icon>
               </button>
               <div class="post-data-col">Add Back to Dashboard</div>
             </div>
