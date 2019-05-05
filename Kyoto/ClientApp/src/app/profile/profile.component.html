@@ -1,25 +1,57 @@
-<mat-card class="your-groups-card card-style" *ngIf="userDetails">
-  <ul class="list-group">
-    <div class="profile-header">
-      <mat-card-header>
-        <mat-card-content mat-card-avatar class="example-header-image"><mat-icon>face</mat-icon></mat-card-content>
-        <mat-card-title>
-          <li class="list-group-item">{{userDetails.firstName}} {{userDetails.lastName}}</li>
-        </mat-card-title>
-      </mat-card-header>
-    </div>
-    <mat-card-content>
-      <div class="profile-data-table">
-        <div class="profile-data-row">
-          <mat-icon class="profile-data-icon" color="accent">account_circle</mat-icon>
-          <div class="profile-data-col">Username: {{userDetails.userName}}</div>
+<mat-card class="your-profile-card card-style" *ngIf="userDetails">
+  <mat-card *ngIf="!editEnabled">
+    <ul class="list-group">
+      <div class="profile-header">
+        <mat-card-header>
+          <mat-card-content mat-card-avatar class="example-header-image"><mat-icon>face</mat-icon></mat-card-content>
+          <mat-card-title>
+            <li class="list-group-item">{{userDetails.firstName}} {{userDetails.lastName}}</li>
+          </mat-card-title>
+        </mat-card-header>
+      </div>
+      <mat-card-content>
+        <div class="profile-data-table">
+          <div class="profile-data-row">
+            <mat-icon class="profile-data-icon" color="accent">account_circle</mat-icon>
+            <div class="profile-data-col">Username: {{userDetails.userName}}</div>
+          </div>
+          <div class="separator-line"></div>
+          <div class="profile-data-row">
+            <mat-icon class="profile-data-icon" color="accent">alternate_email</mat-icon>
+            <div class="profile-data-col">Email: {{userDetails.email}}</div>
+          </div>
         </div>
-        <div class="profile-data-row">
-          <mat-icon class="profile-data-icon" color="accent">alternate_email</mat-icon>
-          <div class="profile-data-col">Email: {{userDetails.email}}</div>
+      </mat-card-content>
+    </ul>
+    <button mat-mini-fab class="edit-button" color="accent" (click)="onEdit()">
+      <mat-icon class="edit-icon">edit</mat-icon>
+    </button>
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+  </mat-card>
+
+  <!----------------------------------------EDIT PROFILE FORM----------------------------------------------------------->
+  <form [formGroup]="editForm" (ngSubmit)="onEditSubmit(editForm.value)" *ngIf="editEnabled">
+    <mat-card>
+      <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
+        <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
+      </button>
+      <div class="edit-form-card">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="First name" formControlName="firstName" [(ngModel)]="userDetails.firstName">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Last name" formControlName="lastName" [(ngModel)]="userDetails.lastName">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Username" formControlName="userName" [(ngModel)]="userDetails.userName">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Email" formControlName="email" [(ngModel)]="userDetails.email">
+        </mat-form-field>
+        <div class="form-element">
+          <button mat-raised-button color="primary" type="submit" class="button">Save</button>
         </div>
       </div>
-    </mat-card-content>
-  </ul>
-  <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+    </mat-card>
+  </form>
 </mat-card>
