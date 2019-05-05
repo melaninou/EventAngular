@@ -34,6 +34,7 @@ import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     RegistrationComponent,
     LoginComponent,
     ForbiddenComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -78,7 +80,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
       { path: 'group-details/:id', component: GroupDetailsComponent, canActivate: [AuthGuard] },
       { path: 'dash-board', component: DashBoardComponent/*, canActivate: [AuthGuard] */},
       { path: 'post-details/:id', component: PostDetailsComponent, canActivate: [AuthGuard] },
-      { path: 'forbidden', component: ForbiddenComponent}
+      { path: 'forbidden', component: ForbiddenComponent },
+      { path: 'profile', component: ProfileComponent }
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,
