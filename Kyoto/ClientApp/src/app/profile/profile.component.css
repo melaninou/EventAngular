@@ -1,3 +1,20 @@
 .profile-header {
   padding: 20px 16px 20px 16px;
 }
+
+.profile-data-table {
+  height: 100%;
+  width: 100%;
+  padding: 0 10px 10px 10px;
+}
+
+.profile-data-row {
+  white-space: normal;
+  display: flex;
+  align-items: center;
+}
+
+.profile-data-icon {
+  margin: 0 6px 0 6px;
+  display: inline-block;
+}
