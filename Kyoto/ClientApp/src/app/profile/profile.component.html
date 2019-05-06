@@ -30,7 +30,7 @@
   </mat-card>
 
   <!----------------------------------------EDIT PROFILE FORM----------------------------------------------------------->
-  <form [formGroup]="editForm" (ngSubmit)="onEditSubmit(editForm.value)" *ngIf="editEnabled">
+  <form [formGroup]="editForm" (ngSubmit)="onEditProfileSubmit(editForm.value)" *ngIf="editEnabled">
     <mat-card>
       <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
         <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
@@ -54,4 +54,5 @@
       </div>
     </mat-card>
   </form>
+  <mat-label class="success" *ngIf="!editEnabled && postUpdated">The post has been updated successfully!</mat-label>
 </mat-card>

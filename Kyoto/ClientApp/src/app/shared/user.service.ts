@@ -51,6 +51,15 @@ export class UserService {
   getUserProfile() {
     return this.httpClient.get(this.baseUrl + 'api/UserProfile');
   }
+
+  editProfile(formData) {
+    let headers = new HttpHeaders();
+   
+    headers.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    let options = { headers: headers };
+    return this.httpClient.post(this.baseUrl + 'api/EditProfile', formData, options);
+  }
+
   roleMatch(allowedRoles): boolean {
     var isMatch = false;
     var payload = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])); //gets payload from JWT token

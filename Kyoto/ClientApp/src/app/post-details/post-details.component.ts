@@ -105,7 +105,7 @@ export class PostDetailsComponent implements OnInit {
     });
   }
   onEditSubmit(post: any) {
-    console.log("The form value is:");
+    console.log("The edit post form value is:");
     console.log(post);
     this.editEnabled = false;
     this.postUpdated = false;

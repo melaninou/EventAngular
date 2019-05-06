@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,8 +16,12 @@ export class ProfileComponent implements OnInit {
   editForm: FormGroup;
   formattedDate: string;
   postUpdated: boolean = false;
+  baseUrl: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: UserService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: UserService, private httpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -42,6 +46,15 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['user/login']);
   }
 
+  createFormForEdit() {
+    this.editForm = this.formBuilder.group({
+      'firstName': [''],
+      'lastName': [''],
+      'userName': ['', Validators.required],
+      'email': [Validators.email]
+    });
+  }
+
   onEdit() {
     if (this.editEnabled === true) {
       this.editEnabled = false;
@@ -51,12 +64,27 @@ export class ProfileComponent implements OnInit {
     this.postUpdated = false;
   }
 
-  createFormForEdit() {
-    this.editForm = this.formBuilder.group({
-      'firstName': [''],
-      'lastName': [''],
-      'userName': ['', Validators.required],
-      'email': [Validators.email]
-    });
+  onEditProfileSubmit(profile: any) {
+    console.log("The edit profile form value is:");
+    console.log(profile);
+    this.editEnabled = false;
+    this.postUpdated = false;
+    var body = {
+      "UserName": profile.UserName,
+      "FirstName": profile.FirstName,
+      "LastName": profile.LastName,
+      "Email": profile.Email
+    }
+    console.log(body);
+    this.service.editProfile(body).subscribe((val) => {
+      console.log("PUT call successful value returned in body", val);
+    },
+      response => {
+        console.log("PUT call in error", response);
+      },
+      () => {
+        console.log("The Put observable is now completed");
+        this.postUpdated = true;
+      });
   }
 }
