@@ -1,0 +1,90 @@
+.your-profile-card {
+  max-width: 100vw;
+  min-width: 33%;
+  float: left;
+  margin: 18px;
+  padding: 10px;
+  width: 50%;
+}
+
+.profile-header {
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  background-color: hsla(0, 0%, 96%, 0.75);
+  border-radius: 4px;
+  max-width: 95%;
+  width: calc(100% - 70px);
+  margin-right: 0;
+  float: left;
+}
+
+.profile-data-table {
+  height: 100%;
+  width: 100%;
+  padding: 0 10px 10px 10px;
+}
+
+.profile-data-row {
+  white-space: normal;
+  display: flex;
+  align-items: center;
+}
+
+.profile-data-icon {
+  margin: 0 6px 0 6px;
+  display: inline-block;
+}
+
+.edit-button {
+  margin: 0;
+  display: inline-block;
+}
+
+.edit-button:hover, .back-button:hover {
+  background-color: #3f51b5;
+}
+
+.edit-icon {
+  color: white;
+}
+
+.back-button {
+  margin-right: 0;
+  margin: 0 10px 0 20px;
+  float: right;
+  display: inline-block;
+}
+
+.separator-line {
+  border-top: 1px solid #d9d9d9;
+  margin: 5px 0 0 5px;
+  width: calc(100% - 70px);
+}
+
+.edit-form-card {
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-element {
+  width: 90%;
+}
+
+:host /deep/ .mat-input-element, .mat-form-field-label, .mat-input-placeholder, .mat-form-field-placeholder, .input-placeholder {
+  padding: 3px;
+  margin: 3px;
+}
+
+:host /deep/ .mat-form-field {
+  margin: 4px 2px 4px 2px;
+  padding-bottom: 4px;
+}
+
+:host /deep/ .mat-form-field-label {
+  padding: 8px;
+}
+
+
+

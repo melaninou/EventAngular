@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Kyoto.Models;
 using Kyoto.Models.User_Registration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -89,6 +90,31 @@ namespace Kyoto.Controllers
             {
                 return BadRequest(new { message = "Username or Password is incorrect!" });
             }
+        }
+
+        [HttpPut("EditProfile")]
+        public async Task<IActionResult> EditProfile(User inputUser) //peab token olema kaasas
+        {
+            if (inputUser == null)
+            {
+                return BadRequest("Edit Profile Input data is invalid!");
+            }
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return BadRequest("User not Found!");
+            }
+
+            user.FirstName = inputUser.FirstName;
+            user.LastName = inputUser.LastName;
+            user.Email = inputUser.Email;
+            user.UserName = inputUser.UserName;
+
+            await _userManager.UpdateAsync(user);
+            return Ok(user);
+
+
         }
     }
 }
