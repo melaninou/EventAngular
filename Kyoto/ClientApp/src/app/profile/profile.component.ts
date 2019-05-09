@@ -70,12 +70,11 @@ export class ProfileComponent implements OnInit {
     this.editEnabled = false;
     this.postUpdated = false;
     var body = {
-      "UserName": profile.UserName,
-      "FirstName": profile.FirstName,
-      "LastName": profile.LastName,
-      "Email": profile.Email
+      "UserName": profile.userName,
+      "FirstName": profile.firstName,
+      "LastName": profile.lastName,
+      "Email": profile.email
     }
-    console.log(body);
     this.service.editProfile(body).subscribe((val) => {
       console.log("PUT call successful value returned in body", val);
     },

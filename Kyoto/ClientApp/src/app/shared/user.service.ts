@@ -57,7 +57,7 @@ export class UserService {
    
     headers.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     let options = { headers: headers };
-    return this.httpClient.post(this.baseUrl + 'api/EditProfile', formData, options);
+    return this.httpClient.put(this.baseUrl + 'api/ApplicationUser/EditProfile', formData, options);
   }
 
   roleMatch(allowedRoles): boolean {
