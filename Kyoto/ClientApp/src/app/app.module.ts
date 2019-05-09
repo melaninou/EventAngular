@@ -35,6 +35,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TopNavbarContentComponent } from './top-navbar-content/top-navbar-content.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ProfileComponent } from './profile/profile.component';
     RegistrationComponent,
     LoginComponent,
     ForbiddenComponent,
-    ProfileComponent
+    ProfileComponent,
+    TopNavbarContentComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

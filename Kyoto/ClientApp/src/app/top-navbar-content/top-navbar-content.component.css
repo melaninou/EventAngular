@@ -1,0 +1,44 @@
+.logout-button {
+  margin: 10px;
+  display: inline-block;
+  min-width: 76px;
+}
+
+.top-nav-bar-logout {
+  align-items: center;
+  float: right;
+}
+
+.logout-button:hover {
+  background-color: #3F51B5;
+}
+
+.top-nav-icon {
+  color: #9d9d9d;
+}
+
+.more-menu-button:hover .dropdown-icon, .more-menu-button.hover .dropdown-icon { /*Teeb nii et parenti peal hoverides muutub ainult child*/
+  color: hsla(340, 100%, 63%, 1);
+}
+
+.more-menu-button:hover {
+  /*background-color: hsla(231, 48%, 48%, 0.56);
+  background-color: hsla(340, 82%, 52%, 1);*/
+  color: hsla(340, 100%, 63%, 1);
+}
+
+
+.hello-user {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  height: 50px;
+}
+
+.user-name {
+  font-size: 20px;
+  color: #9d9d9d;
+  margin-top: 10px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
