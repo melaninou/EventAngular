@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Kyoto.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlMatches;
 
 namespace Kyoto.Controllers
 {
@@ -24,17 +25,32 @@ namespace Kyoto.Controllers
 
         // GET: api/posts
         [HttpGet]
-        public IEnumerable<PostItem> GetPostItem()
+        public IEnumerable<PostItem> GetPostItem([FromQuery(Name = "groupId")]List<int> ids = null)
         {
+            List<PostItem> filteredPosts = new List<PostItem>();
             if (ModelState.IsValid)
             {
-                return _context.PostItem;
+                if (ids == null || ids.Count == 0)
+                {
+                    return _context.PostItem;
+                }
+                else
+                {
+                    foreach (var id in ids)
+                    {
+                        filteredPosts.AddRange(_context.PostItem.Where(x => x.GroupId == id).ToList());
+                    }
+
+                    return filteredPosts;
+                }
+                
             }
             else
             {
                 throw new Exception("Unable to GET PostItems because the Model State is invalid.");
             }
         }
+
 
         [HttpGet("group/{id}")]
         public IEnumerable<PostItem> GetGroupPostItems([FromRoute] int id)
