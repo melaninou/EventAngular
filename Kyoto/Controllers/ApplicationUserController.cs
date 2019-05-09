@@ -30,7 +30,20 @@ namespace Kyoto.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpPost("Register")] //POST: api/ApplicationUser/Register
+        // GET: api/ApplicationUser
+        [HttpGet]
+        public IEnumerable<ApplicationUser> GetTaskModel()
+        {
+            List<ApplicationUser> userList = new List<ApplicationUser>();
+            foreach (var user in _userManager.Users)
+            {
+                userList.Add(user);
+            }
+            return userList;
+        }
+
+
+       [HttpPost("Register")] //POST: api/ApplicationUser/Register
         public async Task<IActionResult> PostApplicationUser(ApplicationUserModel model)
         {
             model.Role = "User";

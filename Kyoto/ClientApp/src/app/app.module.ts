@@ -36,6 +36,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TopNavbarContentComponent } from './top-navbar-content/top-navbar-content.component';
+import { FindFriendsComponent } from './find-friends/find-friends.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { TopNavbarContentComponent } from './top-navbar-content/top-navbar-conte
     LoginComponent,
     ForbiddenComponent,
     ProfileComponent,
-    TopNavbarContentComponent
+    TopNavbarContentComponent,
+    FindFriendsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -83,7 +85,8 @@ import { TopNavbarContentComponent } from './top-navbar-content/top-navbar-conte
       { path: 'dash-board', component: DashBoardComponent/*, canActivate: [AuthGuard] */},
       { path: 'post-details/:id', component: PostDetailsComponent, canActivate: [AuthGuard] },
       { path: 'forbidden', component: ForbiddenComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent },
+      { path: 'find-friends', component: FindFriendsComponent }
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,
