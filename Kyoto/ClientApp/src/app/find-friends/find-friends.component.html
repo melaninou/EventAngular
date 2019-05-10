@@ -1,3 +1,15 @@
-<p>
-  find-friends works!
-</p>
+<mat-card>
+  <div *ngFor="let x of apiUsers" class="hover-card pointer">
+    <mat-card class="extra-margin">
+      <mat-card-header class="group-header">
+        <div mat-card-avatar><mat-icon color="accent">event_note</mat-icon></div>
+        {{x.firstName}}
+      </mat-card-header>
+      <mat-card-subtitle class="group-subtitle">
+        {{x.lastName}}
+        {{x.userName}}
+        {{x.email}}
+      </mat-card-subtitle>
+    </mat-card>
+  </div>
+</mat-card>

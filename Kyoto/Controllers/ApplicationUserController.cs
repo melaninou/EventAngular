@@ -32,7 +32,7 @@ namespace Kyoto.Controllers
 
         // GET: api/ApplicationUser
         [HttpGet]
-        public IEnumerable<ApplicationUser> GetTaskModel()
+        public IEnumerable<ApplicationUser> GetAllUsers()
         {
             List<ApplicationUser> userList = new List<ApplicationUser>();
             foreach (var user in _userManager.Users)
