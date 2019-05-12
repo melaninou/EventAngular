@@ -42,13 +42,13 @@ namespace Kyoto.Controllers
             return userList;
         }
 
-
        [HttpPost("Register")] //POST: api/ApplicationUser/Register
         public async Task<IActionResult> PostApplicationUser(ApplicationUserModel model)
         {
             model.Role = "User";
             var applicationUser = new ApplicationUser()
             {
+                Id = model.Id,
                 UserName = model.UserName,
                 Email = model.Email,
                 FirstName = model.FirstName,

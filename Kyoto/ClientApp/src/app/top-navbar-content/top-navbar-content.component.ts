@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/user.service';
 
 @Component({
@@ -9,16 +9,20 @@ import { UserService } from '../shared/user.service';
 })
 export class TopNavbarContentComponent implements OnInit {
 
-  constructor(private router: Router, private service: UserService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private service: UserService) { }
 
   userDetails;
   firstName;
+  userId: string;
+  id;
 
   ngOnInit() {
+
     this.service.getUserProfile().subscribe(
       response => {
         this.userDetails = response;
         this.firstName = this.userDetails.firstName;
+        this.id = this.userDetails.id;
       },
       err => {
         console.log(err);

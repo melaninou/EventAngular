@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -85,7 +84,7 @@ import { FindFriendsComponent } from './find-friends/find-friends.component';
       { path: 'dash-board', component: DashBoardComponent/*, canActivate: [AuthGuard] */},
       { path: 'post-details/:id', component: PostDetailsComponent, canActivate: [AuthGuard] },
       { path: 'forbidden', component: ForbiddenComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile/:id', component: ProfileComponent },
       { path: 'find-friends', component: FindFriendsComponent }
     ]),
     BrowserAnimationsModule,
