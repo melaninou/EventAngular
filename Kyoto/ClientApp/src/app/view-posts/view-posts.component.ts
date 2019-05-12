@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { GroupService } from '../group.service';
 import { Post } from '../models/Post'
 import { Group } from '../models/Group'
+import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
 
 export interface SingleGroup {
   id: string;
@@ -20,10 +20,15 @@ export interface SingleGroup {
 
 export class ViewPostsComponent implements OnInit{
 
+  interestFormGroup: FormGroup;
+  interests: any;
+  selected: any;
+
   baseUrl: string;
   constructor(private groupService: GroupService,
     private httpClient: HttpClient,
-    @Inject('BASE_URL') baseUrl: string) {
+    @Inject('BASE_URL') baseUrl: string,
+    private formBuilder: FormBuilder, ) {
     this.baseUrl = baseUrl;
   }
 
@@ -66,6 +71,14 @@ export class ViewPostsComponent implements OnInit{
     //this.showGroup("groupslist");
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
+
+    this.interestFormGroup = this.formBuilder.group({
+      interests: this.formBuilder.array([])
+    });
+
+    setTimeout((res) => {
+      this.interests = [];
+    });
   }
   onAddToDashboard(announcement: Post) {
     if (!announcement.onDashboard) {
@@ -119,10 +132,37 @@ export class ViewPostsComponent implements OnInit{
     }, error => console.error(error));
   }
 
-  //onSubmit(post) {
-  //  console.log(post);
+  onSubmit() {
+   const checkedGroups = <FormArray>this.interestFormGroup.get('interests') as FormArray;
+    var querystring = "";
+    var firstQuery = true;
 
-    
+    checkedGroups.value.forEach(function (value) {
+      if (!firstQuery) {
+         querystring = querystring + "&groupId=" + value.id;
+      } else {
+        querystring = querystring + "?groupId=" + value.id;
+        firstQuery = false;
+      }
+    });
 
-  //}
+    this.apiPosts = null;
+    this.httpClient.get(this.baseUrl + 'api/posts' + querystring).subscribe(data => { this.apiPosts = data as Post[]; });
+
+   
+  }
+
+
+  onChange(event) {
+    const checkedGroups = <FormArray>this.interestFormGroup.get('interests') as FormArray;
+
+    if (event.checked) {
+      checkedGroups.push(new FormControl(event.source.value));
+    } else {
+      const i = checkedGroups.controls.findIndex(x => x.value === event.source.value);
+      checkedGroups.removeAt(i);
+    }
+  }
+
+  
 }

@@ -60,12 +60,10 @@ export class AddGroupComponent implements OnInit {
       'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       'parentId': [null, Validators.required],
       'admin': 'Administrator',
-    //  'image': [null, ImageValidator.validUsername],
       image: new FormControl('', Validators.compose([
         Validators.required,
         ImageValidator.validFile
       ]))
-    //  'imageInput': [null, ImageValidator.imageExtentsionValidator(this.uploadedFileName)]
 
     });
   }

@@ -1,0 +1,52 @@
+.hover-card:hover > .extra-margin:hover {
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 2px 2px 0 rgba(0,0,0,.12);
+  transform: translate3d(0,0,0);
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.extra-margin {
+  margin: 10px;
+  padding: 10px;
+}
+
+.hover-card:hover > .extra-margin:hover {
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 2px 2px 0 rgba(0,0,0,.12);
+  transform: translate3d(0,0,0);
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.user-header {
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  background-color: hsla(0, 0%, 96%, 0.75);
+  border-radius: inherit;
+  /*font-weight: bold;*/
+  /*align-items: center;*/
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+.user-data-table {
+  height: 100%;
+  width: 100%;
+  padding: 0 10px 10px 10px;
+}
+
+.user-data-row {
+  white-space: normal;
+  display: flex;
+  align-items: center;
+}
+
+.user-data-col {
+  margin-left: 6px;
+  display: inline-block;
+}
+
+.user-data-icon {
+  margin: 0 6px 0 6px;
+  display: inline-block;
+}
