@@ -19,6 +19,7 @@ export class TopNavbarContentComponent implements OnInit {
       response => {
         this.userDetails = response;
         this.firstName = this.userDetails.firstName;
+        console.log("The firstname is ", this.firstName);
       },
       err => {
         console.log(err);

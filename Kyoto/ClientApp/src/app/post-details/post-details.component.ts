@@ -6,6 +6,7 @@ import { Group } from '../models/Group'
 import { ResponseStatus } from '../models/ResponseStatus';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { User } from '../models/User';
 //import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -35,6 +36,7 @@ export class PostDetailsComponent implements OnInit {
   dateFormat: string = 'dd/MM/yyyy HH:mm';
   formattedDate: string;
   postUpdated: boolean = false;
+  postCreator: User;
 
   ngOnInit() {
 
@@ -42,6 +44,8 @@ export class PostDetailsComponent implements OnInit {
     console.log("The current post ID is " + this.postId);
     this.httpClient.get(this.baseUrl + 'api/posts/' + this.postId).subscribe(data => { this.currentPost = data as Post });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
+    //this.httpClient.get(this.baseUrl + 'api/posts/' + this.postId + '/creator').subscribe(data => { this.postCreator = data as User });
+    //console.log("The creator from get: ", this.postCreator);
     this.createForm();
   }
   durationInSeconds = 5;

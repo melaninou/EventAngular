@@ -31,6 +31,11 @@
             <mat-icon class="post-data-icon" color="accent">group</mat-icon>
             <div class="post-data-col">{{g.name}}</div>
           </div>
+          <div class="separator-line"></div>
+          <div class="post-data-row">
+            <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+            <div class="post-data-col">{{currentPost.creator}}</div>
+          </div>
         </div>
       </mat-card-content>
       <mat-card-content *ngIf="currentPost && currentPost.groupId === g.id && currentPost.type === 'Announcement'">
@@ -44,6 +49,11 @@
           <div class="post-data-row">
             <mat-icon class="post-data-icon" color="accent">group</mat-icon>
             <div class="post-data-col">{{g.name}}</div>
+          </div>
+          <div class="separator-line"></div>
+          <div class="post-data-row">
+            <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+            <div class="post-data-col">{{currentPost.creator}}</div>
           </div>
           <div *ngIf="currentPost.onDashboard === false">
             <div class="separator-line"></div>

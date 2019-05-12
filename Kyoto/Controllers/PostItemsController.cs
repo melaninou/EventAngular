@@ -60,6 +60,23 @@ namespace Kyoto.Controllers
             }
         }
 
+        //[HttpGet("{id}/creator")]
+        //public async Task<IActionResult> GetPostCreator(int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var postItem = await _context.PostItem.FindAsync(id);
+        //    if (postItem == null)
+        //    {
+        //        return NotFound("Posti with input Id not found!");
+        //    }
+
+        //    return Ok(postItem.Creator);
+        //}
+
         // GET: api/posts/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPostItem([FromRoute] int id)

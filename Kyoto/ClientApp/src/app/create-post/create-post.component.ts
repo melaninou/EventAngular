@@ -6,6 +6,7 @@ import { Post } from '../models/Post'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ResponseStatus } from '../models/ResponseStatus';
+import { UserService } from '../shared/user.service';
 
 
 @Component({
@@ -35,9 +36,10 @@ export class CreatePostComponent implements OnInit {
   postTypes: string[] = ["Announcement", "Event"];
   event: string = "Event";
   announcement: string = "Announcement";
+  userDetails;
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router,
+    private router: Router, private service: UserService,
     private httpClient: HttpClient,
     @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
@@ -46,7 +48,14 @@ export class CreatePostComponent implements OnInit {
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
-    //this.setChangeValidate()
+    this.service.getUserProfile().subscribe(
+      response => {
+        this.userDetails = response;
+      },
+      err => {
+        console.log(err);
+      },
+    )
 
     this.firstFormGroup = this.formBuilder.group({
       'heading': ['', Validators.required],
@@ -117,11 +126,14 @@ export class CreatePostComponent implements OnInit {
         "type": this.firstFormGroup.value.type,
         "responseStatus": ResponseStatus.None,
         "hasResponse": false,
-        "onDashboard": true
+        "onDashboard": true,
+        "creator": this.userDetails
 
       }).subscribe(
       (val) => {
         console.log("POST call successful value returned in body", val);
+        console.log("!!!!!Creator: ", this.userDetails);
+        console.log("!!!!The object: ", val);
       },
       response => {
         console.log("POST call in error", response);

@@ -30,12 +30,23 @@ export class YourPostsComponent implements OnInit {
   apiGroups: Group[] = [];
   event: string = "Event";
   announcement: string = "Announcement";
+  creator;
+  currentPost;
 
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
-
   }
+  getCreator(post: any): boolean {
+    if (post != null) {
+      this.currentPost = post;
+      //console.log(post.creator);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   onRemove(announcement: Post) {
     console.log("Clicked remove button");
     announcement.onDashboard = false;
@@ -119,8 +130,7 @@ export class YourPostsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.Maybe,
-        "hasResponse": true,
-        "onDashboard": true
+        "hasResponse": true
       }).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);

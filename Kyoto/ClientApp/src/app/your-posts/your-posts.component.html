@@ -39,6 +39,10 @@
                       <div class="post-data-col">{{x.location}}</div>
                     </div>
                     <div class="post-data-row">
+                      <mat-icon class="post-data-icon" *ngIf="getCreator(x)" color="accent">person</mat-icon>
+                      <div class="post-data-col">Created by: {{creator}}</div>
+                    </div>
+                    <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">group</mat-icon>
                       <div class="post-data-col">{{g.name}}</div>
                     </div>

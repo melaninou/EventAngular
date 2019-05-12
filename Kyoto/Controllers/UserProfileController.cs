@@ -29,8 +29,10 @@ namespace Kyoto.Controllers
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
+            var count = _userManager.Users.Count();
             return new User
             {
+                Id = count + 1,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
