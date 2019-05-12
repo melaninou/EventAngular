@@ -32,8 +32,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userId = this.route.snapshot.params['id'];
-    this.httpClient.get(this.baseUrl + 'api/UserProfile/' + this.userId).subscribe(data => { this.currentUser = data as User });
+    //this.userId = this.route.snapshot.params['id'];
+    //this.httpClient.get(this.baseUrl + 'api/UserProfile/' + this.userId).subscribe(data => { this.currentUser = data as User });
+    this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
+    this.currentUser = data as User; console.log("from UserProfile currentUser, ", this.currentUser);
+    });
 
     //this.createFormForEdit();
 

@@ -26,6 +26,6 @@ namespace Kyoto.Models
         public string CreatorFirstName { get; set; }
         public string CreatorLastName { get; set; }
         public string CreatorEmail { get; set; }
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
     }
 }

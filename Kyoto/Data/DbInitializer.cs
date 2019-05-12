@@ -22,7 +22,7 @@ namespace Kyoto.Data
             }
             var creatorUser = new User
             {
-                Id = 1,
+                Id = "1",
                 UserName = "anujanu",
                 FirstName = "Anu",
                 LastName = "Janu",

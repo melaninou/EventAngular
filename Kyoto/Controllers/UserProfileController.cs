@@ -34,9 +34,11 @@ namespace Kyoto.Controllers
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
             var count = _userManager.Users.Count();
+            var idCount = count + 1;
+
             return new User
             {
-                Id = count + 1,
+                Id = idCount.ToString(),
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
@@ -44,43 +46,43 @@ namespace Kyoto.Controllers
             };
         }
 
-        [HttpGet("{id}")]
-        //[Authorize]
-        //GET: api/UserProfile/5
-        public async Task<User> GetUserProfile([FromRoute] string id)
-        {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+        //[HttpGet("{id}")]
+        ////[Authorize]
+        ////GET: api/UserProfile/5
+        //public async Task<User> GetUserProfile([FromRoute] string id)
+        //{
+        //    //if (!ModelState.IsValid)
+        //    //{
+        //    //    return BadRequest(ModelState);
+        //    //}
 
-            //var user = await _userManager.FindByIdAsync(id);
+        //    //var user = await _userManager.FindByIdAsync(id);
 
-            //if (user == null)
-            //{
-            //    return NotFound();
-            //}
+        //    //if (user == null)
+        //    //{
+        //    //    return NotFound();
+        //    //}
 
-            //return Ok(user);
+        //    //return Ok(user);
 
-            if (ModelState.IsValid)
-            {
-                //string userId = User.Claims.First(c => c.Type == "UserID").Value;
-                var user = await _userManager.FindByIdAsync(id);
-                return new User
-                {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    UserName = user.UserName
-                };
-            }
-            else
-            {
-                throw new Exception("Unable to GET UserProfile because the Model State is invalid.");
-            }
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        //string userId = User.Claims.First(c => c.Type == "UserID").Value;
+        //        var user = await _userManager.FindByIdAsync(id);
+        //        return new User
+        //        {
+        //            Id = user.Id,
+        //            FirstName = user.FirstName,
+        //            LastName = user.LastName,
+        //            Email = user.Email,
+        //            UserName = user.UserName
+        //        };
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("Unable to GET UserProfile because the Model State is invalid.");
+        //    }
+        //}
 
 
         [Authorize(Roles = "Administrator")]

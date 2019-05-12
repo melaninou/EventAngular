@@ -36,6 +36,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TopNavbarContentComponent } from './top-navbar-content/top-navbar-content.component';
 import { FindFriendsComponent } from './find-friends/find-friends.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { FindFriendsComponent } from './find-friends/find-friends.component';
     ForbiddenComponent,
     ProfileComponent,
     TopNavbarContentComponent,
-    FindFriendsComponent
+    FindFriendsComponent,
+    FriendProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -84,8 +86,9 @@ import { FindFriendsComponent } from './find-friends/find-friends.component';
       { path: 'dash-board', component: DashBoardComponent/*, canActivate: [AuthGuard] */},
       { path: 'post-details/:id', component: PostDetailsComponent, canActivate: [AuthGuard] },
       { path: 'forbidden', component: ForbiddenComponent },
-      { path: 'profile/:id', component: ProfileComponent },
-      { path: 'find-friends', component: FindFriendsComponent }
+      { path: 'profile', component: ProfileComponent },
+      { path: 'find-friends', component: FindFriendsComponent },
+      { path: 'profile/:userName', component: FriendProfileComponent }
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,
@@ -102,4 +105,3 @@ import { FindFriendsComponent } from './find-friends/find-friends.component';
 })
 export class AppModule {
 }
-//platformBrowserDynamic().bootstrapModule(AppModule);//sama asi on main.ts-is

@@ -2,7 +2,7 @@
   <div *ngFor="let x of apiUsers" class="hover-card">
     <mat-card class="extra-margin">
       <mat-card-header class="user-header">
-        <div class="pointer user-header" routerLink="">{{x.firstName}} {{x.lastName}}</div>
+        <div class="pointer user-header" (click)="onGoToFriendProfile(x.userName)">{{x.firstName}} {{x.lastName}}</div>
         <div mat-card-avatar><mat-icon color="accent">face</mat-icon></div>
       </mat-card-header>
 

@@ -41,8 +41,14 @@ namespace Kyoto.Controllers
             }
             return userList;
         }
+        [HttpGet("{username}")]
+        public Task<ApplicationUser> GetUserByUsername(string username)
+        {
+            var user =_userManager.FindByNameAsync(username);
+            return user;
+        }
 
-       [HttpPost("Register")] //POST: api/ApplicationUser/Register
+        [HttpPost("Register")] //POST: api/ApplicationUser/Register
         public async Task<IActionResult> PostApplicationUser(ApplicationUserModel model)
         {
             model.Role = "User";
