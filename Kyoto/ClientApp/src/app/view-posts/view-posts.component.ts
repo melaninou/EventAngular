@@ -97,7 +97,12 @@ export class ViewPostsComponent implements OnInit{
         "type": announcement.type,
         "responseStatus": announcement.responseStatus,
         "hasResponse": true,
-        "onDashboard": announcement.onDashboard
+        "onDashboard": announcement.onDashboard,
+        "creatorUsername": announcement.creatorUsername,
+        "creatorId": announcement.creatorId,
+        "creatorFirstName": announcement.creatorFirstName,
+        "creatorLastName": announcement.creatorLastName,
+        "creatorEmail": announcement.creatorEmail
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);

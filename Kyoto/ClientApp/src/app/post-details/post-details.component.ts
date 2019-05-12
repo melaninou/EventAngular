@@ -44,16 +44,9 @@ export class PostDetailsComponent implements OnInit {
     console.log("The current post ID is " + this.postId);
     this.httpClient.get(this.baseUrl + 'api/posts/' + this.postId).subscribe(data => { this.currentPost = data as Post });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
-    //this.httpClient.get(this.baseUrl + 'api/posts/' + this.postId + '/creator').subscribe(data => { this.postCreator = data as User });
-    //console.log("The creator from get: ", this.postCreator);
     this.createForm();
   }
-  durationInSeconds = 5;
-  //openSnackBar() {
-  //  this.snackBar.open('Message archived', 'Undo', {
-  //    duration: 3000
-  //  });
-  //}
+
   getDateFormat() {
     var dateAsString = this.currentPost.date.toString();
     var momentDate = moment(dateAsString).format('DD.MM.YYYY, HH:mm');
@@ -86,7 +79,12 @@ export class PostDetailsComponent implements OnInit {
         "type": announcement.type,
         "responseStatus": announcement.responseStatus,
         "hasResponse": true,
-        "onDashboard": announcement.onDashboard
+        "onDashboard": announcement.onDashboard,
+        "creatorUsername": announcement.creatorUsername,
+        "creatorId": announcement.creatorId,
+        "creatorFirstName": announcement.creatorFirstName,
+        "creatorLastName": announcement.creatorLastName,
+        "creatorEmail": announcement.creatorEmail
   }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -127,7 +125,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": this.currentPost.type,
         "responseStatus": this.currentPost.responseStatus,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": this.currentPost.creatorUsername,
+        "creatorId": this.currentPost.creatorId,
+        "creatorFirstName": this.currentPost.creatorFirstName,
+        "creatorLastName": this.currentPost.creatorLastName,
+        "creatorEmail": this.currentPost.creatorEmail
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -156,7 +159,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.Going,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }, this.httpOptions).subscribe(
         (val) => {
           console.log("PUT call successful value returned in body", val);
@@ -182,7 +190,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.Maybe,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }).subscribe(
         (val) => {
           console.log("PUT call successful value returned in body", val);
@@ -208,7 +221,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.CantGo,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }, this.httpOptions).subscribe(
         (val) => {
           console.log("PUT call successful value returned in body", val);

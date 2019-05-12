@@ -11,5 +11,11 @@ export interface Post {
   responseStatus: ResponseStatus;
   hasResponse: boolean;
   onDashboard: boolean;
-  creator: User;
+  //creator: User;
+  /*-------------------------Creator---------------------*/
+  creatorUsername: string;
+  creatorFirstName: string;
+  creatorLastName: string;
+  creatorEmail: string;
+  creatorId: string;
 }

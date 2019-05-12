@@ -51,6 +51,7 @@ export class CreatePostComponent implements OnInit {
     this.service.getUserProfile().subscribe(
       response => {
         this.userDetails = response;
+        console.log("the user details are: ", this.userDetails);
       },
       err => {
         console.log(err);
@@ -127,13 +128,15 @@ export class CreatePostComponent implements OnInit {
         "responseStatus": ResponseStatus.None,
         "hasResponse": false,
         "onDashboard": true,
-        "creator": this.userDetails
+        "creatorUsername": this.userDetails.userName,
+        "creatorId": this.userDetails.id,
+        "creatorFirstName": this.userDetails.firstName,
+        "creatorLastName": this.userDetails.lastName,
+        "creatorEmail": this.userDetails.email
 
       }).subscribe(
       (val) => {
         console.log("POST call successful value returned in body", val);
-        console.log("!!!!!Creator: ", this.userDetails);
-        console.log("!!!!The object: ", val);
       },
       response => {
         console.log("POST call in error", response);
