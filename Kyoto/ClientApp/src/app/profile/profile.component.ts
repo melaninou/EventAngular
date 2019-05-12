@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   userDetails;
   editEnabled: boolean = false;
   editForm: FormGroup;
-  postUpdated: boolean = false;
+  profileUpdated: boolean = false;
   baseUrl: string;
   currentUser: User;
   userId: string;
@@ -35,7 +35,8 @@ export class ProfileComponent implements OnInit {
     //this.userId = this.route.snapshot.params['id'];
     //this.httpClient.get(this.baseUrl + 'api/UserProfile/' + this.userId).subscribe(data => { this.currentUser = data as User });
     this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
-    this.currentUser = data as User; console.log("from UserProfile currentUser, ", this.currentUser);
+      this.currentUser = data as User;
+      console.log("from UserProfile currentUser, ", this.currentUser);
     });
 
     //this.createFormForEdit();
@@ -72,14 +73,14 @@ export class ProfileComponent implements OnInit {
     } else {
       this.editEnabled = true;
     }
-    this.postUpdated = false;
+    this.profileUpdated = false;
   }
 
   onEditProfileSubmit(profile: any) {
     console.log("The edit profile form value is:");
     console.log(profile);
     this.editEnabled = false;
-    this.postUpdated = false;
+    this.profileUpdated = false;
     var body = {
       "UserName": profile.userName,
       "FirstName": profile.firstName,
@@ -94,7 +95,7 @@ export class ProfileComponent implements OnInit {
       },
       () => {
         console.log("The Put observable is now completed");
-        this.postUpdated = true;
+        this.profileUpdated = true;
       });
   }
 }
