@@ -78,7 +78,7 @@ import { FriendProfileComponent } from './friend-profile/friend-profile.componen
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'add-group', component: AddGroupComponent, canActivate: [AuthGuard] },
-      { path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard] },
+      { path: 'create-post', component: CreatePostComponent/*, canActivate: [AuthGuard]*/ },
       { path: 'view-posts', component: ViewPostsComponent, canActivate: [AuthGuard] },
       { path: 'view-groups', component: ViewGroupsComponent, canActivate: [AuthGuard], data: { permittedRoles: ['User'] } },
       { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },

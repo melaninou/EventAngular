@@ -1,4 +1,8 @@
-<div class="container">
+<div style="display: flex;">
+  <img src="/Images/gradient sign-up.png" class="sign-up-img" style="height: 200px; width: 200px;" />
+</div>
+
+<div class="container sign-up-card">
   <div>
     <form [formGroup]="service.formModel" (ngSubmit)="onSubmit()">
       <mat-form-field class="form-element" required>
@@ -43,7 +47,7 @@
         </mat-form-field>
       </div>
       <div>
-        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!service.formModel.valid">Sign Up</button>
+        <button mat-raised-button color="primary" type="submit" class="sign-up-button" [disabled]="!service.formModel.valid">Sign Up</button>
       </div>
       <div>
         <label matLabel *ngIf="usernameTaken">This username is already taken! Try a new one.</label>

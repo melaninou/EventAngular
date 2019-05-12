@@ -1,4 +1,7 @@
-<img src="/Images/login image.png" class="mx-auto d-block" style="height: 200px; width: 200px;"/>
+<div style="display: flex;">
+  <img src="/Images/gradient icon.png" class="log-in-img" style="height: 200px; width: 200px;" />
+</div>
+
 <form #form="ngForm" (submit)="onSubmit(form)">
   <div class="form-group">
     <mat-form-field class="form-element">
@@ -15,7 +18,7 @@
     </mat-form-field>
   </div>
   <div>
-    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Login</button>
+    <button mat-raised-button color="primary" type="submit" class="login-button" [disabled]="form.invalid">Login</button>
     <mat-error *ngIf="errorBoolean">
       {{errorMessage}}
     </mat-error>

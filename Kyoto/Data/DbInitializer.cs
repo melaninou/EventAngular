@@ -10,7 +10,6 @@ namespace Kyoto.Data
 {
     public static class DbInitializer
     {
-
         public static void Initialize(KyotoContext kyotoContext, AuthenticationContext authContext)
         {
             kyotoContext.Database.EnsureCreated();
@@ -28,6 +27,14 @@ namespace Kyoto.Data
                 LastName = "Janu",
                 Email = "anujanu@test.ee"
             };
+            var randomUser = new User
+            {
+                Id = "2",
+                UserName = "annaallikas",
+                FirstName = "Anna",
+                LastName = "Allikas",
+                Email = "annaallikas@test.ee"
+            };
             // Response Status 
             var postItems = new PostItem[]
             {
@@ -41,11 +48,16 @@ namespace Kyoto.Data
                     CreatorEmail = creatorUser.Email,
                     CreatorFirstName = creatorUser.FirstName,
                     CreatorLastName = creatorUser.LastName,
-                    CreatorUsername = creatorUser.UserName
+                    CreatorUsername = creatorUser.UserName,
+                    //GoingResponders = new List<User>
+                    //{
+                    //    creatorUser,
+                    //    randomUser
+                    //}
                 },
                 new PostItem
                 {
-                    Date = DateTime.Today.AddHours(12), Location = "Vanalinn", GroupId = 3,
+                    Date = DateTime.Today.AddHours(13), Location = "Vanalinn", GroupId = 3,
                     Heading = "Bar brawl", Message = "Naudime seltskonda ja lõõgastume.", Type = "Event", ResponseStatus = ResponseStatus.Going, HasResponse = true,
                     OnDashboard = true,
                     CreatorId = creatorUser.Id,
@@ -57,7 +69,7 @@ namespace Kyoto.Data
                 },
                 new PostItem
                 {
-                    Date = DateTime.Today.AddHours(12), Location = "Aula", GroupId = 1,
+                    Date = DateTime.Today.AddHours(10), Location = "Aula", GroupId = 1,
                     Heading = "Business ideas to life", Message = "Annual business ideas competition with real investors as judges.",
                     Type = "Event", ResponseStatus = ResponseStatus.Going, HasResponse = true,
                     OnDashboard = true,
@@ -69,7 +81,7 @@ namespace Kyoto.Data
                 },
                 new PostItem
                 {
-                    Date = DateTime.Today.AddHours(12), Location = "IT maja", GroupId = 2,
+                    Date = DateTime.Today.AddHours(12.5), Location = "IT maja", GroupId = 2,
                     Heading = "Külalislektori Muhammed Thali loeng",
                     Message = "Külalislektor Muhammed Thali avab meile blockchaini maailma.", Type = "Event",
                     ResponseStatus = ResponseStatus.Maybe, HasResponse = true,
@@ -82,7 +94,7 @@ namespace Kyoto.Data
                 },
                 new PostItem
                 {
-                    Date = DateTime.Today.AddHours(12), Location = "Nõmme spordikesus", GroupId = 1,
+                    Date = DateTime.Today.AddHours(11), Location = "Nõmme spordikesus", GroupId = 1,
                     Heading = "Tervisejooks", Message = "Oleme tervislikud ja lähme jooksma!", Type = "Event",
                     ResponseStatus = ResponseStatus.None, HasResponse = false,
                     OnDashboard = true,
