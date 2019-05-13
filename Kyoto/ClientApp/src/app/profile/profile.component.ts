@@ -6,6 +6,7 @@ import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http'
 import { User } from '../models/User';
 import { Group } from '../models/Group'
 import { GroupService } from '../group.service';
+import { Post } from '../models/Post';
 
 
 
@@ -14,7 +15,6 @@ import { GroupService } from '../group.service';
 export interface SingleGroup {
   id: string;
   name: string;
-
 }
 
 @Component({
@@ -30,9 +30,13 @@ export class ProfileComponent implements OnInit {
   profileUpdated: boolean = false;
   baseUrl: string;
   currentUser: User;
-  userId: string;
   apiGroups: Group[];
+  apiPosts: Post[];
+  apiUsers: User[];
   groups: SingleGroup[];
+  event: string = "Event";
+  announcement: string = "Announcement";
+  userId;
 
   constructor(private groupService: GroupService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: UserService, private httpClient: HttpClient,
     @Inject('BASE_URL') baseUrl: string) {
@@ -47,7 +51,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
-    //this.userId = this.route.snapshot.params['id'];
+    this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
+
+    //this.httpClient.get(this.baseUrl + 'api/ApplicationUser').subscribe(data => { this.apiUsers = data as User[]; });
     //this.httpClient.get(this.baseUrl + 'api/UserProfile/' + this.userId).subscribe(data => { this.currentUser = data as User });
     this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
       this.currentUser = data as User;
@@ -65,6 +71,8 @@ export class ProfileComponent implements OnInit {
     //    console.log(err);
     //  },
     //)
+    this.getCreatedEventsCount();
+    this.getCreatedAnnouncementsCount();
     this.createFormForEdit();
   }
 
@@ -120,5 +128,17 @@ export class ProfileComponent implements OnInit {
         console.log("The Put observable is now completed");
         this.profileUpdated = true;
       });
+  }
+
+  getCreatedEventsCount(apiPosts: Post[] = []): number {
+    this.userId = this.currentUser.id;
+    console.log("current user id ", this.userId);
+    return apiPosts.filter(x => x.type === 'Event' && x.creatorId === this.userId).length;
+  }
+
+  getCreatedAnnouncementsCount(apiPosts: Post[] = []): number {
+    this.userId = this.currentUser.id;
+    console.log("current user id ", this.userId);
+    return apiPosts.filter(x => x.type === 'Announcement' && x.creatorId === this.userId).length;
   }
 }
