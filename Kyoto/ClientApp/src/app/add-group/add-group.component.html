@@ -33,7 +33,8 @@
 
           <div class="row" style="margin-bottom:15px;">
             <div class="col-md-3">
-              <input type="file" #file placeholder="Choose file" formControlName="image" (change)="getFileName()">  
+              <input name="file" id="file" class="inputfile" type="file" #file placeholder="Choose file" formControlName="image" (change)="getFileName()">
+              <label for="file">Choose a file</label>
             </div>
           </div>
           <mat-error *ngIf="!formGroup.controls['image'].valid && formGroup.controls['image'].touched">
