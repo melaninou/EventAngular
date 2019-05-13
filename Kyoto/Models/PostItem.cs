@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Kyoto.Models.User_Registration;
 
 namespace Kyoto.Models
 {
@@ -20,5 +22,15 @@ namespace Kyoto.Models
         public ResponseStatus ResponseStatus { get; set; }
         public bool HasResponse { get; set; }
         public bool OnDashboard { get; set; }
+        //---------------------Creator----------------------------
+        public string CreatorUsername { get; set; }
+        public string CreatorFirstName { get; set; }
+        public string CreatorLastName { get; set; }
+        public string CreatorEmail { get; set; }
+        public string CreatorId { get; set; }
+        //-------------------------Responders----------------------------//
+        //public List<User> GoingResponders { get; set; }
+        //public List<User> MaybeResponders { get; set; }
+        //public List<User> CantGoResponders { get; set; }
     }
 }

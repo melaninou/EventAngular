@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-profile',
@@ -14,11 +15,12 @@ export class ProfileComponent implements OnInit {
   userDetails;
   editEnabled: boolean = false;
   editForm: FormGroup;
-  formattedDate: string;
-  postUpdated: boolean = false;
+  profileUpdated: boolean = false;
   baseUrl: string;
+  currentUser: User;
+  userId: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: UserService, private httpClient: HttpClient,
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: UserService, private httpClient: HttpClient,
     @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
@@ -30,14 +32,24 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getUserProfile().subscribe(
-      response => {
-        this.userDetails = response;
-      },
-      err => {
-        console.log(err);
-      },
-    )
+    //this.userId = this.route.snapshot.params['id'];
+    //this.httpClient.get(this.baseUrl + 'api/UserProfile/' + this.userId).subscribe(data => { this.currentUser = data as User });
+    this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
+      this.currentUser = data as User;
+      console.log("from UserProfile currentUser, ", this.currentUser);
+    });
+
+    //this.createFormForEdit();
+
+    //this.service.getUserProfile().subscribe(
+    //  response => {
+    //    this.userDetails = response;
+    //    //this.id = this.userDetails.id;
+    //  },
+    //  err => {
+    //    console.log(err);
+    //  },
+    //)
     this.createFormForEdit();
   }
 
@@ -61,21 +73,20 @@ export class ProfileComponent implements OnInit {
     } else {
       this.editEnabled = true;
     }
-    this.postUpdated = false;
+    this.profileUpdated = false;
   }
 
   onEditProfileSubmit(profile: any) {
     console.log("The edit profile form value is:");
     console.log(profile);
     this.editEnabled = false;
-    this.postUpdated = false;
+    this.profileUpdated = false;
     var body = {
-      "UserName": profile.UserName,
-      "FirstName": profile.FirstName,
-      "LastName": profile.LastName,
-      "Email": profile.Email
+      "UserName": profile.userName,
+      "FirstName": profile.firstName,
+      "LastName": profile.lastName,
+      "Email": profile.email
     }
-    console.log(body);
     this.service.editProfile(body).subscribe((val) => {
       console.log("PUT call successful value returned in body", val);
     },
@@ -84,7 +95,7 @@ export class ProfileComponent implements OnInit {
       },
       () => {
         console.log("The Put observable is now completed");
-        this.postUpdated = true;
+        this.profileUpdated = true;
       });
   }
 }

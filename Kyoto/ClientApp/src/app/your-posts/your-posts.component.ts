@@ -30,12 +30,12 @@ export class YourPostsComponent implements OnInit {
   apiGroups: Group[] = [];
   event: string = "Event";
   announcement: string = "Announcement";
-
+ 
   ngOnInit() {
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
-
   }
+
   onRemove(announcement: Post) {
     console.log("Clicked remove button");
     announcement.onDashboard = false;
@@ -51,7 +51,12 @@ export class YourPostsComponent implements OnInit {
         "type": announcement.type,
         "responseStatus": announcement.responseStatus,
         "hasResponse": true,
-        "onDashboard": false
+        "onDashboard": false,
+        "creatorUsername": announcement.creatorUsername,
+        "creatorId": announcement.creatorId,
+        "creatorFirstName": announcement.creatorFirstName,
+        "creatorLastName": announcement.creatorLastName,
+        "creatorEmail": announcement.creatorEmail
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -92,7 +97,12 @@ export class YourPostsComponent implements OnInit {
         "type": post.type,
         "responseStatus": ResponseStatus.Going,
         "hasResponse": true,
-        "onDashboard": true
+        "onDashboard": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -120,7 +130,11 @@ export class YourPostsComponent implements OnInit {
         "type": post.type,
         "responseStatus": ResponseStatus.Maybe,
         "hasResponse": true,
-        "onDashboard": true
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -148,7 +162,12 @@ export class YourPostsComponent implements OnInit {
         "type": post.type,
         "responseStatus": ResponseStatus.CantGo,
         "hasResponse": true,
-        "onDashboard": true
+        "onDashboard": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);

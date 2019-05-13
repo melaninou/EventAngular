@@ -6,6 +6,7 @@ import { Group } from '../models/Group'
 import { ResponseStatus } from '../models/ResponseStatus';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { User } from '../models/User';
 //import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -35,6 +36,7 @@ export class PostDetailsComponent implements OnInit {
   dateFormat: string = 'dd/MM/yyyy HH:mm';
   formattedDate: string;
   postUpdated: boolean = false;
+  postCreator: User;
 
   ngOnInit() {
 
@@ -44,12 +46,7 @@ export class PostDetailsComponent implements OnInit {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.createForm();
   }
-  durationInSeconds = 5;
-  //openSnackBar() {
-  //  this.snackBar.open('Message archived', 'Undo', {
-  //    duration: 3000
-  //  });
-  //}
+
   getDateFormat() {
     var dateAsString = this.currentPost.date.toString();
     var momentDate = moment(dateAsString).format('DD.MM.YYYY, HH:mm');
@@ -82,7 +79,12 @@ export class PostDetailsComponent implements OnInit {
         "type": announcement.type,
         "responseStatus": announcement.responseStatus,
         "hasResponse": true,
-        "onDashboard": announcement.onDashboard
+        "onDashboard": announcement.onDashboard,
+        "creatorUsername": announcement.creatorUsername,
+        "creatorId": announcement.creatorId,
+        "creatorFirstName": announcement.creatorFirstName,
+        "creatorLastName": announcement.creatorLastName,
+        "creatorEmail": announcement.creatorEmail
   }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -123,7 +125,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": this.currentPost.type,
         "responseStatus": this.currentPost.responseStatus,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": this.currentPost.creatorUsername,
+        "creatorId": this.currentPost.creatorId,
+        "creatorFirstName": this.currentPost.creatorFirstName,
+        "creatorLastName": this.currentPost.creatorLastName,
+        "creatorEmail": this.currentPost.creatorEmail
       }, this.httpOptions).subscribe(
       (val) => {
         console.log("PUT call successful value returned in body", val);
@@ -152,7 +159,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.Going,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }, this.httpOptions).subscribe(
         (val) => {
           console.log("PUT call successful value returned in body", val);
@@ -178,7 +190,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.Maybe,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }).subscribe(
         (val) => {
           console.log("PUT call successful value returned in body", val);
@@ -204,7 +221,12 @@ export class PostDetailsComponent implements OnInit {
         "message": post.message,
         "type": post.type,
         "responseStatus": ResponseStatus.CantGo,
-        "hasResponse": true
+        "hasResponse": true,
+        "creatorUsername": post.creatorUsername,
+        "creatorId": post.creatorId,
+        "creatorFirstName": post.creatorFirstName,
+        "creatorLastName": post.creatorLastName,
+        "creatorEmail": post.creatorEmail
       }, this.httpOptions).subscribe(
         (val) => {
           console.log("PUT call successful value returned in body", val);

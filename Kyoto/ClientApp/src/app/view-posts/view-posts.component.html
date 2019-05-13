@@ -16,26 +16,30 @@
     <br />
 
 
-    <form class="filter-box-form">
-      <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title class="post-header">
-              Choose groups
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <table>
-            <tr *ngFor="let x of apiGroups">
-              <td><mat-checkbox class="post-data-icon">{{x.name}}</mat-checkbox></td>
-            </tr>
-          </table>
-          <button mat-button>Filter</button>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </form>
+    <div id="intrests">
+
+      <form class="filter-box-form" [formGroup]="interestFormGroup" >
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="post-header">
+                Choose groups
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <table>
+              <tr *ngFor="let x of apiGroups">
+                <td><mat-checkbox class="post-data-icon"  (change)="onChange($event)" [value]="x">{{x.name}}</mat-checkbox></td>
+              </tr>
+            </table>
+            <button mat-button type="submit" (click)="onSubmit($event)">Filter</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </form>
+      </div>
+
+    </div>
   </div>
-</div>
 
 <br />
 <br />
@@ -80,6 +84,10 @@
                     <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
                       <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+                      <div class="post-data-col">Created by: {{x.creatorFirstName}} {{x.creatorLastName}}</div>
                     </div>
                     <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">group</mat-icon>
@@ -141,6 +149,10 @@
                       <div class="post-data-col">{{x.location}}</div>
                     </div>
                     <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+                      <div class="post-data-col">Created by: {{x.creatorFirstName}} {{x.creatorLastName}}</div>
+                    </div>
+                    <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">group</mat-icon>
                       <div class="post-data-col">{{g.name}}</div>
                     </div>
@@ -197,6 +209,10 @@
                     <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
                       <div class="post-data-col">{{x.location}}</div>
+                    </div>
+                    <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+                      <div class="post-data-col">Created by: {{x.creatorFirstName}} {{x.creatorLastName}}</div>
                     </div>
                     <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">group</mat-icon>
@@ -257,6 +273,10 @@
                       <div class="post-data-col">{{x.location}}</div>
                     </div>
                     <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+                      <div class="post-data-col">Created by: {{x.creatorFirstName}} {{x.creatorLastName}}</div>
+                    </div>
+                    <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">group</mat-icon>
                       <div class="post-data-col">{{g.name}}</div>
                     </div>
@@ -314,6 +334,10 @@
                       <div class="post-data-col">{{x.location}}</div>
                     </div>
                     <div class="post-data-row">
+                      <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+                      <div class="post-data-col">Created by: {{x.creatorFirstName}} {{x.creatorLastName}}</div>
+                    </div>
+                    <div class="post-data-row">
                       <mat-icon class="post-data-icon" color="accent">group</mat-icon>
                       <div class="post-data-col">{{g.name}}</div>
                     </div>
@@ -367,6 +391,10 @@
                   <div class="post-data-row">
                     <mat-icon class="post-data-icon" color="accent">location_on</mat-icon>
                     <div class="post-data-col">{{x.location}}</div>
+                  </div>
+                  <div class="post-data-row">
+                    <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+                    <div class="post-data-col">Created by: {{x.creatorFirstName}} {{x.creatorLastName}}</div>
                   </div>
                   <div class="post-data-row">
                     <mat-icon class="post-data-icon" color="accent">group</mat-icon>
@@ -429,6 +457,10 @@
                   <div class="post-data-row">
                     <mat-icon class="post-data-icon" color="accent">group</mat-icon>
                     <div class="post-data-col">{{g.name}}</div>
+                  </div>
+                  <div class="post-data-row">
+                    <mat-icon class="post-data-icon" color="accent">person</mat-icon>
+                    <div class="post-data-col">Created by: {{x.creatorFirstName}} {{x.creatorLastName}}</div>
                   </div>
                 </div>
               </div>

@@ -159,8 +159,8 @@
 .add-dashboard-button {
   
   float: right;
-  right: 15%;
-  bottom: calc(50% - 24px);
+  right: 17%;
+  top: 22px;
   display: inline-block; 
   align-content: center;
   align-self: center;

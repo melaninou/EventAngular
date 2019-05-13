@@ -1,19 +1,12 @@
-<!--<div class="container">
-  <div class="col-md-8 offset-md-2">
-    <router-outlet></router-outlet>
-  </div>
-</div>-->
-<div class="wrapper">
-  <div class="wrapped-div">
-    <!--<div class="tab-header">
-      <a href="#" class="butn">Sign in</a>
-      <button class="myButton" routerLink='/user/login' routerLinkActive='active'>Sign In</button>
-      <h2 routerLink='/user/registration' routerLinkActive='active'>Sign Up</h2>
-    </div>-->
-    <div class="row">
-      <div class="col-md-10 offset-md-1">
-        <router-outlet></router-outlet>
+<mat-card class="connect-card">
+  <div class="wrapper">
+    <div class="wrapped-div">
+      <div class="tab-header connect-card-header">
+        <h2 class="connect-tab" routerLink='/user/login' routerLinkActive='active'>Sign In</h2>
+        <h2 class="connect-tab" routerLink='/user/registration' routerLinkActive='active'>Sign Up</h2>
       </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
-</div>
+</mat-card>
+

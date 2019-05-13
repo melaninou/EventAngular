@@ -1,0 +1,19 @@
+<mat-card>
+  <div *ngFor="let x of apiUsers" class="hover-card">
+    <mat-card class="extra-margin">
+      <mat-card-header class="user-header">
+        <div class="pointer user-header" (click)="onGoToFriendProfile(x.userName)">{{x.firstName}} {{x.lastName}}</div>
+        <div mat-card-avatar><mat-icon color="accent">face</mat-icon></div>
+      </mat-card-header>
+
+      <mat-card-content class="user-data-table">
+        <div class="user-data-row"><mat-icon class="user-data-icon" color="accent">account_circle</mat-icon>
+          <div class="post-data-col">Username: {{x.userName}}</div>
+        </div>
+        <div class="user-data-row"><mat-icon class="user-data-icon" color="accent">alternate_email</mat-icon>
+          <div class="post-data-col">Email: {{x.email}}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-card>

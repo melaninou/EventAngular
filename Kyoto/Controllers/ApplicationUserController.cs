@@ -30,12 +30,31 @@ namespace Kyoto.Controllers
             _appSettings = appSettings.Value;
         }
 
+        // GET: api/ApplicationUser
+        [HttpGet]
+        public IEnumerable<ApplicationUser> GetAllUsers()
+        {
+            List<ApplicationUser> userList = new List<ApplicationUser>();
+            foreach (var user in _userManager.Users)
+            {
+                userList.Add(user);
+            }
+            return userList;
+        }
+        [HttpGet("{username}")]
+        public Task<ApplicationUser> GetUserByUsername(string username)
+        {
+            var user =_userManager.FindByNameAsync(username);
+            return user;
+        }
+
         [HttpPost("Register")] //POST: api/ApplicationUser/Register
         public async Task<IActionResult> PostApplicationUser(ApplicationUserModel model)
         {
             model.Role = "User";
             var applicationUser = new ApplicationUser()
             {
+                Id = model.Id,
                 UserName = model.UserName,
                 Email = model.Email,
                 FirstName = model.FirstName,

@@ -1,11 +1,11 @@
-<mat-card class="your-profile-card card-style" *ngIf="userDetails">
+<mat-card class="your-profile-card card-style" *ngIf="currentUser">
   <mat-card *ngIf="!editEnabled">
     <ul class="list-group">
       <div class="profile-header">
         <mat-card-header>
           <mat-card-content mat-card-avatar class="example-header-image"><mat-icon>face</mat-icon></mat-card-content>
           <mat-card-title>
-            <li class="list-group-item">{{userDetails.firstName}} {{userDetails.lastName}}</li>
+            <li class="list-group-item">{{currentUser.firstName}} {{currentUser.lastName}}</li>
           </mat-card-title>
         </mat-card-header>
       </div>
@@ -13,12 +13,17 @@
         <div class="profile-data-table">
           <div class="profile-data-row">
             <mat-icon class="profile-data-icon" color="accent">account_circle</mat-icon>
-            <div class="profile-data-col">Username: {{userDetails.userName}}</div>
+            <div class="profile-data-col">Username: {{currentUser.userName}}</div>
           </div>
           <div class="separator-line"></div>
           <div class="profile-data-row">
             <mat-icon class="profile-data-icon" color="accent">alternate_email</mat-icon>
-            <div class="profile-data-col">Email: {{userDetails.email}}</div>
+            <div class="profile-data-col">Email: {{currentUser.email}}</div>
+          </div>
+          <div class="separator-line"></div>
+          <div class="profile-data-row">
+            <mat-icon class="profile-data-icon" color="accent">alternate_email</mat-icon>
+            <div class="profile-data-col">Id: {{currentUser.id}}</div>
           </div>
         </div>
       </mat-card-content>
@@ -26,7 +31,6 @@
     <button mat-mini-fab class="edit-button" color="accent" (click)="onEdit()">
       <mat-icon class="edit-icon">edit</mat-icon>
     </button>
-    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
   </mat-card>
 
   <!----------------------------------------EDIT PROFILE FORM----------------------------------------------------------->
@@ -37,16 +41,16 @@
       </button>
       <div class="edit-form-card">
         <mat-form-field class="form-element">
-          <input matInput placeholder="First name" formControlName="firstName" [(ngModel)]="userDetails.firstName">
+          <input matInput placeholder="First name" formControlName="firstName" [(ngModel)]="currentUser.firstName">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="Last name" formControlName="lastName" [(ngModel)]="userDetails.lastName">
+          <input matInput placeholder="Last name" formControlName="lastName" [(ngModel)]="currentUser.lastName">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="Username" formControlName="userName" [(ngModel)]="userDetails.userName">
+          <input matInput placeholder="Username" formControlName="userName" [(ngModel)]="currentUser.userName">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="Email" formControlName="email" [(ngModel)]="userDetails.email">
+          <input matInput placeholder="Email" formControlName="email" [(ngModel)]="currentUser.email">
         </mat-form-field>
         <div class="form-element">
           <button mat-raised-button color="primary" type="submit" class="button">Save</button>
@@ -54,5 +58,5 @@
       </div>
     </mat-card>
   </form>
-  <mat-label class="success" *ngIf="!editEnabled && postUpdated">The post has been updated successfully!</mat-label>
+  <mat-label class="success" *ngIf="!editEnabled && profileUpdated">Profile has been updated successfully!</mat-label>
 </mat-card>

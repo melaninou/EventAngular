@@ -1,0 +1,25 @@
+<div class="top-nav-bar-logout" *ngIf="isLoggedIn()">
+  <!--<button mat-raised-button color="accent" class="logout-button" (click)="onLogout()">Logout</button>-->
+  <div class="hello-user">
+    <mat-icon class="top-nav-icon">person_pin</mat-icon>
+    <p class="user-name">Hello {{firstName}}!</p>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="top-nav-icon">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="more-menu-button">
+        <mat-icon class="dropdown-icon">person_outline</mat-icon>
+        <span routerLink="/profile">Edit Profile</span>
+      </button>
+      <button mat-menu-item class="more-menu-button" (click)="onLogout()">
+        <mat-icon class="dropdown-icon">exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+<div class="top-nav-bar-logout" *ngIf="!isLoggedIn()">
+  <button mat-raised-button color="accent" class="logout-button" routerLink="/user/login">Login</button>
+</div>
+
+

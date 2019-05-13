@@ -164,14 +164,13 @@
   height: 40em !important;
 }
 .add-dashboard-button {
-  margin: 0 20px 0 10px;
-  float: right;
+  margin: 0 6px 0 6px;
   display: inline-block;
-  align-content: center;
-  align-self: center;
+  align-items: center;
   height: 24px;
   width: 24px;
 }
 .add-to-dashboard-icon {
   margin-bottom: 10px;
+  display: flex;
 }

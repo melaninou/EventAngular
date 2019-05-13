@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -35,6 +34,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TopNavbarContentComponent } from './top-navbar-content/top-navbar-content.component';
+import { FindFriendsComponent } from './find-friends/find-friends.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,10 @@ import { ProfileComponent } from './profile/profile.component';
     RegistrationComponent,
     LoginComponent,
     ForbiddenComponent,
-    ProfileComponent
+    ProfileComponent,
+    TopNavbarContentComponent,
+    FindFriendsComponent,
+    FriendProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -73,7 +78,7 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'add-group', component: AddGroupComponent, canActivate: [AuthGuard] },
-      { path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard] },
+      { path: 'create-post', component: CreatePostComponent/*, canActivate: [AuthGuard]*/ },
       { path: 'view-posts', component: ViewPostsComponent, canActivate: [AuthGuard] },
       { path: 'view-groups', component: ViewGroupsComponent, canActivate: [AuthGuard], data: { permittedRoles: ['User'] } },
       { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
@@ -81,7 +86,9 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'dash-board', component: DashBoardComponent/*, canActivate: [AuthGuard] */},
       { path: 'post-details/:id', component: PostDetailsComponent, canActivate: [AuthGuard] },
       { path: 'forbidden', component: ForbiddenComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent },
+      { path: 'find-friends', component: FindFriendsComponent },
+      { path: 'profile/:userName', component: FriendProfileComponent }
     ]),
     BrowserAnimationsModule,
     OwlDateTimeModule,
@@ -98,4 +105,3 @@ import { ProfileComponent } from './profile/profile.component';
 })
 export class AppModule {
 }
-//platformBrowserDynamic().bootstrapModule(AppModule);//sama asi on main.ts-is
