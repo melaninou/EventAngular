@@ -48,7 +48,7 @@ namespace Kyoto.Controllers
 
         // PUT: api/Members/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMember([FromRoute] int id, [FromBody] Member member)
+        public async Task<IActionResult> PutMember([FromRoute] string id, [FromBody] Member member)
         {
             if (!ModelState.IsValid)
             {
@@ -60,6 +60,8 @@ namespace Kyoto.Controllers
                 return BadRequest();
             }
 
+            var test = _context.Member.Count();
+
             _context.Entry(member).State = EntityState.Modified;
 
             try
@@ -68,14 +70,7 @@ namespace Kyoto.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MemberExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return NoContent();
@@ -119,7 +114,8 @@ namespace Kyoto.Controllers
 
         private bool MemberExists(int id)
         {
-            return _context.Member.Any(e => e.Id == id);
+           // return _context.Member.Any(e => e.Id == id);
+            return true;
         }
     }
 }

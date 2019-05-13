@@ -192,23 +192,11 @@ namespace Kyoto.Data
             {
                 new Member
                 {
-                    Name = "Mari Maasikas", Image = "maasikas.jpg"
+                    Id = "1", Name = "Anu", Image = "defaultProfile.jpg"
                 },
                 new Member
                 {
-                Name = "Mari Vaarikas", Image = "vaarikas.jpg"
-                },
-                new Member
-                {
-                    Name = "Mari Mustikas", Image = "mustikas.jpg"
-                },
-                new Member
-                {
-                    Name = "Mari Murakas", Image = "murakas.jpg"
-                },
-                new Member
-                {
-                    Name = "Mari Jõhvikas", Image = "johvikas.jpg"
+                    Id = "2", Name = "Anna", Image = "johvikas.jpg"
                 }
             };
             foreach (var member in members)

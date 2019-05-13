@@ -22,12 +22,17 @@ namespace Kyoto.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationSettings _appSettings;
+        private readonly KyotoContext _context;
 
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings)
+        public ApplicationUserController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IOptions<ApplicationSettings> appSettings,
+            KyotoContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
 
         // GET: api/ApplicationUser
@@ -70,6 +75,11 @@ namespace Kyoto.Controllers
                     UserName = model.UserName,
                     Password = model.Password
                 };
+                var user = new Member();
+                user.Id = applicationUser.Id;
+                user.Name = applicationUser.FirstName;
+                user.Image = "defaultProfile.jpg";
+                _context.Member.Add(user);
                 return Ok(result);
             }
             catch (Exception e)
