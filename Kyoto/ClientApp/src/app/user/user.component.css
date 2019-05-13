@@ -1,0 +1,44 @@
+bold italic
+Size
+Vertical Size:
+10px
+Horizontal Size:
+70px
+Border
+Border Radius:
+30px
+Border Size:
+2px
+Box Shadow
+Text Shadow
+Vertical Position:
+0px
+Horizontal Position:
+0px
+Blur Radius:
+.butn {
+  background: #FF4081;
+  background-image: -webkit-linear-gradient(top, #FF4081, #F50057);
+  background-image: -moz-linear-gradient(top, #FF4081, #F50057);
+  background-image: -ms-linear-gradient(top, #FF4081, #F50057);
+  background-image: -o-linear-gradient(top, #FF4081, #F50057);
+  background-image: linear-gradient(to bottom, #FF4081, #F50057);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.butn:hover {
+  background: #E91E63;
+  background-image: -webkit-linear-gradient(top, #E91E63, #880E4F);
+  background-image: -moz-linear-gradient(top, #E91E63, #880E4F);
+  background-image: -ms-linear-gradient(top, #E91E63, #880E4F);
+  background-image: -o-linear-gradient(top, #E91E63, #880E4F);
+  background-image: linear-gradient(to bottom, #E91E63, #880E4F);
+  text-decoration: none;
+}

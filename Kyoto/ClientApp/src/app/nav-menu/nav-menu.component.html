@@ -19,6 +19,11 @@
           </a>
         </li>
         <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/profile"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-user'></span> Profile
+          </a>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/add-group"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-plus-sign'></span> Create Group
           </a>

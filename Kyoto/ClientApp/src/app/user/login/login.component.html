@@ -1,23 +1,57 @@
-<img src="/Images/login image.png" class="mx-auto d-block" style="height: 200px; width: 200px;"/>
+<!--<div class="login-card">
+  <img src="/Images/login image.png" class="mx-auto d-block" style="height: 200px; width: 200px; margin-left: 80px;" />
+  <form #form="ngForm" (submit)="onSubmit(form)">
+    <div class="form-group">
+      <mat-form-field class="form-element" style="margin-left: 90px;">
+        <input matInput placeholder="Username" name="Username" #UserName="ngModel" [(ngModel)]="formModel.UserName" required>
+        <mat-error>
+          This field is mandatory!
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="form-element" style="margin-left: 90px;">
+        <input matInput type="password" placeholder="Password" name="Password" #Password="ngModel" [(ngModel)]="formModel.Password" required>
+        <mat-error>
+          This field is mandatory!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" style="margin-left: 146px;" type="submit" class="button" [disabled]="form.invalid">Login</button>
+      <mat-error *ngIf="errorBoolean">
+        {{errorMessage}}
+      </mat-error>
+    </div>
+  </form>
+</div>-->
+
+<h2>Login</h2>
+<br />
 <form #form="ngForm" (submit)="onSubmit(form)">
+
   <div class="form-group">
-    <mat-form-field class="form-element">
-      <input matInput placeholder="Username" name="Username" #UserName="ngModel" [(ngModel)]="formModel.UserName" required>
-      <mat-error>
-        This field is mandatory!
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="form-element">
-      <input matInput type="password" placeholder="Password" name="Password" #Password="ngModel" [(ngModel)]="formModel.Password" required>
-      <mat-error>
-        This field is mandatory!
-      </mat-error>
-    </mat-form-field>
+    <label for="UserName">Username</label>
+    <input type="text" name="Username" class="form-control" #UserName="ngModel" [(ngModel)]="formModel.UserName" required>
+    <!--<mat-error>
+      This field is mandatory!
+    </mat-error>-->
   </div>
-  <div>
-    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Login</button>
-    <mat-error *ngIf="errorBoolean">
-      {{errorMessage}}
-    </mat-error>
+
+  <div class="form-group">
+    <label for="Password">Password</label>
+    <input type="password" name="Password" class="form-control" #Password="ngModel" [(ngModel)]="formModel.Password" required>
+    <!--<mat-error>
+      This field is mandatory!
+    </mat-error>-->
+  </div>
+
+  <div class="form-group">
+    <div>
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="form.invalid">Login</button>
+      <mat-error *ngIf="errorBoolean">
+        {{errorMessage}}
+      </mat-error>
+      <a [routerLink]="['/user/registration']" class="btn btn-link">Sign Up</a>
+    </div>
   </div>
 </form>
