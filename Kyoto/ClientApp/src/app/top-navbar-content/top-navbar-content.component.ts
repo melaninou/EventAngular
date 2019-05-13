@@ -22,11 +22,13 @@ export class TopNavbarContentComponent implements OnInit {
       response => {
         this.userDetails = response;
         this.firstName = this.userDetails.firstName;
+        console.log("the firstname is ", this.firstName);
+        this.router.navigate(['home']);
       },
       err => {
         console.log(err);
       },
-    )
+    );
   }
   onLogout() {
     localStorage.removeItem('token');
