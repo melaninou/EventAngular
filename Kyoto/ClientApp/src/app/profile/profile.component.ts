@@ -4,6 +4,18 @@ import { UserService } from '../shared/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/User';
+import { Group } from '../models/Group'
+import { GroupService } from '../group.service';
+
+
+
+//import { User, UserService, Profile } from '../shared';
+
+export interface SingleGroup {
+  id: string;
+  name: string;
+
+}
 
 @Component({
   selector: 'app-profile',
@@ -19,8 +31,10 @@ export class ProfileComponent implements OnInit {
   baseUrl: string;
   currentUser: User;
   userId: string;
+  apiGroups: Group[];
+  groups: SingleGroup[];
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: UserService, private httpClient: HttpClient,
+  constructor(private groupService: GroupService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: UserService, private httpClient: HttpClient,
     @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
@@ -32,6 +46,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     //this.userId = this.route.snapshot.params['id'];
     //this.httpClient.get(this.baseUrl + 'api/UserProfile/' + this.userId).subscribe(data => { this.currentUser = data as User });
     this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
@@ -56,6 +71,14 @@ export class ProfileComponent implements OnInit {
   onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['user/login']);
+  }
+
+  showGroup(jsonFileName): void {
+
+    this.groupService.getGroupHost(jsonFileName).subscribe(result => {
+      this.groups = result as SingleGroup[];
+      console.log(this.groups);
+    }, error => console.error(error));
   }
 
   createFormForEdit() {
