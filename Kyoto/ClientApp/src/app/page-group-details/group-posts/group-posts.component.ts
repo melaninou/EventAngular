@@ -28,4 +28,13 @@ export class GroupPostsComponent implements OnInit {
     this.httpClient.get(this.baseUrl + 'api/posts/group/' + + this.groupId).subscribe(data => { this.apiPosts = data as Post[]; });
   }
 
+  getEventsCount(apiPosts: Post[] = []): number {
+    return apiPosts.filter(x => x.type === 'Event').length;
+  }
+
+
+  getAnnouncmentCount(apiPosts: Post[] = []): number {
+    return apiPosts.filter(x => x.type === 'Announcement').length;
+  }
+
 }
