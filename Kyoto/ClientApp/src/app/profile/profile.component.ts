@@ -10,12 +10,10 @@ import { Guid } from "guid-typescript";
 import { Post } from '../models/Post';
 
 
-
-//import { User, UserService, Profile } from '../shared';
-
 export interface SingleGroup {
   id: string;
   name: string;
+
 }
 
 @Component({
@@ -31,9 +29,8 @@ export class ProfileComponent implements OnInit {
   profileUpdated: boolean = false;
   baseUrl: string;
   currentUser: User;
+  userId: string;
   apiGroups: Group[];
-  apiPosts: Post[];
-  apiUsers: User[];
   groups: SingleGroup[];
   fileData: File = null;
   uploadedFileName: string;
@@ -41,7 +38,9 @@ export class ProfileComponent implements OnInit {
   @Output() public onUploadFinished = new EventEmitter();
   event: string = "Event";
   announcement: string = "Announcement";
-  userId;
+  currentUserId;
+  apiPosts: Post[];
+  apiUsers: User[];
 
   constructor(private groupService: GroupService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private service: UserService, private httpClient: HttpClient,
     @Inject('BASE_URL') baseUrl: string) {
@@ -58,26 +57,12 @@ export class ProfileComponent implements OnInit {
     this.httpClient.get(this.baseUrl + 'api/groups').subscribe(data => { this.apiGroups = data as Group[]; });
     this.httpClient.get(this.baseUrl + 'api/posts').subscribe(data => { this.apiPosts = data as Post[]; });
 
-    //this.httpClient.get(this.baseUrl + 'api/ApplicationUser').subscribe(data => { this.apiUsers = data as User[]; });
+    //this.userId = this.route.snapshot.params['id'];
     //this.httpClient.get(this.baseUrl + 'api/UserProfile/' + this.userId).subscribe(data => { this.currentUser = data as User });
     this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
       this.currentUser = data as User;
       console.log("from UserProfile currentUser, ", this.currentUser);
     });
-
-    //this.createFormForEdit();
-
-    //this.service.getUserProfile().subscribe(
-    //  response => {
-    //    this.userDetails = response;
-    //    //this.id = this.userDetails.id;
-    //  },
-    //  err => {
-    //    console.log(err);
-    //  },
-    //)
-    this.getCreatedEventsCount();
-    this.getCreatedAnnouncementsCount();
     this.createFormForEdit();
   }
 
@@ -118,12 +103,18 @@ export class ProfileComponent implements OnInit {
     console.log(profile);
     this.editEnabled = false;
     this.profileUpdated = false;
+
+
+
     var body = {
       "UserName": profile.userName,
       "FirstName": profile.firstName,
       "LastName": profile.lastName,
       "Email": profile.email
     }
+
+
+
     this.service.editProfile(body).subscribe((val) => {
       console.log("PUT call successful value returned in body", val);
     },
@@ -135,27 +126,27 @@ export class ProfileComponent implements OnInit {
         this.profileUpdated = true;
       });
 
-    this.httpClient.put(this.baseUrl + 'api/members/' + this.currentUser.id ,
+    this.httpClient.put(this.baseUrl + 'api/members/' + this.currentUser.id,
       {
         "id": this.currentUser.id,
         "name": "PROOV",
         "image": this.fileName
 
       }, this.httpOptions).subscribe(
-      (val) => {
-        console.log("PUT call successful value returned in body", val);
-      },
-      response => {
-        console.log("PUT call in error- member", response);
-      },
-      () => {
-        console.log("The Put observable is now completed");
+        (val) => {
+          console.log("PUT call successful value returned in body", val);
+        },
+        response => {
+          console.log("PUT call in error- member", response);
+        },
+        () => {
+          console.log("The Put observable is now completed");
 
-        this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
-          this.currentUser = data as User;
-          console.log("from UserProfile currentUser, ", this.currentUser);
+          this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
+            this.currentUser = data as User;
+            console.log("from UserProfile currentUser, ", this.currentUser);
+          });
         });
-      });
   }
 
   public uploadFile = (files) => {
@@ -188,18 +179,18 @@ export class ProfileComponent implements OnInit {
     } else {
       this.fileName = this.currentUser.imageName;
     }
-    
+
   }
 
   getCreatedEventsCount(apiPosts: Post[] = []): number {
-    this.userId = this.currentUser.id;
-    console.log("current user id ", this.userId);
-    return apiPosts.filter(x => x.type === 'Event' && x.creatorId === this.userId).length;
+    this.currentUserId = this.currentUser.id;
+    console.log("current user id ", this.currentUserId);
+    return apiPosts.filter(x => x.type === 'Event' && x.creatorId === this.currentUserId).length;
   }
 
   getCreatedAnnouncementsCount(apiPosts: Post[] = []): number {
-    this.userId = this.currentUser.id;
-    console.log("current user id ", this.userId);
-    return apiPosts.filter(x => x.type === 'Announcement' && x.creatorId === this.userId).length;
+    this.currentUserId = this.currentUser.id;
+    console.log("current user id ", this.currentUserId);
+    return apiPosts.filter(x => x.type === 'Announcement' && x.creatorId === this.currentUserId).length;
   }
 }
