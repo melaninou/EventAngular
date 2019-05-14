@@ -70,7 +70,7 @@
   <div class="row">
     <div class="fb-profile">
       <img align="left" class="fb-image-lg" src="https://coverfiles.alphacoders.com/115/11545.jpg" alt="Profile image example" />
-      <img align="left" class="fb-image-profile thumbnail" src="http://i67.tinypic.com/hx0jfn.jpg" alt="Profile image example" />
+      <img align="left" class="fb-image-profile thumbnail" src="Images/{{currentUser.imageName}}" alt="Profile image example" />
       <div class="fb-profile-text">
         <h1>{{currentUser.firstName}} {{currentUser.lastName}}</h1>
         <!--<a href="http://tinypic.com?ref=hx0jfn" target="_blank"><img src="http://i67.tinypic.com/hx0jfn.jpg" border="0" alt="Image and video hosting by TinyPic"></a>-->
@@ -207,12 +207,15 @@
 </div>
 
 <!----------------------------------------EDIT PROFILE FORM----------------------------------------------------------->
+<mat-card>
 <form [formGroup]="editForm" (ngSubmit)="onEditProfileSubmit(editForm.value)" *ngIf="editEnabled">
-  <mat-card>
-    <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
-      <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
-    </button>
-    <div class="edit-form-card">
+
+  <button mat-mini-fab class="back-button" color="accent" (click)="onEdit()">
+    <mat-icon class="edit-icon" aria-label="">keyboard_backspace</mat-icon>
+  </button>
+
+
+  <div class="edit-form-card">
       <mat-form-field class="form-element">
         <input matInput placeholder="First name" formControlName="firstName" [(ngModel)]="currentUser.firstName">
       </mat-form-field>
@@ -225,10 +228,16 @@
       <mat-form-field class="form-element">
         <input matInput placeholder="Email" formControlName="email" [(ngModel)]="currentUser.email">
       </mat-form-field>
+
+    <input name="file" id="file" class="inputfile" type="file" #file placeholder="Choose file" formControlName="imageName" (change)="getFileName()">
+
+
+  </div>
+
       <div class="form-element">
-        <button mat-raised-button color="primary" type="submit" class="button">Save</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid" class="button" (click)="uploadFile(file.files)">Save</button>
       </div>
-    </div>
-  </mat-card>
+
 </form>
+</mat-card>
 <mat-label class="success" *ngIf="!editEnabled && profileUpdated">Profile has been updated successfully!</mat-label>

@@ -15,15 +15,20 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Kyoto.Controllers
 {
+    
+
     //[Authorize(Roles = "User")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserProfileController : ControllerBase
     {
+        private readonly KyotoContext _context;
+
         private UserManager<ApplicationUser> _userManager;
-        public UserProfileController(UserManager<ApplicationUser> userManager)
+        public UserProfileController(UserManager<ApplicationUser> userManager, KyotoContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -35,14 +40,41 @@ namespace Kyoto.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             var count = _userManager.Users.Count();
             var idCount = count + 1;
+            var imageName = "";
+
+            try
+            {
+                imageName = _context.Member.FindAsync(userId).Result.Image;
+            }
+            catch (Exception e)
+            {
+               
+            }
+        
+
+            if (imageName == "")
+            {
+                var imageUser = new Member();
+                imageUser.Id = userId;
+                imageUser.Name = user.FirstName;
+                imageUser.Image = "defaultProfile.jpg";
+                _context.Member.Add(imageUser);
+                await _context.SaveChangesAsync();
+                imageName = "defaultProfile.jpg";
+            }
+
+            var test = _context.Member.Count();
 
             return new User
             {
-                Id = idCount.ToString(),
+               // Id = idCount.ToString(),
+                Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                UserName = user.UserName
+                UserName = user.UserName,
+                ImageName = imageName
+
             };
         }
 

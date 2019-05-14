@@ -1,11 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http';
 import { User } from '../models/User';
 import { Group } from '../models/Group'
 import { GroupService } from '../group.service';
+import { Guid } from "guid-typescript";
 import { Post } from '../models/Post';
 
 
@@ -34,6 +35,10 @@ export class ProfileComponent implements OnInit {
   apiPosts: Post[];
   apiUsers: User[];
   groups: SingleGroup[];
+  fileData: File = null;
+  uploadedFileName: string;
+  public fileName: string;
+  @Output() public onUploadFinished = new EventEmitter();
   event: string = "Event";
   announcement: string = "Announcement";
   userId;
@@ -94,7 +99,8 @@ export class ProfileComponent implements OnInit {
       'firstName': [''],
       'lastName': [''],
       'userName': ['', Validators.required],
-      'email': [Validators.email]
+      'email': [Validators.email],
+      'image': [''],
     });
   }
 
@@ -122,12 +128,67 @@ export class ProfileComponent implements OnInit {
       console.log("PUT call successful value returned in body", val);
     },
       response => {
-        console.log("PUT call in error", response);
+        console.log("PUT call in error-sql", response);
       },
       () => {
         console.log("The Put observable is now completed");
         this.profileUpdated = true;
       });
+
+    this.httpClient.put(this.baseUrl + 'api/members/' + this.currentUser.id ,
+      {
+        "id": this.currentUser.id,
+        "name": "PROOV",
+        "image": this.fileName
+
+      }, this.httpOptions).subscribe(
+      (val) => {
+        console.log("PUT call successful value returned in body", val);
+      },
+      response => {
+        console.log("PUT call in error- member", response);
+      },
+      () => {
+        console.log("The Put observable is now completed");
+
+        this.httpClient.get(this.baseUrl + 'api/UserProfile').subscribe(data => {
+          this.currentUser = data as User;
+          console.log("from UserProfile currentUser, ", this.currentUser);
+        });
+      });
+  }
+
+  public uploadFile = (files) => {
+    if (files.length === 0) {
+      return;
+    }
+
+    let fileToUpload = <File>files[0];
+
+    console.log("Uploaded file nimi on: ", fileToUpload.name);
+    this.uploadedFileName = fileToUpload.name;
+
+    const formData = new FormData();
+    formData.append('file', fileToUpload, this.fileName);
+
+    this.httpClient.post(this.baseUrl + 'api/groups/upload', formData, { reportProgress: true, observe: 'events' })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) { }
+
+        else if (event.type === HttpEventType.Response) {
+
+          this.onUploadFinished.emit(event.body);
+        }
+      });
+  }
+
+  getFileName() {
+    if (this.currentUser.imageName == "defaultProfile.jpg") {
+      this.fileName = Guid.create().toString() + '.jpg';
+    } else {
+      this.fileName = this.currentUser.imageName;
+    }
+    
   }
 
   getCreatedEventsCount(apiPosts: Post[] = []): number {
