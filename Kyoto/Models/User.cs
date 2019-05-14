@@ -1,4 +1,6 @@
-﻿namespace Kyoto.Models
+﻿using System.Collections.Generic;
+
+namespace Kyoto.Models
 {
     public class User
     {
@@ -9,6 +11,9 @@
         public string Email { get; set; }
 
         public string ImageName { get; set; }
+        //public List<int> GoingPostIds { get; set; }
+        //public List<int> MaybePostIds { get; set; }
+        //public List<int> CantGoPostIds { get; set; }
 
     }
 }

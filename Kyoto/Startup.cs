@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Kyoto
 {
@@ -81,7 +82,22 @@ namespace Kyoto
                     ClockSkew = TimeSpan.Zero //checking expiration time
                 };
             });
-           
+            services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new Info
+                    {
+                        Title = "Swagger XML Api 1",
+                        Version = "v1",
+                    });
+                    var xmlPath = System.AppDomain.CurrentDomain.BaseDirectory + @"Harjutustund9.xml";
+                    c.IncludeXmlComments(xmlPath);
+                    c.SwaggerDoc("v2", new Info
+                    {
+                        Title = "Swagger XML Api 2",
+                        Version = "v2",
+                    });
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -128,6 +144,12 @@ namespace Kyoto
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger XML Api v1");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Swagger XML Api v2");
+                });
             CreateRolesAndAdminUser(serviceProvider);
         }
 
