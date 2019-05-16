@@ -184,13 +184,11 @@ export class ProfileComponent implements OnInit {
 
   getCreatedEventsCount(apiPosts: Post[] = []): number {
     this.currentUserId = this.currentUser.id;
-    console.log("current user id ", this.currentUserId);
     return apiPosts.filter(x => x.type === 'Event' && x.creatorId === this.currentUserId).length;
   }
 
   getCreatedAnnouncementsCount(apiPosts: Post[] = []): number {
     this.currentUserId = this.currentUser.id;
-    console.log("current user id ", this.currentUserId);
     return apiPosts.filter(x => x.type === 'Announcement' && x.creatorId === this.currentUserId).length;
   }
 }
